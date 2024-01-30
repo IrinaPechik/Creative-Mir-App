@@ -29,7 +29,7 @@ struct RoleChoosingView: View {
                 Picker("Who are you?", selection: $selectedStatus) {
                     ForEach(0 ..< statusOptions.count) {
                         Text(statusOptions[$0].rawValue)
-                            .font(.custom("FuturaPT-Light", size: 23))
+                            .font(.custom("Lora-Regular", size: 18))
                     }
                 }
                 .padding(.top, -150)
@@ -41,7 +41,7 @@ struct RoleChoosingView: View {
                     presentNextView.toggle()
                 }
             }.navigationDestination(isPresented: $presentNextView) {
-                
+                NameEnteringView()
             }
         }
     }

@@ -198,7 +198,7 @@ public struct NextButtonView: View {
         Button(action: action, label: {
             Text("Next")
                 .foregroundStyle(.white)
-                .font(.custom("OpenSans-Regular", size: 20))
+                .font(.custom("Marcellus-Regular", size: 20))
         })
         .frame(width: 352, height: 65)
         .background(Color.black)
