@@ -29,7 +29,7 @@ struct SignInView: View {
     }
     
     var body: some View {
-        NavigationStack {
+        NavigationStack{
             VStack {
                 Text("SIGN IN")
                     .font(.custom("PlayfairDisplay-Medium", size: 60))
@@ -104,6 +104,13 @@ struct SignInView: View {
             }
             .alert(isPresented: $showErrorAlert) {
                 return Alert(title: Text("Invalid email or password"), dismissButton: .default(Text("Ok")))
+            }
+        }
+        // Скрываем системную кнопку Back
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                customBackButton()
             }
         }
     }

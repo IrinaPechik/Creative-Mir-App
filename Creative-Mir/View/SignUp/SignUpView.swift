@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SignUpView: View {
-    enum ViewStack {
+    enum ViewStack: Hashable {
         case login
         case roleChoosing
     }
@@ -33,7 +33,7 @@ struct SignUpView: View {
     }
     
     var body: some View {
-        NavigationStack {
+        NavigationView {
             VStack {
                 Text("SIGN UP")
                     .font(.custom("PlayfairDisplay-Medium", size: 60))
@@ -80,16 +80,18 @@ struct SignUpView: View {
                 // Тут еще чекнуть
                 VStack(spacing: 20) {
                     NextButtonView(isDisabled: isNextButtonDisabled) {
-                        AuthService.shared.signUp(email: email, password: password) { result in
-                            switch result {
-                            case .success(_):
-                                nextView = .roleChoosing
-                                presentNextView.toggle()
-                            case .failure(let error):
-                                showErrorAlert.toggle()
-                                self.error = error.localizedDescription
-                            }
-                        }
+                        nextView = .roleChoosing
+                        presentNextView.toggle()
+//                        AuthService.shared.signUp(email: email, password: password) { result in
+//                            switch result {
+//                            case .success(_):
+//                                nextView = .roleChoosing
+//                                presentNextView.toggle()
+//                            case .failure(let error):
+//                                showErrorAlert.toggle()
+//                                self.error = error.localizedDescription
+//                            }
+//                        }
                     }
                     
                     HStack {
@@ -123,6 +125,13 @@ struct SignUpView: View {
             .alert(isPresented: $showErrorAlert, content: {
                 return Alert(title: Text(self.error), dismissButton: .default(Text("Ok")))
             })
+        }
+        // Скрываем системную кнопку Back
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                customBackButton()
+            }
         }
     }
 }
@@ -186,25 +195,5 @@ extension View {
     
     func firstPasswordTFCustomStyle(password: Binding<String>, repeatedPassword: Binding<String>, isFirstPasswordValid: Binding<Bool>, isRepeatedPasswordValid: Binding<Bool>) -> some View {
         modifier(FirstPasswordTFViewModifier(password: password, repeatedPassword: repeatedPassword, isFirstPasswordValid: isFirstPasswordValid, isRepeatedPasswordValid: isRepeatedPasswordValid))
-    }
-}
-
-
-public struct NextButtonView: View {
-    let isDisabled: Bool
-    let action: () -> Void
-    
-    public var body: some View {
-        Button(action: action, label: {
-            Text("Next")
-                .foregroundStyle(.white)
-                .font(.custom("Marcellus-Regular", size: 20))
-        })
-        .frame(width: 352, height: 65)
-        .background(Color.black)
-        .opacity(isDisabled ? 0.6 : 1)
-
-        .clipShape(RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/))
-        .disabled(isDisabled)
     }
 }

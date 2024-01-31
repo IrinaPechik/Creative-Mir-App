@@ -19,7 +19,7 @@ struct ForgotPasswordView: View {
     }
     
     var body: some View {
-        NavigationStack {
+        NavigationView {
             VStack {
                 Text("Enter your email adress")
                     .font(.custom("PlayfairDisplay-Medium", size: 30))

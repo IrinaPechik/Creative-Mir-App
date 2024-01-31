@@ -7,11 +7,6 @@
 
 import SwiftUI
 
-enum UserRoles: String, Codable {
-    case customer = "I want to organise my event"
-    case supplier = "I am a supplier"
-    case venue = "I am a venue"
-}
 struct RoleChoosingView: View {
     @State private var selectedStatus: Int = 1
     
@@ -21,7 +16,7 @@ struct RoleChoosingView: View {
     let statusOptions = [UserRoles.customer, UserRoles.supplier, UserRoles.venue]
     
     var body: some View {
-        NavigationStack {
+        NavigationView {
             VStack {
                 Text("Who are you?")
                     .font(.custom("PlayfairDisplay-Medium", size: 48))
@@ -36,12 +31,22 @@ struct RoleChoosingView: View {
                 .scaleEffect(1.5)
                 .pickerStyle(.wheel)
                 
-                NextButtonView(isDisabled: false) {
+                NextButtonViewSecond(isDisabled: false) {
                     AuthService.shared.saveUserRole(role: String(describing: statusOptions[selectedStatus]))
                     presentNextView.toggle()
                 }
             }.navigationDestination(isPresented: $presentNextView) {
                 NameEnteringView()
+            }
+        }
+        // Скрываем системную кнопку Back
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                customBackButton()
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                PageCounter(currentCounter: 1)
             }
         }
     }

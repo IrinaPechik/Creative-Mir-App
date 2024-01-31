@@ -2,17 +2,26 @@
 //  CustomTextViews.swift
 //  Creative-Mir
 //
-//  Created by Печик Дарья on 31.01.2024.
+//  Created by Печик Ирина on 31.01.2024.
 //
 
 import SwiftUI
 
-struct CustomTextViews: View {
+struct customTextView: View {
+    @Binding var name: String
+    var placeholderName: String
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .leading, spacing: 10) {
+            Text(placeholderName).font(.custom("Marcellus-Regular", size: 15))
+            TextField("", text: $name)
+                .font(.custom("Lora-Regular", size: 18))
+                .frame(height: 35) // Высота текстового поля
+                .overlay(
+                    Rectangle().frame(height: 1),
+                    alignment: .bottomLeading) // Нижняя линия
+                .foregroundColor(.black) // Цвет текста
+        }
+        .frame(width: 320) // Ширина текстового поля
+        .padding()
     }
-}
-
-#Preview {
-    CustomTextViews()
 }
