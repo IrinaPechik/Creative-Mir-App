@@ -18,7 +18,7 @@ class DatabaseService {
     
     private init() {}
     
-    func createCustomer(customer: Customer) async throws {
-        try customersRef.document(customer.id).setData(from: customer, merge: false)
-    }
+//    func createCustomer(customer: Customer) async throws {
+//        try customersRef.document(customer.id).setData(from: customer, merge: false)
+//    }
 }

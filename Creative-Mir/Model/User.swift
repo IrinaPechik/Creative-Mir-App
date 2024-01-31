@@ -13,8 +13,8 @@ enum UserRoles: String, Codable {
     case venue = "I am a venue"
 }
 
-struct User {
-//    var id: String
+struct SystemUser {
+    var id: String
     var userRole: UserRoles
     var name: String
     var surname: String
