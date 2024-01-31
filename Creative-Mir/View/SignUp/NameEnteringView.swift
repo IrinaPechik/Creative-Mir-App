@@ -10,6 +10,7 @@ import SwiftUI
 struct NameEnteringView: View {
     @State private var name: String = ""
     @State private var surname: String = ""
+    @State private var presentNextView = false
     var body: some View {
         NavigationView{
             VStack(alignment: .center, spacing: 40) {
@@ -24,8 +25,12 @@ struct NameEnteringView: View {
                 .padding()
                 NextButtonViewSecond(isDisabled: name.isEmpty || surname.isEmpty) {
                     // Переход к следующей view
+                    presentNextView.toggle()
                 }
                 .padding(.top, 100)
+            }
+            .navigationDestination(isPresented: $presentNextView) {
+                BirthdateEnteringView()
             }
         }
         // Скрываем системную кнопку Back
