@@ -8,27 +8,28 @@
 import SwiftUI
 
 struct BirthdateEnteringView: View {
-//    @State private var date: Int = 0
-//    @State private var month: Int = 0
-//    @State private var year: Int = 0
     @State private var date: Date = Date.now
 
     @State private var surname: String = ""
+    @State private var presentNextView = false
     var body: some View {
         NavigationView{
             VStack(alignment: .center, spacing: 40) {
                 Text("Enter your birthdate")
                     .font(.custom("Lora-Regular", size: 32))
-                    .padding()
-                VStack {
-                    BirthdateView(date: $date)
-                }
-                .padding()
+                    .padding(.bottom, 70)
+                BirthdateView(date: $date)
                 NextButtonViewSecond(isDisabled: false) {
-                    print(date)
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "dd.MM.yyyy"
+                    print(dateFormatter.string(from: date))
                     // Переход к следующей view
+                    presentNextView.toggle()
                 }
                 .padding(.top, 100)
+            }
+            .navigationDestination(isPresented: $presentNextView) {
+                AdressSelectionView()
             }
         }
         // Скрываем системную кнопку Back
@@ -55,11 +56,9 @@ struct BirthdateView: View {
     let endDate = Calendar.current.date(from: DateComponents(year: Calendar.current.component(.year, from: Date()), month: 12, day: 31)) ?? Date()
 
     var body: some View {
-        VStack() {
-            DatePicker("", selection: $date, in: startDate...endDate,displayedComponents: .date)
-                .font(.custom("PlayfairDisplay-Medium", size: 48))
-                .datePickerStyle(.wheel)
-                .frame(width: 100, height: 100)
-        }
+        DatePicker("", selection: $date, in: startDate...endDate,displayedComponents: .date)
+            .scaleEffect(1.2)
+            .datePickerStyle(.wheel)
+            .frame(width: 100, height: 100, alignment: .center)
     }
 }
