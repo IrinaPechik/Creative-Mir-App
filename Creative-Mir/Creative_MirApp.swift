@@ -18,6 +18,7 @@ struct Creative_MirApp: App {
     var body: some Scene {
         WindowGroup {
             RoleChoosingView()
+
 //            if AuthService.shared.isUserAuthenticated() {
 //                HomeView()
 //            } else {

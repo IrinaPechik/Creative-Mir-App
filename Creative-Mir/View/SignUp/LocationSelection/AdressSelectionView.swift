@@ -25,7 +25,7 @@ struct AdressSelectionView: View {
                         HStack {
                             Image(systemName: "magnifyingglass").foregroundColor(.black)
                             Text(returnedPlace.address.isEmpty ? "Enter your city" : returnedPlace.address)
-                                .font(.custom("Lora-Regular", size: 15))
+                                .font(.custom("Lora-Regular", size: 18))
                                 .foregroundStyle(.black)
                         }
                     }
@@ -41,7 +41,7 @@ struct AdressSelectionView: View {
                 .padding(.top, 100)
             }
             .navigationDestination(isPresented: $presentNextView) {
-               Text("Photo")
+                SelectingProfilePhotoView().environmentObject(PhotoPickerViewModel())
             }
         }
         .fullScreenCover(isPresented: $showPlaceLookupSheet, content: {

@@ -53,6 +53,11 @@
 		61A815E42B57F0000072971A /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 61A815E32B57F0000072971A /* FirebaseStorageCombine-Community */; };
 		61A815E62B57F2AD0072971A /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A815E52B57F2AD0072971A /* AuthService.swift */; };
 		61A815EA2B593A910072971A /* SwiftKeychainWrapper in Frameworks */ = {isa = PBXBuildFile; productRef = 61A815E92B593A910072971A /* SwiftKeychainWrapper */; };
+		61ACBA952B8C849F0037EC2B /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61ACBA942B8C849F0037EC2B /* PhotoPickerView.swift */; };
+		61ACBA982B8C8C960037EC2B /* PhotoPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61ACBA972B8C8C960037EC2B /* PhotoPickerViewModel.swift */; };
+		61ACBA9A2B8C8EA10037EC2B /* PhotoSourcePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61ACBA992B8C8EA10037EC2B /* PhotoSourcePicker.swift */; };
+		61ACBA9C2B8C8FD60037EC2B /* SelectingProfilePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61ACBA9B2B8C8FD60037EC2B /* SelectingProfilePhotoView.swift */; };
+		61ACBA9E2B8C904D0037EC2B /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61ACBA9D2B8C904D0037EC2B /* ImagePicker.swift */; };
 		61D7D1422B51C0C500BA0A26 /* PlayfairDisplay-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 61D7D1412B51C0C500BA0A26 /* PlayfairDisplay-Medium.ttf */; };
 		61D7D1452B51CAA900BA0A26 /* Futura-pt-light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 61D7D1442B51CAA900BA0A26 /* Futura-pt-light.ttf */; };
 		61D7D1482B51CC5E00BA0A26 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 61D7D1462B51CC5E00BA0A26 /* OpenSans-Regular.ttf */; };
@@ -89,6 +94,11 @@
 		61A815AA2B57DD320072971A /* RoleChoosingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoleChoosingView.swift; sourceTree = "<group>"; };
 		61A815AC2B57EC1F0072971A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		61A815E52B57F2AD0072971A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		61ACBA942B8C849F0037EC2B /* PhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
+		61ACBA972B8C8C960037EC2B /* PhotoPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerViewModel.swift; sourceTree = "<group>"; };
+		61ACBA992B8C8EA10037EC2B /* PhotoSourcePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSourcePicker.swift; sourceTree = "<group>"; };
+		61ACBA9B2B8C8FD60037EC2B /* SelectingProfilePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectingProfilePhotoView.swift; sourceTree = "<group>"; };
+		61ACBA9D2B8C904D0037EC2B /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		61D7D1412B51C0C500BA0A26 /* PlayfairDisplay-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlayfairDisplay-Medium.ttf"; sourceTree = "<group>"; };
 		61D7D1432B51C19000BA0A26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		61D7D1442B51CAA900BA0A26 /* Futura-pt-light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura-pt-light.ttf"; sourceTree = "<group>"; };
@@ -209,6 +219,7 @@
 		618656CA2B89426500E537B1 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				61ACBAA12B8C907D0037EC2B /* PhotoProfile */,
 				61434B502B877E8100370524 /* PlaceViewModel.swift */,
 			);
 			path = ViewModel;
@@ -228,11 +239,45 @@
 		61A815E72B57F2C60072971A /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				61ACBA9F2B8C905F0037EC2B /* PhotoProfile */,
 				61A815E52B57F2AD0072971A /* AuthService.swift */,
 				61FAA9662B5FD6E900F8BEE6 /* DatabaseService.swift */,
 				61434B522B87828500370524 /* LocationManager.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		61ACBA962B8C8AD20037EC2B /* PhotoProfile */ = {
+			isa = PBXGroup;
+			children = (
+				61ACBA942B8C849F0037EC2B /* PhotoPickerView.swift */,
+				61ACBA9B2B8C8FD60037EC2B /* SelectingProfilePhotoView.swift */,
+			);
+			path = PhotoProfile;
+			sourceTree = "<group>";
+		};
+		61ACBA9F2B8C905F0037EC2B /* PhotoProfile */ = {
+			isa = PBXGroup;
+			children = (
+				61ACBA9D2B8C904D0037EC2B /* ImagePicker.swift */,
+			);
+			path = PhotoProfile;
+			sourceTree = "<group>";
+		};
+		61ACBAA02B8C90700037EC2B /* PhotoProfile */ = {
+			isa = PBXGroup;
+			children = (
+				61ACBA992B8C8EA10037EC2B /* PhotoSourcePicker.swift */,
+			);
+			path = PhotoProfile;
+			sourceTree = "<group>";
+		};
+		61ACBAA12B8C907D0037EC2B /* PhotoProfile */ = {
+			isa = PBXGroup;
+			children = (
+				61ACBA972B8C8C960037EC2B /* PhotoPickerViewModel.swift */,
+			);
+			path = PhotoProfile;
 			sourceTree = "<group>";
 		};
 		61D7D1402B51C08000BA0A26 /* Fonts */ = {
@@ -270,6 +315,7 @@
 		61FA4A3D2B5A890E00551852 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				61ACBA962B8C8AD20037EC2B /* PhotoProfile */,
 				618656C92B89420400E537B1 /* LocationSelection */,
 				61730B722B5158E80063C9CE /* SignUpView.swift */,
 				61A815AA2B57DD320072971A /* RoleChoosingView.swift */,
@@ -282,6 +328,7 @@
 		61FAA9632B5FCF3700F8BEE6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				61ACBAA02B8C90700037EC2B /* PhotoProfile */,
 				61434B4E2B877B5B00370524 /* Place.swift */,
 				61FAA9642B5FD05A00F8BEE6 /* User.swift */,
 			);
@@ -401,6 +448,8 @@
 			files = (
 				61A815A92B57D3BD0072971A /* SignInView.swift in Sources */,
 				61730B662B51553F0063C9CE /* ContentView.swift in Sources */,
+				61ACBA9C2B8C8FD60037EC2B /* SelectingProfilePhotoView.swift in Sources */,
+				61ACBA9E2B8C904D0037EC2B /* ImagePicker.swift in Sources */,
 				61434B4D2B8779E500370524 /* PlaceLookupView.swift in Sources */,
 				61730B732B5158E80063C9CE /* SignUpView.swift in Sources */,
 				61FA4A3F2B5A8A0600551852 /* HomeView.swift in Sources */,
@@ -416,11 +465,14 @@
 				61434B512B877E8100370524 /* PlaceViewModel.swift in Sources */,
 				61EBFEC12B6A984900526020 /* AdressSelectionView.swift in Sources */,
 				61FAA9652B5FD05A00F8BEE6 /* User.swift in Sources */,
+				61ACBA982B8C8C960037EC2B /* PhotoPickerViewModel.swift in Sources */,
+				61ACBA9A2B8C8EA10037EC2B /* PhotoSourcePicker.swift in Sources */,
 				61A815AB2B57DD320072971A /* RoleChoosingView.swift in Sources */,
 				61FA4A3B2B5A68EC00551852 /* ForgotPasswordView.swift in Sources */,
 				61EBFEBB2B6A4E2E00526020 /* CustomNextButtonsView.swift in Sources */,
 				61EBFEBD2B6A4EA000526020 /* CustomTextViews.swift in Sources */,
 				61A815E62B57F2AD0072971A /* AuthService.swift in Sources */,
+				61ACBA952B8C849F0037EC2B /* PhotoPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
