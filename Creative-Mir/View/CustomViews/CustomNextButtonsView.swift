@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct NextButtonViewSecond: View {
+    let buttonText: String
     let isDisabled: Bool
     let action: () -> Void
-    
     public var body: some View {
         Button(action: action, label: {
-            Text("N E X T")
+            Text(buttonText)
                 .foregroundStyle(Color(red: 255/255, green: 213/255, blue: 151/255))
                 .font(.custom("Marcellus-Regular", size: 20))
         })

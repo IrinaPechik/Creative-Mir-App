@@ -19,7 +19,7 @@ struct BirthdateEnteringView: View {
                     .font(.custom("Lora-Regular", size: 32))
                     .padding(.bottom, 70)
                 BirthdateView(date: $date)
-                NextButtonViewSecond(isDisabled: false) {
+                NextButtonViewSecond(buttonText: "N E X T",isDisabled: false) {
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "dd.MM.yyyy"
                     print(dateFormatter.string(from: date))

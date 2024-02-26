@@ -34,7 +34,7 @@ struct AdressSelectionView: View {
 
 
 
-                NextButtonViewSecond(isDisabled: returnedPlace.address.isEmpty) {
+                NextButtonViewSecond(buttonText: "N E X T", isDisabled: returnedPlace.address.isEmpty) {
                     // Переход к следующей view
                     presentNextView.toggle()
                 }

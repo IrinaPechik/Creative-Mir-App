@@ -31,7 +31,7 @@ struct RoleChoosingView: View {
                 .scaleEffect(1.5)
                 .pickerStyle(.wheel)
                 
-                NextButtonViewSecond(isDisabled: false) {
+                NextButtonViewSecond(buttonText: "N E X T", isDisabled: false) {
                     AuthService.shared.saveUserRole(role: String(describing: statusOptions[selectedStatus]))
                     presentNextView.toggle()
                 }

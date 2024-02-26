@@ -22,7 +22,7 @@ struct SelectingProfilePhotoView: View {
                         actionSheetVisible = true
                     }
                     .padding(90)
-                NextButtonViewSecond(isDisabled: vm.image == nil) {
+                NextButtonViewSecond(buttonText: "F I N I S H", isDisabled: vm.image == nil) {
                     // Переход к следующей view
                     presentNextView.toggle()
                 }

@@ -23,7 +23,7 @@ struct NameEnteringView: View {
                         .padding(.top)
                 }
                 .padding()
-                NextButtonViewSecond(isDisabled: name.isEmpty || surname.isEmpty) {
+                NextButtonViewSecond(buttonText: "N E X T", isDisabled: name.isEmpty || surname.isEmpty) {
                     // Переход к следующей view
                     presentNextView.toggle()
                 }
