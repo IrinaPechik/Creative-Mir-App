@@ -14,29 +14,25 @@ struct AdressSelectionView: View {
     @State private var presentNextView = false
     var body: some View {
         NavigationView {
-            VStack(alignment: .center, spacing: 40) {
+            VStack(alignment: .center) {
                 Text("You live in")
                     .font(.custom("Lora-Regular", size: 32))
-                    .padding()
-                
-                Button {
-                    showPlaceLookupSheet.toggle()
-                } label: {
-                    HStack(alignment: .center) {
-                        Image(systemName: "magnifyingglass").foregroundColor(.black)
-
-                        Text(returnedPlace.address.isEmpty ? " Select your city        " : returnedPlace.address)
-                            .font(.custom("Lora-Regular", size: 20))
-                            .frame(height: 35) // Высота текстового поля
-                            .padding(.trailing, 10)
+                    .padding(.bottom, 140)
+                VStack(alignment: .leading, spacing: 10) {
+                    Button {
+                        showPlaceLookupSheet.toggle()
+                    } label: {
+                        HStack {
+                            Image(systemName: "magnifyingglass").foregroundColor(.black)
+                            Text(returnedPlace.address.isEmpty ? "Enter your city" : returnedPlace.address)
+                                .font(.custom("Lora-Regular", size: 15))
+                                .foregroundStyle(.black)
+                        }
                     }
-                    .overlay(
-                        Rectangle().frame(height: 1),
-                        alignment: .bottomLeading) // Нижняя линия
-                    .foregroundColor(.black) // Цвет текста
-                }
-                .padding(.top, 40)
-                
+                    Rectangle().frame(width: 300, height: 1)
+                }.padding(.bottom, 50)
+
+
 
                 NextButtonViewSecond(isDisabled: returnedPlace.address.isEmpty) {
                     // Переход к следующей view

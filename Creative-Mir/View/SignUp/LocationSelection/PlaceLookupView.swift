@@ -15,6 +15,7 @@ struct PlaceLookupView: View {
     @Environment (\.dismiss) private var dismiss
     @Binding var returnedPlace: Place
     
+
     var body: some View {
         NavigationStack {
             List(placeVM.places) { place in
@@ -28,7 +29,8 @@ struct PlaceLookupView: View {
                 }
             }
             .listStyle(.plain)
-            .searchable(text: $searchText).font(.custom("Lora-Regular", size: 16))
+            .searchable(text: $searchText)
+                .font(.custom("Lora-Regular", size: 16))
             .onChange(of: searchText, perform: {text in
                 if !text.isEmpty {
                     placeVM.search(text: text, region: locationManager.region)
