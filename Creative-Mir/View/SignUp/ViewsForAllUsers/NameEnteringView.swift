@@ -12,7 +12,7 @@ struct NameEnteringView: View {
     @State private var surname: String = ""
     @State private var presentNextView = false
     var body: some View {
-        NavigationView{
+        NavigationView {
             VStack(alignment: .center, spacing: 40) {
                 Text("Enter your name")
                     .font(.custom("Lora-Regular", size: 32))
@@ -24,14 +24,20 @@ struct NameEnteringView: View {
                 }
                 .padding()
                 NextButtonViewSecond(buttonText: "N E X T", isDisabled: name.isEmpty || surname.isEmpty) {
+                    AuthService.shared.saveUserName(name: name)
+                    AuthService.shared.saveUserSurname(surname: surname)
                     // Переход к следующей view
                     presentNextView.toggle()
                 }
                 .padding(.top, 100)
             }
+
             .navigationDestination(isPresented: $presentNextView) {
                 BirthdateEnteringView()
             }
+        }
+        .onTapGesture {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
         // Скрываем системную кнопку Back
         .navigationBarBackButtonHidden(true)
@@ -40,7 +46,7 @@ struct NameEnteringView: View {
                 customBackButton()
             }
             ToolbarItem(placement: .topBarTrailing) {
-                PageCounter(currentCounter: 2)
+                PageCounter(currentCounter: 2, allPagesCount: 5)
             }
         }
     }

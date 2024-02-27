@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseAuth
 import SwiftKeychainWrapper
+import UIKit
 
 
 class AuthService {
@@ -96,8 +97,11 @@ class AuthService {
     func isUserAuthenticated() -> Bool {
         return getTokenFromKeyChain() != nil && auth.currentUser != nil
     }
+    // MARK: - Userdefaults methods
     
-    // MARK: Save to userDefaults info about person role.
+    // MARK: - Userdefaults methods for all types of users
+    
+    // MARK: Save and get to/from userDefaults info about person role.
     func saveUserRole(role: String) {
         UserDefaults.standard.set(role, forKey: "userRole")
     }
@@ -107,5 +111,68 @@ class AuthService {
             return role
         }
         return "user" 
+    }
+    
+    // MARK: Save and get to/from userDefaults info about person name.
+    func saveUserName(name: String) {
+        UserDefaults.standard.set(name, forKey: "userName")
+    }
+    
+    func getUserName() -> String {
+        if let name = UserDefaults.standard.string(forKey: "userName") {
+            return name
+        }
+        return "name"
+    }
+    
+    // MARK: Save and get to/from userDefaults info about person surname.
+    func saveUserSurname(surname: String) {
+        UserDefaults.standard.set(surname, forKey: "userSurname")
+    }
+    
+    func getUserSurname() -> String {
+        if let surname = UserDefaults.standard.string(forKey: "userSurname") {
+            return surname
+        }
+        return "surname"
+    }
+    
+    // MARK: Save and get to/from userDefaults info about person birth date.
+    func saveUserBirthDateStr(birthDateStr: String) {
+        UserDefaults.standard.set(birthDateStr, forKey: "userBirthDateStr")
+    }
+    
+    func getUserBirthDateStr() -> String {
+        if let birthDateStr = UserDefaults.standard.string(forKey: "userBirthDateStr") {
+            return birthDateStr
+        }
+        return "birth date"
+    }
+    
+    // MARK: Save and get to/from userDefaults profile photo.
+    func saveUserProfilePhoto(profilePhotoJpeg: Data?) {
+        let encoded = try! PropertyListEncoder().encode(profilePhotoJpeg)
+        UserDefaults.standard.set(encoded, forKey: "encodedProfilePhoto")
+    }
+    
+    func getUserProfilePhoto() -> UIImage? {
+        guard let data = UserDefaults.standard.data(forKey: "encodedProfilePhoto") else {return nil}
+        let decoded = try! PropertyListDecoder().decode(Data.self, from: data)
+        let image = UIImage(data: decoded)
+        return image
+    }
+    
+    // MARK: - Userdefaults methods for suppliers
+    
+    // MARK: Save and get to/from userDefaults info about person role.
+    func saveSupplierStoryAboutYourself(storyAboutYourself: String) {
+        UserDefaults.standard.set(storyAboutYourself, forKey: "supplierStoryAboutYourself")
+    }
+    
+    func getSupplierStoryAboutYourself() -> String {
+        if let storyAboutYourself = UserDefaults.standard.string(forKey: "supplierStoryAboutYourself") {
+            return storyAboutYourself
+        }
+        return "storyAboutYourself"
     }
 }

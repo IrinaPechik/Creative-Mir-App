@@ -46,7 +46,7 @@ struct RoleChoosingView: View {
                 customBackButton()
             }
             ToolbarItem(placement: .topBarTrailing) {
-                PageCounter(currentCounter: 1)
+                PageCounter(currentCounter: 1, allPagesCount: 5)
             }
         }
     }

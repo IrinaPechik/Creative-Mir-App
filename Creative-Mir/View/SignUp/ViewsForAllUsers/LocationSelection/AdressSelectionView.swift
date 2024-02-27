@@ -54,7 +54,7 @@ struct AdressSelectionView: View {
                 customBackButton()
             }
             ToolbarItem(placement: .topBarTrailing) {
-                PageCounter(currentCounter: 4)
+                PageCounter(currentCounter: 4, allPagesCount: 5)
             }
         }
     }

@@ -26,8 +26,9 @@ struct customBackButton: View {
 
 struct PageCounter: View {
     var currentCounter: Int
+    var allPagesCount: Int
     var body: some View {
-        Text("\(currentCounter)/10")
+        Text("\(currentCounter)/\(allPagesCount)")
             .font(.custom("FuturaPT-Light", size: 30))
             .foregroundStyle(.black)
 //            .padding(.top, 20)

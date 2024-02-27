@@ -24,6 +24,8 @@ struct SelectingProfilePhotoView: View {
                     .padding(90)
                 NextButtonViewSecond(buttonText: "F I N I S H", isDisabled: vm.image == nil) {
                     // Переход к следующей view
+                    var jpegImage = vm.image?.jpegData(compressionQuality: 0.8)
+                    AuthService.shared.saveUserProfilePhoto(profilePhotoJpeg: jpegImage)
                     presentNextView.toggle()
                 }
                 .padding(.bottom, 20)
@@ -73,7 +75,7 @@ struct SelectingProfilePhotoView: View {
                 customBackButton()
             }
             ToolbarItem(placement: .topBarTrailing) {
-                PageCounter(currentCounter: 5)
+                PageCounter(currentCounter: 5, allPagesCount: 5)
             }
         }
     }

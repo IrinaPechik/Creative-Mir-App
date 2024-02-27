@@ -13,7 +13,7 @@ struct BirthdateEnteringView: View {
     @State private var surname: String = ""
     @State private var presentNextView = false
     var body: some View {
-        NavigationView{
+        NavigationView {
             VStack(alignment: .center, spacing: 40) {
                 Text("Enter your birthdate")
                     .font(.custom("Lora-Regular", size: 32))
@@ -23,6 +23,7 @@ struct BirthdateEnteringView: View {
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "dd.MM.yyyy"
                     print(dateFormatter.string(from: date))
+                    AuthService.shared.saveUserBirthDateStr(birthDateStr: dateFormatter.string(from: date))
                     // Переход к следующей view
                     presentNextView.toggle()
                 }
@@ -39,7 +40,7 @@ struct BirthdateEnteringView: View {
                 customBackButton()
             }
             ToolbarItem(placement: .topBarTrailing) {
-                PageCounter(currentCounter: 3)
+                PageCounter(currentCounter: 3, allPagesCount: 5)
             }
         }
     }
