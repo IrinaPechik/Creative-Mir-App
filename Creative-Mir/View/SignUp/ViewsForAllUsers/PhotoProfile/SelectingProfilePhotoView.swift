@@ -2,7 +2,7 @@
 //  SelectingProfilePhotoView.swift
 //  Creative-Mir
 //
-//  Created by Печик Дарья on 26.02.2024.
+//  Created by Печик Ирина on 26.02.2024.
 //
 
 import SwiftUI
@@ -52,7 +52,18 @@ struct SelectingProfilePhotoView: View {
                 Text(cameraError.message)
             }
             .navigationDestination(isPresented: $presentNextView) {
-               Text("neeew")
+                switch AuthService.shared.getUserRole() {
+                case String(describing: UserRoles.customer):
+                    Text("customer")
+                case String(describing: UserRoles.supplier):
+                    InformationAboutSupplierView()
+//                    Text("supplier")
+                case String(describing: UserRoles.venue):
+                    Text("venue")
+                default:
+                    // Ошибочка, перенаправить на главную страницу
+                    Text("user")
+                }
             }
         }
         // Скрываем системную кнопку Back

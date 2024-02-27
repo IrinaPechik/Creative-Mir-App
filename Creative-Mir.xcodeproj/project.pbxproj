@@ -58,6 +58,7 @@
 		61ACBA9A2B8C8EA10037EC2B /* PhotoSourcePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61ACBA992B8C8EA10037EC2B /* PhotoSourcePicker.swift */; };
 		61ACBA9C2B8C8FD60037EC2B /* SelectingProfilePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61ACBA9B2B8C8FD60037EC2B /* SelectingProfilePhotoView.swift */; };
 		61ACBA9E2B8C904D0037EC2B /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61ACBA9D2B8C904D0037EC2B /* ImagePicker.swift */; };
+		61ACBAA72B8CA9FD0037EC2B /* InformationAboutSupplierView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61ACBAA62B8CA9FD0037EC2B /* InformationAboutSupplierView.swift */; };
 		61D7D1422B51C0C500BA0A26 /* PlayfairDisplay-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 61D7D1412B51C0C500BA0A26 /* PlayfairDisplay-Medium.ttf */; };
 		61D7D1452B51CAA900BA0A26 /* Futura-pt-light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 61D7D1442B51CAA900BA0A26 /* Futura-pt-light.ttf */; };
 		61D7D1482B51CC5E00BA0A26 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 61D7D1462B51CC5E00BA0A26 /* OpenSans-Regular.ttf */; };
@@ -99,6 +100,7 @@
 		61ACBA992B8C8EA10037EC2B /* PhotoSourcePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSourcePicker.swift; sourceTree = "<group>"; };
 		61ACBA9B2B8C8FD60037EC2B /* SelectingProfilePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectingProfilePhotoView.swift; sourceTree = "<group>"; };
 		61ACBA9D2B8C904D0037EC2B /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		61ACBAA62B8CA9FD0037EC2B /* InformationAboutSupplierView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationAboutSupplierView.swift; sourceTree = "<group>"; };
 		61D7D1412B51C0C500BA0A26 /* PlayfairDisplay-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlayfairDisplay-Medium.ttf"; sourceTree = "<group>"; };
 		61D7D1432B51C19000BA0A26 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		61D7D1442B51CAA900BA0A26 /* Futura-pt-light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Futura-pt-light.ttf"; sourceTree = "<group>"; };
@@ -280,6 +282,27 @@
 			path = PhotoProfile;
 			sourceTree = "<group>";
 		};
+		61ACBAA42B8CA96F0037EC2B /* ViewsForAllUsers */ = {
+			isa = PBXGroup;
+			children = (
+				61730B722B5158E80063C9CE /* SignUpView.swift */,
+				61A815AA2B57DD320072971A /* RoleChoosingView.swift */,
+				616B49FE2B692735006EB65E /* NameEnteringView.swift */,
+				61EBFEBE2B6A661000526020 /* BirthdateEnteringView.swift */,
+				618656C92B89420400E537B1 /* LocationSelection */,
+				61ACBA962B8C8AD20037EC2B /* PhotoProfile */,
+			);
+			path = ViewsForAllUsers;
+			sourceTree = "<group>";
+		};
+		61ACBAA52B8CA9B00037EC2B /* ViewsForSuppliers */ = {
+			isa = PBXGroup;
+			children = (
+				61ACBAA62B8CA9FD0037EC2B /* InformationAboutSupplierView.swift */,
+			);
+			path = ViewsForSuppliers;
+			sourceTree = "<group>";
+		};
 		61D7D1402B51C08000BA0A26 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,12 +338,8 @@
 		61FA4A3D2B5A890E00551852 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				61ACBA962B8C8AD20037EC2B /* PhotoProfile */,
-				618656C92B89420400E537B1 /* LocationSelection */,
-				61730B722B5158E80063C9CE /* SignUpView.swift */,
-				61A815AA2B57DD320072971A /* RoleChoosingView.swift */,
-				616B49FE2B692735006EB65E /* NameEnteringView.swift */,
-				61EBFEBE2B6A661000526020 /* BirthdateEnteringView.swift */,
+				61ACBAA52B8CA9B00037EC2B /* ViewsForSuppliers */,
+				61ACBAA42B8CA96F0037EC2B /* ViewsForAllUsers */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -459,6 +478,7 @@
 				61A815A62B57CBD40072971A /* AutorizationFields.swift in Sources */,
 				616B49FF2B692735006EB65E /* NameEnteringView.swift in Sources */,
 				61EBFEBF2B6A661000526020 /* BirthdateEnteringView.swift in Sources */,
+				61ACBAA72B8CA9FD0037EC2B /* InformationAboutSupplierView.swift in Sources */,
 				61FAA9672B5FD6E900F8BEE6 /* DatabaseService.swift in Sources */,
 				61434B4F2B877B5B00370524 /* Place.swift in Sources */,
 				61730B642B51553F0063C9CE /* Creative_MirApp.swift in Sources */,
