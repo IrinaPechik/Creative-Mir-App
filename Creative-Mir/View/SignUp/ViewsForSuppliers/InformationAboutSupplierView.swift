@@ -33,6 +33,9 @@ struct InformationAboutSupplierView: View {
                     presentNextView.toggle()
                 }
             }
+            .navigationDestination(isPresented: $presentNextView) {
+                letsAddYourFirstAdvertismentView()
+            }
         }
         // Скрываем системную кнопку Back
         .navigationBarBackButtonHidden(true)
