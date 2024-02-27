@@ -1,42 +1,40 @@
 //
-//  RoleChoosingView.swift
+//  CompanyOrIndividualPersonView.swift
 //  Creative-Mir
 //
-//  Created by Печик Ирина on 17.01.2024.
+//  Created by Печик Ирина on 27.02.2024.
 //
 
 import SwiftUI
 
-struct RoleChoosingView: View {
+struct CompanyOrIndividualPersonView: View {
     @State private var selectedStatus: Int = 1
-    
     @State private var presentNextView = false
-    @State private var nextView: UserRoles = .customer
-    
-    let statusOptions = [UserRoles.customer, UserRoles.supplier, UserRoles.venue]
-    
+
+    let roleOptions = [ComapanyOrIndividalPerformer.individual, ComapanyOrIndividalPerformer.company]
+
     var body: some View {
-        NavigationStack {
+        NavigationView {
             VStack {
-                Text("Who are you?")
-                    .font(.custom("PlayfairDisplay-Medium", size: 48))
+                Text("You are")
+                    .font(.custom("Lora-Regular", size: 48))
                     .padding(.bottom, 180)
                 Picker("Who are you?", selection: $selectedStatus) {
-                    ForEach(0 ..< statusOptions.count) {
-                        Text(statusOptions[$0].rawValue)
+                    ForEach(0 ..< roleOptions.count) {
+                        Text(roleOptions[$0].rawValue)
                             .font(.custom("Lora-Regular", size: 18))
                     }
                 }
                 .padding(.top, -150)
                 .scaleEffect(1.5)
                 .pickerStyle(.wheel)
-                
                 NextButtonViewSecond(buttonText: "N E X T", isDisabled: false) {
-                    AuthService.shared.saveUserRole(role: String(describing: statusOptions[selectedStatus]))
+                    AuthService.shared.savePerformerCompanyOrIndividualStatus(companyOrIndividualStatus: String(describing: roleOptions[selectedStatus]))
+                    print(AuthService.shared.getPerformerCompanyOrIndividualStatus())
                     presentNextView.toggle()
                 }
             }.navigationDestination(isPresented: $presentNextView) {
-                NameEnteringView()
+                Text("Next")
             }
         }
         // Скрываем системную кнопку Back
@@ -46,13 +44,12 @@ struct RoleChoosingView: View {
                 customBackButton()
             }
             ToolbarItem(placement: .topBarTrailing) {
-                PageCounter(currentCounter: 1, allPagesCount: 5)
+                PageCounter(currentCounter: 2, allPagesCount: 7)
             }
         }
     }
 }
 
-
 #Preview {
-    RoleChoosingView()
+    CompanyOrIndividualPersonView()
 }

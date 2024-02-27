@@ -13,6 +13,11 @@ enum UserRoles: String, Codable {
     case venue = "I am a venue"
 }
 
+enum ComapanyOrIndividalPerformer: String, Codable {
+    case individual = "Individual person"
+    case company = "Company"
+}
+
 struct SystemUser {
     var id: String
     var userRole: UserRoles

@@ -175,4 +175,18 @@ class AuthService {
         }
         return "storyAboutYourself"
     }
+    
+    // MARK: - Userdefaults methods for both suppliers and venues
+    
+    // MARK: Save and get to/from userDefaults info about person company status.
+    func savePerformerCompanyOrIndividualStatus(companyOrIndividualStatus: String) {
+        UserDefaults.standard.set(companyOrIndividualStatus, forKey: "companyOrIndividualPerformer")
+    }
+    
+    func getPerformerCompanyOrIndividualStatus() -> String {
+        if let companyOrIndividualStatus = UserDefaults.standard.string(forKey: "companyOrIndividualPerformer") {
+            return companyOrIndividualStatus
+        }
+        return "companyOrIndividualStatus"
+    }
 }
