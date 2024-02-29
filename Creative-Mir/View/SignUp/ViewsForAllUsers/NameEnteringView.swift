@@ -24,8 +24,8 @@ struct NameEnteringView: View {
                 }
                 .padding()
                 NextButtonViewSecond(buttonText: "N E X T", isDisabled: name.isEmpty || surname.isEmpty) {
-                    AuthService.shared.saveUserName(name: name)
-                    AuthService.shared.saveUserSurname(surname: surname)
+                    AuthService.shared.saveUserName(name: name.trimmingCharacters(in: .whitespacesAndNewlines))
+                    AuthService.shared.saveUserSurname(surname: surname.trimmingCharacters(in: .whitespacesAndNewlines))
                     // Переход к следующей view
                     presentNextView.toggle()
                 }
