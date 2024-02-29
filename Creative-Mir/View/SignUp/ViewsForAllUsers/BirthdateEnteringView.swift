@@ -54,7 +54,7 @@ struct BirthdateView: View {
     @Binding var date: Date
     
     let startDate = Calendar.current.date(from: DateComponents(year: 1900, month: 1, day: 1)) ?? Date()
-    let endDate = Calendar.current.date(from: DateComponents(year: Calendar.current.component(.year, from: Date()), month: 12, day: 31)) ?? Date()
+    let endDate = Calendar.current.date(from: DateComponents(year: Calendar.current.component(.year, from: Date()) - 14, month: 12, day: 31)) ?? Date()
 
     var body: some View {
         DatePicker("", selection: $date, in: startDate...endDate,displayedComponents: .date)
