@@ -176,6 +176,18 @@ class AuthService {
         return "storyAboutYourself"
     }
     
+    // MARK: Save and get to/from userDefaults info about supplier stage name.
+    func saveSupplierStageName(stageName: String) {
+        UserDefaults.standard.set(stageName, forKey: "stageName")
+    }
+    
+    func getSupplierStageName() -> String {
+        if let supplierStageName = UserDefaults.standard.string(forKey: "stageName") {
+            return supplierStageName
+        }
+        return "stageName"
+    }
+    
     // MARK: - Userdefaults methods for both suppliers and venues
     
     // MARK: Save and get to/from userDefaults info about person company status.
@@ -189,4 +201,29 @@ class AuthService {
         }
         return "companyOrIndividualStatus"
     }
+    
+    // MARK: Save and get to/from userDefaults info about performer company name.
+    func savePerformerCompanyName(companyName: String) {
+        UserDefaults.standard.set(companyName, forKey: "companyName")
+    }
+    
+    func getPerformerCompanyName() -> String {
+        if let companyName = UserDefaults.standard.string(forKey: "companyName") {
+            return companyName
+        }
+        return "companyName"
+    }
+    
+    // MARK: Save and get to/from userDefaults info about performer position in company.
+    func savePerformerPositionInCompany(position: String) {
+        UserDefaults.standard.set(position, forKey: "position")
+    }
+    
+    func getPerformerPositionInCompany() -> String {
+        if let position = UserDefaults.standard.string(forKey: "position") {
+            return position
+        }
+        return "position"
+    }
+    
 }

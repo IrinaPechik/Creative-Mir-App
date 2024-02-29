@@ -24,7 +24,7 @@ struct letsAddYourFirstAdvertismentView: View {
                 .padding(.bottom, 100)
             }
             .navigationDestination(isPresented: $presentNextView) {
-                CompanyOrIndividualPersonView()
+                LegalUserInfoView()
             }
         }
         // Скрываем системную кнопку Back

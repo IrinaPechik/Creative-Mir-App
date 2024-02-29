@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		610267782B8FB5AD0071C1F3 /* LegalUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610267772B8FB5AD0071C1F3 /* LegalUserInfoView.swift */; };
 		6136A1562B52E4DF00E47975 /* Validatior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6136A1552B52E4DF00E47975 /* Validatior.swift */; };
 		61434B4D2B8779E500370524 /* PlaceLookupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61434B4C2B8779E500370524 /* PlaceLookupView.swift */; };
 		61434B4F2B877B5B00370524 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61434B4E2B877B5B00370524 /* Place.swift */; };
 		61434B512B877E8100370524 /* PlaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61434B502B877E8100370524 /* PlaceViewModel.swift */; };
 		61434B532B87828500370524 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61434B522B87828500370524 /* LocationManager.swift */; };
+		61640C012B90803D0089E172 /* StageNameInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61640C002B90803D0089E172 /* StageNameInfoView.swift */; };
 		616B49FF2B692735006EB65E /* NameEnteringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616B49FE2B692735006EB65E /* NameEnteringView.swift */; };
 		616B4A022B6930CF006EB65E /* Lora-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 616B4A012B6930CF006EB65E /* Lora-Regular.ttf */; };
 		616B4A042B6938E1006EB65E /* Marcellus-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 616B4A032B6938E1006EB65E /* Marcellus-Regular.ttf */; };
@@ -64,7 +66,6 @@
 		61D7D1482B51CC5E00BA0A26 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 61D7D1462B51CC5E00BA0A26 /* OpenSans-Regular.ttf */; };
 		61D7D1492B51CC5E00BA0A26 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 61D7D1472B51CC5E00BA0A26 /* OpenSans-Light.ttf */; };
 		61DCB7A02B8DFFD800D97C7F /* letsAddYourFirstAdvertismentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DCB79F2B8DFFD800D97C7F /* letsAddYourFirstAdvertismentView.swift */; };
-		61DCB7A22B8E03E400D97C7F /* CompanyOrIndividualPersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DCB7A12B8E03E400D97C7F /* CompanyOrIndividualPersonView.swift */; };
 		61EBFEB82B6A439300526020 /* NavigationCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBFEB72B6A439300526020 /* NavigationCustomView.swift */; };
 		61EBFEBB2B6A4E2E00526020 /* CustomNextButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBFEBA2B6A4E2E00526020 /* CustomNextButtonsView.swift */; };
 		61EBFEBD2B6A4EA000526020 /* CustomTextViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBFEBC2B6A4EA000526020 /* CustomTextViews.swift */; };
@@ -77,11 +78,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		610267772B8FB5AD0071C1F3 /* LegalUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalUserInfoView.swift; sourceTree = "<group>"; };
 		6136A1552B52E4DF00E47975 /* Validatior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validatior.swift; sourceTree = "<group>"; };
 		61434B4C2B8779E500370524 /* PlaceLookupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceLookupView.swift; sourceTree = "<group>"; };
 		61434B4E2B877B5B00370524 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		61434B502B877E8100370524 /* PlaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceViewModel.swift; sourceTree = "<group>"; };
 		61434B522B87828500370524 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		61640C002B90803D0089E172 /* StageNameInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageNameInfoView.swift; sourceTree = "<group>"; };
 		616B49FE2B692735006EB65E /* NameEnteringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameEnteringView.swift; sourceTree = "<group>"; };
 		616B4A012B6930CF006EB65E /* Lora-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lora-Regular.ttf"; sourceTree = "<group>"; };
 		616B4A032B6938E1006EB65E /* Marcellus-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Marcellus-Regular.ttf"; sourceTree = "<group>"; };
@@ -109,7 +112,6 @@
 		61D7D1462B51CC5E00BA0A26 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		61D7D1472B51CC5E00BA0A26 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		61DCB79F2B8DFFD800D97C7F /* letsAddYourFirstAdvertismentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = letsAddYourFirstAdvertismentView.swift; sourceTree = "<group>"; };
-		61DCB7A12B8E03E400D97C7F /* CompanyOrIndividualPersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyOrIndividualPersonView.swift; sourceTree = "<group>"; };
 		61EBFEB72B6A439300526020 /* NavigationCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCustomView.swift; sourceTree = "<group>"; };
 		61EBFEBA2B6A4E2E00526020 /* CustomNextButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNextButtonsView.swift; sourceTree = "<group>"; };
 		61EBFEBC2B6A4EA000526020 /* CustomTextViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextViews.swift; sourceTree = "<group>"; };
@@ -166,6 +168,15 @@
 				6136A1552B52E4DF00E47975 /* Validatior.swift */,
 			);
 			path = Functions;
+			sourceTree = "<group>";
+		};
+		61640BFF2B9080040089E172 /* LegalInfoViews */ = {
+			isa = PBXGroup;
+			children = (
+				610267772B8FB5AD0071C1F3 /* LegalUserInfoView.swift */,
+				61640C002B90803D0089E172 /* StageNameInfoView.swift */,
+			);
+			path = LegalInfoViews;
 			sourceTree = "<group>";
 		};
 		61730B572B51553F0063C9CE = {
@@ -343,7 +354,7 @@
 			isa = PBXGroup;
 			children = (
 				61DCB79F2B8DFFD800D97C7F /* letsAddYourFirstAdvertismentView.swift */,
-				61DCB7A12B8E03E400D97C7F /* CompanyOrIndividualPersonView.swift */,
+				61640BFF2B9080040089E172 /* LegalInfoViews */,
 				61ACBAA52B8CA9B00037EC2B /* ViewsForSuppliers */,
 				61ACBAA42B8CA96F0037EC2B /* ViewsForAllUsers */,
 			);
@@ -475,6 +486,7 @@
 				61730B662B51553F0063C9CE /* ContentView.swift in Sources */,
 				61ACBA9C2B8C8FD60037EC2B /* SelectingProfilePhotoView.swift in Sources */,
 				61ACBA9E2B8C904D0037EC2B /* ImagePicker.swift in Sources */,
+				61640C012B90803D0089E172 /* StageNameInfoView.swift in Sources */,
 				61434B4D2B8779E500370524 /* PlaceLookupView.swift in Sources */,
 				61730B732B5158E80063C9CE /* SignUpView.swift in Sources */,
 				61FA4A3F2B5A8A0600551852 /* HomeView.swift in Sources */,
@@ -484,7 +496,6 @@
 				61434B532B87828500370524 /* LocationManager.swift in Sources */,
 				61A815A62B57CBD40072971A /* AutorizationFields.swift in Sources */,
 				616B49FF2B692735006EB65E /* NameEnteringView.swift in Sources */,
-				61DCB7A22B8E03E400D97C7F /* CompanyOrIndividualPersonView.swift in Sources */,
 				61EBFEBF2B6A661000526020 /* BirthdateEnteringView.swift in Sources */,
 				61ACBAA72B8CA9FD0037EC2B /* InformationAboutSupplierView.swift in Sources */,
 				61FAA9672B5FD6E900F8BEE6 /* DatabaseService.swift in Sources */,
@@ -500,6 +511,7 @@
 				61EBFEBB2B6A4E2E00526020 /* CustomNextButtonsView.swift in Sources */,
 				61EBFEBD2B6A4EA000526020 /* CustomTextViews.swift in Sources */,
 				61A815E62B57F2AD0072971A /* AuthService.swift in Sources */,
+				610267782B8FB5AD0071C1F3 /* LegalUserInfoView.swift in Sources */,
 				61ACBA952B8C849F0037EC2B /* PhotoPickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
