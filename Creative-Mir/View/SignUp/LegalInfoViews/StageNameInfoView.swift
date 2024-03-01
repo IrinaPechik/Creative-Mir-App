@@ -66,7 +66,6 @@ struct StageNameInfoView: View {
                     }
                 }
                 NextButtonViewSecond(buttonText: "N E X T", isDisabled: isNextButtonDisabled()) {
-                    // TODO: Важно не сохранить лишнее, поэтому, нужна проверка, какая из toggle активна
                     if hasStageName {
                         AuthService.shared.saveSupplierStageName(stageName: stageName)
                     }
@@ -76,7 +75,7 @@ struct StageNameInfoView: View {
                 .padding(.top, 100)
             }
             .navigationDestination(isPresented: $presentNextView) {
-                Text("professional skills")
+                ProfessionalSkills()
             }
         }
         .onTapGesture {
@@ -88,9 +87,9 @@ struct StageNameInfoView: View {
             ToolbarItem(placement: .topBarLeading) {
                 customBackButton()
             }
-            ToolbarItem(placement: .topBarTrailing) {
-                PageCounter(currentCounter: 3, allPagesCount: 7)
-            }
+//            ToolbarItem(placement: .topBarTrailing) {
+//                PageCounter(currentCounter: 4, allPagesCount: 7)
+//            }
         }
     }
     

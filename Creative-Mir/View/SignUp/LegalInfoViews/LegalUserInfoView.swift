@@ -75,7 +75,6 @@ struct LegalUserInfoView: View {
                     }
                 }
                 NextButtonViewSecond(buttonText: "N E X T", isDisabled: isNextButtonDisabled()) {
-                    // TODO: Важно не сохранить лишнее, поэтому, нужна проверка, какая из toggle активна
                     if isCompanyOn {
                         AuthService.shared.savePerformerCompanyOrIndividualStatus(companyOrIndividualStatus: "company")
                         AuthService.shared.savePerformerCompanyName(companyName: companyName)
@@ -92,7 +91,7 @@ struct LegalUserInfoView: View {
                 if isIndividualOn {
                     StageNameInfoView()
                 } else {
-                    Text("professional skills")
+                    ProfessionalSkills()
                 }
             }
         }

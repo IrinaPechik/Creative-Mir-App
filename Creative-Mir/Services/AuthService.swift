@@ -188,6 +188,51 @@ class AuthService {
         return "stageName"
     }
     
+    // MARK: Save and get to/from userDefaults info about supplier professional first skill.
+    func saveSupplierFirstSkill(supplierFirstSkill: String) {
+        UserDefaults.standard.set(supplierFirstSkill, forKey: "SupplierFirstSkill")
+    }
+    
+    func getSupplierFirstSkill() -> String {
+        if let supplierFirstSkill = UserDefaults.standard.string(forKey: "SupplierFirstSkill") {
+            return supplierFirstSkill
+        }
+        return "SupplierFirstSkill"
+    }
+    
+    // MARK: Save and get to/from userDefaults info about supplier professional first skill experience.
+    func saveSupplierFirstSkillExperience(supplierFirstSkillExperience: Int) {
+        UserDefaults.standard.set(supplierFirstSkillExperience, forKey: "SupplierFirstSkillExperience")
+    }
+    
+    func getSupplierFirstSkillExperience() -> Int {
+        let supplierFirstSkillExperience = UserDefaults.standard.integer(forKey: "SupplierFirstSkillExperience")
+        return supplierFirstSkillExperience
+    }
+    
+    // MARK: Save and get to/from userDefaults info about supplier professional first skill experience measure.
+    func saveSupplierFirstSkillExperienceMeasure(supplierFirstSkillExperienceMeasure: String) {
+        UserDefaults.standard.set(supplierFirstSkillExperienceMeasure, forKey: "SupplierFirstSkillExperienceMeasure")
+    }
+    
+    func getSupplierFirstSkillExperienceMeasure() -> String {
+        if let supplierFirstSkillExperienceMeasure = UserDefaults.standard.string(forKey: "SupplierFirstSkillExperienceMeasure") {
+            return supplierFirstSkillExperienceMeasure
+        }
+        return "SupplierFirstSkillExperienceMeasure"
+    }
+    
+    // MARK: Save and get to/from userDefaults info about person role.
+    func saveSupplierStoryAboutWork(storyAboutWork: String) {
+        UserDefaults.standard.set(storyAboutWork, forKey: "supplierStoryAboutWork")
+    }
+    
+    func getSupplierStoryAboutWork() -> String {
+        if let storyAboutWork = UserDefaults.standard.string(forKey: "supplierStoryAboutWork") {
+            return storyAboutWork
+        }
+        return "storyAboutWork"
+    }
     // MARK: - Userdefaults methods for both suppliers and venues
     
     // MARK: Save and get to/from userDefaults info about person company status.
