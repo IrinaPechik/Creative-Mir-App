@@ -49,7 +49,7 @@ struct ProfessionalSkills: View {
                 }
             }
             .navigationDestination(isPresented: $presentNextView) {
-                Text("upploading photo")
+                UpploadPhotoFromWork().environmentObject(PhotoPickerViewModel())
             }
         }
         .onTapGesture {
