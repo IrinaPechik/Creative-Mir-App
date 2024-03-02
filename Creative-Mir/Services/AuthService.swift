@@ -233,6 +233,30 @@ class AuthService {
         }
         return "storyAboutWork"
     }
+    
+    // MARK: Save and get to/from userDefaults supplier's photos from work.
+    func saveSupplierPhotosFromWork(workPhotosJpeg: [Data?]) {
+        var allEncoded: [Data] = []
+        for photo in workPhotosJpeg {
+            var encoded = try! PropertyListEncoder().encode(photo)
+            allEncoded.append(encoded)
+        }
+        UserDefaults.standard.set(allEncoded, forKey: "encodedWorkPhotos")
+    }
+    
+    func getSupplierPhotosFromWork() -> [UIImage?] {
+        guard let data = UserDefaults.standard.array(forKey: "encodedWorkPhotos") as? [Data] else {
+            return [nil]
+        }
+        var imagesArray: [UIImage] = []
+
+        for imageData in data {
+            if let image = UIImage(data: imageData) {
+                imagesArray.append(image)
+            }
+        }
+        return imagesArray
+    }
     // MARK: - Userdefaults methods for both suppliers and venues
     
     // MARK: Save and get to/from userDefaults info about person company status.
