@@ -9,14 +9,15 @@ import SwiftUI
 
 struct PhotoPickerView: View {
     @Binding var avatarImage: UIImage?
-    @EnvironmentObject var viewModel: PhotoPickerViewModel
-
+//    @EnvironmentObject var viewModel: PhotoPickerViewModel
+    var width: CGFloat
+    var height: CGFloat
     var body: some View {
         if let avatarImage = avatarImage {
             Image(uiImage: avatarImage)
                 .resizable()
                 .scaledToFill()
-                .photoPickerCustomStyle()
+                .photoPickerCustomStyle(width: width, height: height)
                 .foregroundColor(.red)
         } else {
             ZStack {
@@ -25,7 +26,7 @@ struct PhotoPickerView: View {
                 Image(systemName: "arrow.down.to.line")
                     .scaleEffect(1.7)
                     .foregroundStyle(.black)
-                    .photoPickerCustomStyle()
+                    .photoPickerCustomStyle(width: width, height: height)
                     .overlay(
                         Circle()
                             .stroke(style: StrokeStyle(lineWidth: 2, dash: [6]))
@@ -37,16 +38,18 @@ struct PhotoPickerView: View {
 }
 
 struct photoPickerViewModifier: ViewModifier {
+    var width: CGFloat
+    var height: CGFloat
     func body(content: Content) -> some View {
         content
-            .frame(width: 228, height: 228)
+            .frame(width: width, height: height)
             .clipShape(Circle())
     }
 }
 
 extension View {
-    func photoPickerCustomStyle() -> some View {
-        modifier(photoPickerViewModifier())
+    func photoPickerCustomStyle(width: CGFloat, height: CGFloat) -> some View {
+        modifier(photoPickerViewModifier(width: width, height: height))
     }
 }
 

@@ -17,7 +17,7 @@ struct SelectingProfilePhotoView: View {
             VStack(alignment: .center) {
                 Text("Select your profile photo")
                     .font(.custom("Lora-Regular", size: 30))
-                PhotoPickerView(avatarImage: $vm.image)
+                PhotoPickerView(avatarImage: $vm.image, width: 228, height: 228)
                     .onTapGesture {
                         actionSheetVisible = true
                     }
