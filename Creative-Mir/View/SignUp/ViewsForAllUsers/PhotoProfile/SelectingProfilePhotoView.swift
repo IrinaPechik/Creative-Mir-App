@@ -24,7 +24,7 @@ struct SelectingProfilePhotoView: View {
                     .padding(90)
                 NextButtonViewSecond(buttonText: "F I N I S H", isDisabled: vm.image == nil) {
                     // Переход к следующей view
-                    var jpegImage = vm.image?.jpegData(compressionQuality: 0.8)
+                    let jpegImage = vm.image?.jpegData(compressionQuality: 0.8)
                     AuthService.shared.saveUserProfilePhoto(profilePhotoJpeg: jpegImage)
                     presentNextView.toggle()
                 }
@@ -59,9 +59,8 @@ struct SelectingProfilePhotoView: View {
                     Text("customer")
                 case String(describing: UserRoles.supplier):
                     InformationAboutSupplierView()
-//                    Text("supplier")
                 case String(describing: UserRoles.venue):
-                    Text("venue")
+                    letsAddYourFirstAdvertismentView()
                 default:
                     // Ошибочка, перенаправить на главную страницу
                     Text("user")
