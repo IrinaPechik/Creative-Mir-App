@@ -76,10 +76,17 @@ extension UpploadPhotoFromWork {
                 .disabled(vm.buttonDisabled)
                 .opacity(vm.buttonDisabled ? 0.6 : 1)
                 if !vm.deleteButtonIsHidden {
-                    Button {
-                        vm.deleteSelected()
-                    } label: {
-                        ButtonLabel(symbolName: "trash", label: "Delete")
+                    HStack {
+                        Button {
+                            vm.deleteSelected()
+                        } label: {
+                            ButtonLabel(symbolName: "trash", label: "Delete")
+                        }
+                        Button {
+                            vm.reset()
+                        } label: {
+                            ButtonLabel(symbolName: "checkmark.circle.fill", label: "Ok")
+                        }
                     }
                 }
             }
