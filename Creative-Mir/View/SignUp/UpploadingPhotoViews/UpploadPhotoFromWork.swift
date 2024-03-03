@@ -12,14 +12,36 @@ struct UpploadPhotoFromWork: View {
     @State private var presentNextView = false
     @State var actionSheetVisible = false
     @EnvironmentObject var vm: PhotoPickerViewModel
-
+    
+    var text1: String {
+        switch AuthService.shared.getUserRole() {
+        case String(describing: UserRoles.supplier):
+            return "Upload your"
+        case String(describing: UserRoles.venue):
+            return "Upload photos"
+        default:
+            return "Upload your"
+        }
+    }
+    
+    var text2: String {
+        switch AuthService.shared.getUserRole() {
+        case String(describing: UserRoles.supplier):
+            return "photo from work"
+        case String(describing: UserRoles.venue):
+            return "of the place"
+        default:
+            return "photo from work"
+        }
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
-                Text("Upload your")
+                Text(text1)
                     .font(.custom("Lora-Regular", size: 35))
                     .padding(.top, 60)
-                Text("photo from work")
+                Text(text2)
                     .font(.custom("Lora-Regular", size: 35))
                     .padding(.bottom, 30)
                 
@@ -68,7 +90,17 @@ struct UpploadPhotoFromWork: View {
                         var jpegImage = currentImage.image.jpegData(compressionQuality: 0.8)
                         imagesArray.append(jpegImage)
                     }
-                    AuthService.shared.saveSupplierPhotosFromWork(workPhotosJpeg: imagesArray)
+                    switch AuthService.shared.getUserRole() {
+                        case String(describing: UserRoles.supplier):
+                            print("saving supplier's photo")
+                            AuthService.shared.saveSupplierPhotosFromWork(workPhotosJpeg: imagesArray)
+                        case String(describing: UserRoles.venue):
+                            AuthService.shared.saveVenuePhotosOfThePlace(photosOfThePlaceJpeg: imagesArray)
+                            print("saving venue's photo")
+                        default:
+                            AuthService.shared.saveVenuePhotosOfThePlace(photosOfThePlaceJpeg: imagesArray)
+                            print("photo saving error")
+                    }
                     presentNextView.toggle()
                 }
             }
