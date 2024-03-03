@@ -88,10 +88,18 @@ struct LegalUserInfoView: View {
                 .padding(.top, 100)
             }
             .navigationDestination(isPresented: $presentNextView) {
-                if isIndividualOn {
-                    StageNameInfoView()
-                } else {
-                    ProfessionalSkills()
+                switch AuthService.shared.getUserRole() {
+                case String(describing: UserRoles.supplier):
+                    if isIndividualOn {
+                        StageNameInfoView()
+                    } else {
+                        ProfessionalSkills()
+                    }
+                case String(describing: UserRoles.venue):
+                    AddingBuildingLocationView()
+                default:
+                    // Ошибочка, перенаправить на главную страницу
+                    Text("user")
                 }
             }
         }
