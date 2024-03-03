@@ -162,6 +162,17 @@ class AuthService {
         return image
     }
     
+    // MARK: Save and get to/from userDefaults info building location.
+    func saveUserLivingAddress(address: String) {
+        UserDefaults.standard.set(address, forKey: "userLivingAddress")
+    }
+
+    func getUserLivingAddress() -> String {
+        if let venueAddress = UserDefaults.standard.string(forKey: "userLivingAddress") {
+            return venueAddress
+        }
+        return "userLivingAddress"
+    }
     // MARK: - Userdefaults methods for suppliers
     
     // MARK: Save and get to/from userDefaults info about person role.
@@ -295,4 +306,29 @@ class AuthService {
         return "position"
     }
     
+    // MARK: - Userdefaults methods for venues
+
+    // MARK: Save and get to/from userDefaults info building location.
+    func saveVenueBuildingAddress(address: String) {
+        UserDefaults.standard.set(address, forKey: "venueAddress")
+    }
+
+    func getVenueBuildingAddress() -> String {
+        if let venueAddress = UserDefaults.standard.string(forKey: "venueAddress") {
+            return venueAddress
+        }
+        return "venueAddress"
+    }
+    
+    // MARK: Save and get to/from userDefaults building name.
+    func saveVenueBuildingName(buildingName: String) {
+        UserDefaults.standard.set(buildingName, forKey: "venueBuildingName")
+    }
+
+    func getVenueBuildingName() -> String {
+        if let venueBuildingName = UserDefaults.standard.string(forKey: "venueBuildingName") {
+            return venueBuildingName
+        }
+        return "venueBuildingName"
+    }
 }
