@@ -331,4 +331,28 @@ class AuthService {
         }
         return "venueBuildingName"
     }
+    
+    // MARK: Save and get to/from userDefaults venue's photos from work.
+    func saveVenuePhotosOfThePlace(photosOfThePlaceJpeg: [Data?]) {
+        var allEncoded: [Data] = []
+        for photo in photosOfThePlaceJpeg {
+            let encoded = try! PropertyListEncoder().encode(photo)
+            allEncoded.append(encoded)
+        }
+        UserDefaults.standard.set(allEncoded, forKey: "encodedPhotosOfThePlace")
+    }
+    
+    func getVenuePhotosOfThePlace() -> [UIImage?] {
+        guard let data = UserDefaults.standard.array(forKey: "encodedPhotosOfThePlace") as? [Data] else {
+            return [nil]
+        }
+        var imagesArray: [UIImage] = []
+
+        for imageData in data {
+            if let image = UIImage(data: imageData) {
+                imagesArray.append(image)
+            }
+        }
+        return imagesArray
+    }
 }
