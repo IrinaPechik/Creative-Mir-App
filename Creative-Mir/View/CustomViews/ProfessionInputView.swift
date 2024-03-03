@@ -54,13 +54,13 @@ struct ProfessionChoosingView: View {
                 HStack() {
                     Text("\(supplierProfession.rawValue)")
                         .foregroundStyle(.black)
-                        .font(.custom("Lora-Regular", size: 16))
+                        .font(.custom("Lora-Regular", size: 19))
                     Spacer()
                     Image(systemName: "chevron.down")
                         .foregroundStyle(.black)
                         .scaleEffect(0.8)
                 }
-                .frame(width: 293, height: 32) // Высота текстового поля
+                .frame(width: 293, height: 40) // Высота текстового поля
                 .overlay(
                     Rectangle().frame(height: 1),
                     alignment: .bottomLeading) // Нижняя линия
@@ -90,13 +90,13 @@ struct ExperienceInputView: View {
                     HStack() {
                         Text("\(selectedNumber)")
                             .foregroundStyle(.black)
-                            .font(.custom("Lora-Regular", size: 16))
+                            .font(.custom("Lora-Regular", size: 19))
                         Image(systemName: "chevron.down")
                             .foregroundStyle(.black)
                             .scaleEffect(0.7)
                     }
-                    .frame(height:25)
-                }                
+                    .frame(height:35)
+                }
                 Menu {
                     Picker(selection: $selectedUnit, label: Text("")) {
                         ForEach(Experience.allCases, id: \.self) { unit in
@@ -108,12 +108,12 @@ struct ExperienceInputView: View {
                     HStack {
                         Text(selectedUnit.rawValue)
                             .foregroundStyle(.black)
-                            .font(.custom("Lora-Regular", size: 16))
+                            .font(.custom("Lora-Regular", size: 19))
                         Image(systemName: "chevron.down")
                             .foregroundStyle(.black)
                             .scaleEffect(0.7)
                     }
-                    .frame(height:25)
+                    .frame(height:35)
                 }
             }
             .overlay(
