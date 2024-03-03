@@ -73,8 +73,7 @@ struct UpploadPhotoFromWork: View {
                 }
             }
             .navigationDestination(isPresented: $presentNextView) {
-//                var image = AuthService.shared.getSupplierPhotosFromWork()[0]
-                Text("portfolio view")
+                Text("next view")
             }
         }
         // Скрываем системную кнопку Back

@@ -202,14 +202,6 @@
 			path = LegalInfoViews;
 			sourceTree = "<group>";
 		};
-		61640C022B90CDC70089E172 /* ViewForProfessionSkillsAdding */ = {
-			isa = PBXGroup;
-			children = (
-				61640C032B90CDF20089E172 /* ProfessionalSkills.swift */,
-			);
-			path = ViewForProfessionSkillsAdding;
-			sourceTree = "<group>";
-		};
 		61730B572B51553F0063C9CE = {
 			isa = PBXGroup;
 			children = (
@@ -345,6 +337,7 @@
 		61ACBAA52B8CA9B00037EC2B /* ViewsForSuppliers */ = {
 			isa = PBXGroup;
 			children = (
+				61640C032B90CDF20089E172 /* ProfessionalSkills.swift */,
 				61ACBAA62B8CA9FD0037EC2B /* InformationAboutSupplierView.swift */,
 			);
 			path = ViewsForSuppliers;
@@ -394,9 +387,8 @@
 		61FA4A3D2B5A890E00551852 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				6160981B2B9216AA00EDF358 /* UpploadingPhotoViews */,
 				61DCB79F2B8DFFD800D97C7F /* letsAddYourFirstAdvertismentView.swift */,
-				61640C022B90CDC70089E172 /* ViewForProfessionSkillsAdding */,
+				6160981B2B9216AA00EDF358 /* UpploadingPhotoViews */,
 				61640BFF2B9080040089E172 /* LegalInfoViews */,
 				61ACBAA52B8CA9B00037EC2B /* ViewsForSuppliers */,
 				61ACBAA42B8CA96F0037EC2B /* ViewsForAllUsers */,
