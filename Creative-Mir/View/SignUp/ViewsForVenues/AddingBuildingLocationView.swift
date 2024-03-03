@@ -68,7 +68,7 @@ struct AddingBuildingLocationView: View {
                 .padding(.top, 100)
             }
             .navigationDestination(isPresented: $presentNextView) {
-                
+                UpploadPhotoFromWork().environmentObject(PhotoPickerViewModel())
             }
         }
         .fullScreenCover(isPresented: $showPlaceLookupSheet, content: {
