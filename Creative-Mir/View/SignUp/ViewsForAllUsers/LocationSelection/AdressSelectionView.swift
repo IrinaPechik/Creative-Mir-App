@@ -35,6 +35,8 @@ struct AdressSelectionView: View {
 
 
                 NextButtonViewSecond(buttonText: "N E X T", isDisabled: returnedPlace.address.isEmpty) {
+                    AuthService.shared.saveUserLivingAddress(address: returnedPlace.address)
+                    print(AuthService.shared.getUserLivingAddress())
                     // Переход к следующей view
                     presentNextView.toggle()
                 }
