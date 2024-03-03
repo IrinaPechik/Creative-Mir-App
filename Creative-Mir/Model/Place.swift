@@ -31,6 +31,28 @@ struct Place: Identifiable {
         return cityAndState
     }
     
+    var fullAddress: String {
+        let placemark = self.mapItem.placemark
+        var cityAndState = ""
+        var address = ""
+        cityAndState = placemark.locality ?? "" // city
+        if let state = placemark.administrativeArea {
+            if (cityAndState != state) {
+                cityAndState = cityAndState.isEmpty ? state : "\(cityAndState), \(state)"
+            }
+        }
+        address = placemark.subThoroughfare ?? ""
+        if let street = placemark.thoroughfare {
+            address = address.isEmpty ? street : "\(address) \(street)"
+        }
+        if address.trimmingCharacters(in: .whitespaces).isEmpty && !cityAndState.isEmpty {
+            address = cityAndState
+        } else {
+            address = cityAndState.isEmpty ? address : "\(address), \(cityAndState)"
+        }
+        return address
+    }
+    
     var latitude: CLLocationDegrees {
         self.mapItem.placemark.coordinate.latitude
     }
