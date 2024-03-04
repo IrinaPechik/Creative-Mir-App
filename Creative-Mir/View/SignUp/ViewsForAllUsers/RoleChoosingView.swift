@@ -16,7 +16,7 @@ struct RoleChoosingView: View {
     let statusOptions = [UserRoles.customer, UserRoles.supplier, UserRoles.venue]
     
     var body: some View {
-        NavigationStack {
+        NavigationView {
             VStack {
                 Text("Who are you?")
                     .font(.custom("PlayfairDisplay-Medium", size: 48))
