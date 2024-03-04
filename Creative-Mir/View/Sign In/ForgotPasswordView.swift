@@ -56,6 +56,13 @@ struct ForgotPasswordView: View {
                       message: Text(self.errString ?? "Success. Reset email sent successfully. Check your email"), dismissButton: .default(Text("Ok")))
             })
         }
+        // Скрываем системную кнопку Back
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                customBackButton()
+            }
+        }
     }
 }
 
