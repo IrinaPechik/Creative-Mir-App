@@ -11,6 +11,9 @@ struct SelectingProfilePhotoView: View {
     @EnvironmentObject var vm: PhotoPickerViewModel
     @State private var actionSheetVisible = false
     @State private var presentNextView = false
+    @State private var showErrorAlert = false
+    @State private var error = ""
+
 
     var body: some View {
         NavigationView {
@@ -27,6 +30,16 @@ struct SelectingProfilePhotoView: View {
                     let jpegImage = vm.image?.jpegData(compressionQuality: 0.8)
                     AuthService.shared.saveUserProfilePhoto(profilePhotoJpeg: jpegImage)
                     presentNextView.toggle()
+                    
+                    DatabaseService.shared.setUser(user: MWUser(id: AuthService.shared.getUserId(), name: AuthService.shared.getUserName(), surname: AuthService.shared.getUserSurname(), birthday: AuthService.shared.getUserBirthDateStr(), residentialAddress: AuthService.shared.getUserLivingAddress(), avatarImage: AuthService.shared.getUserProfilePhoto(), role: AuthService.shared.getUserRole())) { result in
+                        switch result {
+                        case .success(_):
+                            presentNextView.toggle()
+                        case .failure(let error):
+                            showErrorAlert.toggle()
+                            self.error = error.localizedDescription
+                        }
+                    }
                 }
                 .padding(.bottom, 20)
             }
@@ -66,6 +79,9 @@ struct SelectingProfilePhotoView: View {
                     Text("user")
                 }
             }
+            .alert(isPresented: $showErrorAlert, content: {
+                return Alert(title: Text(self.error), dismissButton: .default(Text("Ok")))
+            })
         }
         // Скрываем системную кнопку Back
         .navigationBarBackButtonHidden(true)
