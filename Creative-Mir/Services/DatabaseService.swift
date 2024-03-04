@@ -12,13 +12,29 @@ class DatabaseService {
     static let shared = DatabaseService()
     private let db = Firestore.firestore()
     
-    private var customersRef: CollectionReference {
-        return db.collection("customers")
+    private var usersRef: CollectionReference {
+        return db.collection("users")
     }
     
     private init() {}
+
+    func setUser(user: MWUser, completion: @escaping (Result<MWUser, Error>) -> ()) {
+        usersRef.document(user.id).setData(user.representation) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(user))
+            }
+        }
+    }
     
-//    func createCustomer(customer: Customer) async throws {
-//        try customersRef.document(customer.id).setData(from: customer, merge: false)
-//    }
+    func setSupplier(supplier: MWSupplier, completion: @escaping (Result<MWSupplier, Error>) -> ()) {
+        usersRef.document(supplier.id).setData(supplier.representation) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(supplier))
+            }
+        }
+    }
 }
