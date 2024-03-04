@@ -29,7 +29,7 @@ struct SignInView: View {
     }
     
     var body: some View {
-        NavigationStack{
+        NavigationStack {
             VStack {
                 Text("SIGN IN")
                     .font(.custom("PlayfairDisplay-Medium", size: 60))
