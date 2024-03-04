@@ -28,6 +28,9 @@ struct SignUpView: View {
     @State private var showErrorAlert = false
     @State private var error = ""
     
+    @State private var isLoading = false
+
+    
     private var isNextButtonDisabled: Bool {
         !Validator.isEmailCorrect(email) ||    !Validator.isPasswordCorrect(password: password) || (password != repeatedPassword)
     }
@@ -79,19 +82,25 @@ struct SignUpView: View {
 
                 // Тут еще чекнуть
                 VStack(spacing: 20) {
-                    NextButtonView(isDisabled: isNextButtonDisabled) {
+                    NextButtonView(isDisabled: isNextButtonDisabled || isLoading) {
                         nextView = .roleChoosing
-                        presentNextView.toggle()
-//                        AuthService.shared.signUp(email: email, password: password) { result in
-//                            switch result {
-//                            case .success(_):
-//                                nextView = .roleChoosing
-//                                presentNextView.toggle()
-//                            case .failure(let error):
-//                                showErrorAlert.toggle()
-//                                self.error = error.localizedDescription
-//                            }
-//                        }
+                         isLoading = true
+//                        presentNextView.toggle()
+//                        AuthService.shared.saveUserEmail(email: email)
+//                        AuthService.shared.savePasswordToKeychain(password: password)
+                        
+                        AuthService.shared.signUp(email: email, password: password) { result in
+                            switch result {
+                            case .success(_):
+                                nextView = .roleChoosing
+                                presentNextView.toggle()
+                                isLoading = false
+                            case .failure(let error):
+                                showErrorAlert.toggle()
+                                self.error = error.localizedDescription
+                                isLoading = false
+                            }
+                        }
                     }
                     
                     HStack {
