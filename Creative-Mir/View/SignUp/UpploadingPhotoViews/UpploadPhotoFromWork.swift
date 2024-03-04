@@ -12,6 +12,8 @@ struct UpploadPhotoFromWork: View {
     @State private var presentNextView = false
     @State var actionSheetVisible = false
     @EnvironmentObject var vm: PhotoPickerViewModel
+    @State private var showErrorAlert = false
+    @State private var error = ""
     
     var text1: String {
         switch AuthService.shared.getUserRole() {
@@ -94,19 +96,35 @@ struct UpploadPhotoFromWork: View {
                         case String(describing: UserRoles.supplier):
                             print("saving supplier's photo")
                             AuthService.shared.saveSupplierPhotosFromWork(workPhotosJpeg: imagesArray)
+                        DatabaseService.shared.setSupplier(supplier: MWSupplier(id: AuthService.shared.getUserId(), storyAboutYourself: AuthService.shared.getSupplierStoryAboutYourself(), legalStatus: AuthService.shared.getPerformerCompanyOrIndividualStatus(), stageName: AuthService.shared.getSupplierStageName(), companyName: AuthService.shared.getPerformerCompanyName(), companyPosition: AuthService.shared.getPerformerPositionInCompany(), skill: AuthService.shared.getSupplierFirstSkill(), experience: AuthService.shared.getSupplierFirstSkillExperience(), experienceMeasure: AuthService.shared.getSupplierFirstSkillExperienceMeasure(), storyAboutWork: AuthService.shared.getSupplierStoryAboutWork(), photosFromWork: AuthService.shared.getSupplierPhotosFromWork())) { result in
+                            switch result {
+                            case .success(_):
+                                presentNextView.toggle()
+                            case .failure(let error):
+                                showErrorAlert.toggle()
+                                self.error = error.localizedDescription
+                            }
+                        }
                         case String(describing: UserRoles.venue):
+                            presentNextView.toggle()
+
                             AuthService.shared.saveVenuePhotosOfThePlace(photosOfThePlaceJpeg: imagesArray)
                             print("saving venue's photo")
                         default:
+                            presentNextView.toggle()
+
                             AuthService.shared.saveVenuePhotosOfThePlace(photosOfThePlaceJpeg: imagesArray)
                             print("photo saving error")
                     }
-                    presentNextView.toggle()
+//                    presentNextView.toggle()
                 }
             }
             .navigationDestination(isPresented: $presentNextView) {
                 Text("next view")
             }
+            .alert(isPresented: $showErrorAlert, content: {
+                return Alert(title: Text(self.error), dismissButton: .default(Text("Ok")))
+            })
         }
         // Скрываем системную кнопку Back
         .navigationBarBackButtonHidden(true)
