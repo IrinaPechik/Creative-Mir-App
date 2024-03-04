@@ -26,7 +26,7 @@ class AuthService {
     
     // MARK: Sign up method
     func signUp(email: String, password: String, completion: @escaping(Result<User, Error>) -> Void) {
-        auth.createUser(withEmail: email, password: password) { result, error in
+        auth.createUser(withEmail: email, password: password) { [self] result, error in
             if let result = result {
                 result.user.getIDTokenForcingRefresh(true) { token, error in
                     if let token = token {
@@ -35,12 +35,14 @@ class AuthService {
                         print("Error while getting token")
                     }
                 }
+                self.saveUserId(id: result.user.uid)
                 completion(.success(result.user))
             } else if let error = error {
                 completion(.failure(error))
             }
         }
     }
+    
     
     // MARK: Sign in method
     func signIn(email: String, password: String, completion: @escaping(Result<User, Error>) -> Void) {
@@ -70,6 +72,7 @@ class AuthService {
         KeychainWrapper.standard.removeObject(forKey: "userToken")
     }
     
+    
     // MARK: Reset password method
     // После подключения бд проверить на наличие аккаунта
     func resetPassword(email: String, completion: @escaping (Result<Bool, Error>) -> Void) {
@@ -81,6 +84,28 @@ class AuthService {
             }
         })
     }
+    
+//    func isUserEmailAlreadyRegistered(email: String, completion: @escaping(Result<Bool, Error>) -> Void) {
+//        auth.fetchSignInMethods(forEmail: email) { (signInMethods, error) in
+//            if let error = error {
+//                completion(.failure(error))
+//                print("Ошибка при проверке email: \(error.localizedDescription)")
+////                return
+//            }
+//            if let signInMethods = signInMethods {
+//                if signInMethods.isEmpty {
+//                    print("Пользователь с таким email не найден.")
+//                    completion(.success(false))
+//
+//                } else {
+//                    print("Пользователь с таким email уже зарегистрирован.")
+//                    completion(.success(true))
+//                }
+//            }
+//        }
+//
+//    }
+    
     // MARK: - Authentication token methods
     
     // MARK: Save token to keychain
@@ -100,6 +125,39 @@ class AuthService {
     // MARK: - Userdefaults methods
     
     // MARK: - Userdefaults methods for all types of users
+    
+    // MARK: Save and get to/from userDefaults user id.
+    func saveUserId(id: String) {
+        UserDefaults.standard.set(id, forKey: "userId")
+    }
+    func getUserId() -> String {
+        if let id = UserDefaults.standard.string(forKey: "userId") {
+            return id
+        }
+        return "id"
+    }
+    
+    // MARK: Save and get to/from userDefaults email.
+    func saveUserEmail(email: String) {
+        UserDefaults.standard.set(email, forKey: "email")
+    }
+    
+    func getUserEmail() -> String {
+        if let email = UserDefaults.standard.string(forKey: "email") {
+            return email
+        }
+        return "email"
+    }
+    
+    // MARK: Save password to keychain
+    func savePasswordToKeychain(password: String) {
+        KeychainWrapper.standard.set(password, forKey: "userPassword")
+    }
+    
+    // MARK: Get password from keychain for current user
+    func getPasswordFromKeyChain() -> String {
+        return KeychainWrapper.standard.string(forKey: "userPassword") ?? ""
+    }
     
     // MARK: Save and get to/from userDefaults info about person role.
     func saveUserRole(role: String) {
@@ -155,11 +213,11 @@ class AuthService {
         UserDefaults.standard.set(encoded, forKey: "encodedProfilePhoto")
     }
     
-    func getUserProfilePhoto() -> UIImage? {
+    func getUserProfilePhoto() -> Data? {
         guard let data = UserDefaults.standard.data(forKey: "encodedProfilePhoto") else {return nil}
         let decoded = try! PropertyListDecoder().decode(Data.self, from: data)
-        let image = UIImage(data: decoded)
-        return image
+//        let image = UIImage(data: decoded)
+        return decoded
     }
     
     // MARK: Save and get to/from userDefaults info building location.
@@ -255,18 +313,18 @@ class AuthService {
         UserDefaults.standard.set(allEncoded, forKey: "encodedWorkPhotos")
     }
     
-    func getSupplierPhotosFromWork() -> [UIImage?] {
+    func getSupplierPhotosFromWork() -> [Data?] {
         guard let data = UserDefaults.standard.array(forKey: "encodedWorkPhotos") as? [Data] else {
             return [nil]
         }
-        var imagesArray: [UIImage] = []
-
-        for imageData in data {
-            if let image = UIImage(data: imageData) {
-                imagesArray.append(image)
-            }
-        }
-        return imagesArray
+//        var imagesArray: [UIImage] = []
+//
+//        for imageData in data {
+//            if let image = UIImage(data: imageData) {
+//                imagesArray.append(image)
+//            }
+//        }
+        return data
     }
     // MARK: - Userdefaults methods for both suppliers and venues
     
@@ -287,11 +345,11 @@ class AuthService {
         UserDefaults.standard.set(companyName, forKey: "companyName")
     }
     
-    func getPerformerCompanyName() -> String {
+    func getPerformerCompanyName() -> String? {
         if let companyName = UserDefaults.standard.string(forKey: "companyName") {
             return companyName
         }
-        return "companyName"
+        return nil
     }
     
     // MARK: Save and get to/from userDefaults info about performer position in company.
@@ -299,11 +357,11 @@ class AuthService {
         UserDefaults.standard.set(position, forKey: "position")
     }
     
-    func getPerformerPositionInCompany() -> String {
+    func getPerformerPositionInCompany() -> String? {
         if let position = UserDefaults.standard.string(forKey: "position") {
             return position
         }
-        return "position"
+        return nil
     }
     
     // MARK: - Userdefaults methods for venues
