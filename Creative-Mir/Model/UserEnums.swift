@@ -18,12 +18,3 @@ enum ComapanyOrIndividalPerformer: String, Codable {
     case company = "Company"
 }
 
-struct SystemUser {
-    var id: String
-    var userRole: UserRoles
-    var name: String
-    var surname: String
-    var birthDate: Date
-    var country: String
-    var city: String
-}
