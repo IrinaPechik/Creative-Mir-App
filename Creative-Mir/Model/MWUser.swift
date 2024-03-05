@@ -9,6 +9,7 @@ import Foundation
 
 struct MWUser: Identifiable {
     var id: String
+    var email: String
     var name: String
     var surname: String
     var birthday: String
@@ -19,6 +20,7 @@ struct MWUser: Identifiable {
     var representation: [String: Any] {
         var repres = [String: Any]()
         repres["id"] = self.id
+        repres["email"] = self.email
         repres["name"] = self.name
         repres["surname"] = self.surname
         repres["birthday"] = self.birthday
