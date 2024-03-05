@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		610217212B9767D60087DCF8 /* MWVenue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610217202B9767D60087DCF8 /* MWVenue.swift */; };
+		610217232B9771DA0087DCF8 /* MWCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610217222B9771DA0087DCF8 /* MWCustomer.swift */; };
 		610267782B8FB5AD0071C1F3 /* LegalUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610267772B8FB5AD0071C1F3 /* LegalUserInfoView.swift */; };
 		610D8F642B95C73E00C92799 /* MWUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610D8F632B95C73E00C92799 /* MWUser.swift */; };
 		610D8F662B96364800C92799 /* MWSupplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610D8F652B96364800C92799 /* MWSupplier.swift */; };
@@ -90,6 +92,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		610217202B9767D60087DCF8 /* MWVenue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWVenue.swift; sourceTree = "<group>"; };
+		610217222B9771DA0087DCF8 /* MWCustomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWCustomer.swift; sourceTree = "<group>"; };
 		610267772B8FB5AD0071C1F3 /* LegalUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalUserInfoView.swift; sourceTree = "<group>"; };
 		610D8F632B95C73E00C92799 /* MWUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWUser.swift; sourceTree = "<group>"; };
 		610D8F652B96364800C92799 /* MWSupplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWSupplier.swift; sourceTree = "<group>"; };
@@ -421,12 +425,14 @@
 			isa = PBXGroup;
 			children = (
 				610D8F632B95C73E00C92799 /* MWUser.swift */,
+				610D8F652B96364800C92799 /* MWSupplier.swift */,
+				610217202B9767D60087DCF8 /* MWVenue.swift */,
+				610217222B9771DA0087DCF8 /* MWCustomer.swift */,
 				61ACBAA02B8C90700037EC2B /* PhotoProfile */,
 				61434B4E2B877B5B00370524 /* Place.swift */,
 				61FAA9642B5FD05A00F8BEE6 /* UserEnums.swift */,
 				61C626222B931DF400BBC6F0 /* MyImageError.swift */,
 				61C626242B931E4300BBC6F0 /* MyImage.swift */,
-				610D8F652B96364800C92799 /* MWSupplier.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -581,6 +587,8 @@
 				61EBFEBB2B6A4E2E00526020 /* CustomNextButtonsView.swift in Sources */,
 				61EBFEBD2B6A4EA000526020 /* CustomTextViews.swift in Sources */,
 				61A815E62B57F2AD0072971A /* AuthService.swift in Sources */,
+				610217212B9767D60087DCF8 /* MWVenue.swift in Sources */,
+				610217232B9771DA0087DCF8 /* MWCustomer.swift in Sources */,
 				610267782B8FB5AD0071C1F3 /* LegalUserInfoView.swift in Sources */,
 				61ACBA952B8C849F0037EC2B /* PhotoPickerView.swift in Sources */,
 				6160981D2B9216C700EDF358 /* UpploadPhotoFromWork.swift in Sources */,
