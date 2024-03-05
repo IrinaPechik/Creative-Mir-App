@@ -84,28 +84,6 @@ class AuthService {
             }
         })
     }
-    
-//    func isUserEmailAlreadyRegistered(email: String, completion: @escaping(Result<Bool, Error>) -> Void) {
-//        auth.fetchSignInMethods(forEmail: email) { (signInMethods, error) in
-//            if let error = error {
-//                completion(.failure(error))
-//                print("Ошибка при проверке email: \(error.localizedDescription)")
-////                return
-//            }
-//            if let signInMethods = signInMethods {
-//                if signInMethods.isEmpty {
-//                    print("Пользователь с таким email не найден.")
-//                    completion(.success(false))
-//
-//                } else {
-//                    print("Пользователь с таким email уже зарегистрирован.")
-//                    completion(.success(true))
-//                }
-//            }
-//        }
-//
-//    }
-    
     // MARK: - Authentication token methods
     
     // MARK: Save token to keychain
@@ -250,11 +228,11 @@ class AuthService {
         UserDefaults.standard.set(stageName, forKey: "stageName")
     }
     
-    func getSupplierStageName() -> String {
+    func getSupplierStageName() -> String? {
         if let supplierStageName = UserDefaults.standard.string(forKey: "stageName") {
             return supplierStageName
         }
-        return "stageName"
+        return nil
     }
     
     // MARK: Save and get to/from userDefaults info about supplier professional first skill.
@@ -303,29 +281,29 @@ class AuthService {
         return "storyAboutWork"
     }
     
-    // MARK: Save and get to/from userDefaults supplier's photos from work.
-    func saveSupplierPhotosFromWork(workPhotosJpeg: [Data?]) {
-        var allEncoded: [Data] = []
-        for photo in workPhotosJpeg {
-            var encoded = try! PropertyListEncoder().encode(photo)
-            allEncoded.append(encoded)
-        }
-        UserDefaults.standard.set(allEncoded, forKey: "encodedWorkPhotos")
-    }
-    
-    func getSupplierPhotosFromWork() -> [Data?] {
-        guard let data = UserDefaults.standard.array(forKey: "encodedWorkPhotos") as? [Data] else {
-            return [nil]
-        }
-//        var imagesArray: [UIImage] = []
-//
-//        for imageData in data {
-//            if let image = UIImage(data: imageData) {
-//                imagesArray.append(image)
-//            }
+//    // MARK: Save and get to/from userDefaults supplier's photos from work.
+//    func saveSupplierPhotosFromWork(workPhotosJpeg: [Data?]) {
+//        var allEncoded: [Data] = []
+//        for photo in workPhotosJpeg {
+//            let encoded = try! PropertyListEncoder().encode(photo)
+//            allEncoded.append(encoded)
 //        }
-        return data
-    }
+//        UserDefaults.standard.set(allEncoded, forKey: "encodedWorkPhotos")
+//    }
+//    
+//    func getSupplierPhotosFromWork() -> [Data?] {
+//        guard let data = UserDefaults.standard.array(forKey: "encodedWorkPhotos") as? [Data] else {
+//            return [nil]
+//        }
+////        var imagesArray: [UIImage] = []
+////
+////        for imageData in data {
+////            if let image = UIImage(data: imageData) {
+////                imagesArray.append(image)
+////            }
+////        }
+//        return data
+//    }
     // MARK: - Userdefaults methods for both suppliers and venues
     
     // MARK: Save and get to/from userDefaults info about person company status.
@@ -390,27 +368,39 @@ class AuthService {
         return "venueBuildingName"
     }
     
-    // MARK: Save and get to/from userDefaults venue's photos from work.
-    func saveVenuePhotosOfThePlace(photosOfThePlaceJpeg: [Data?]) {
-        var allEncoded: [Data] = []
-        for photo in photosOfThePlaceJpeg {
-            let encoded = try! PropertyListEncoder().encode(photo)
-            allEncoded.append(encoded)
-        }
-        UserDefaults.standard.set(allEncoded, forKey: "encodedPhotosOfThePlace")
+    // MARK: Save and get to/from userDefaults info about person role.
+    func saveVenuePlaceDescription(placeDescription: String) {
+        UserDefaults.standard.set(placeDescription, forKey: "placeDescription")
     }
     
-    func getVenuePhotosOfThePlace() -> [UIImage?] {
-        guard let data = UserDefaults.standard.array(forKey: "encodedPhotosOfThePlace") as? [Data] else {
-            return [nil]
+    func getVenuePlaceDescription() -> String {
+        if let placeDescription = UserDefaults.standard.string(forKey: "placeDescription") {
+            return placeDescription
         }
-        var imagesArray: [UIImage] = []
-
-        for imageData in data {
-            if let image = UIImage(data: imageData) {
-                imagesArray.append(image)
-            }
-        }
-        return imagesArray
+        return "placeDescription"
     }
+    
+//    // MARK: Save and get to/from userDefaults venue's photos from work.
+//    func saveVenuePhotosOfThePlace(photosOfThePlaceJpeg: [Data?]) {
+//        var allEncoded: [Data] = []
+//        for photo in photosOfThePlaceJpeg {
+//            let encoded = try! PropertyListEncoder().encode(photo)
+//            allEncoded.append(encoded)
+//        }
+//        UserDefaults.standard.set(allEncoded, forKey: "encodedPhotosOfThePlace")
+//    }
+//    
+//    func getVenuePhotosOfThePlace() -> [UIImage?] {
+//        guard let data = UserDefaults.standard.array(forKey: "encodedPhotosOfThePlace") as? [Data] else {
+//            return [nil]
+//        }
+//        var imagesArray: [UIImage] = []
+//
+//        for imageData in data {
+//            if let image = UIImage(data: imageData) {
+//                imagesArray.append(image)
+//            }
+//        }
+//        return imagesArray
+//    }
 }
