@@ -97,7 +97,7 @@ class PhotoPickerViewModel: ObservableObject {
     }
     
     func updateSelected() {
-        if let index = myImages.firstIndex(where: {$0.id == selectedImage!.id}) {
+        if myImages.firstIndex(where: {$0.id == selectedImage!.id}) != nil {
             saveMyImagesJSONFile()
             reset()
         }

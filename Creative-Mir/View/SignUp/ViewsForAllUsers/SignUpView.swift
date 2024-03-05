@@ -80,24 +80,21 @@ struct SignUpView: View {
                     .padding(.bottom, 10)
                 }
 
-                // Тут еще чекнуть
                 VStack(spacing: 20) {
                     NextButtonView(isDisabled: isNextButtonDisabled || isLoading) {
+                        email = email.lowercased()
                         nextView = .roleChoosing
                          isLoading = true
-//                        presentNextView.toggle()
-//                        AuthService.shared.saveUserEmail(email: email)
-//                        AuthService.shared.savePasswordToKeychain(password: password)
-                        
-                        AuthService.shared.signUp(email: email, password: password) { result in
-                            switch result {
-                            case .success(_):
+                        DatabaseService.shared.checkUserExist(email: email) { exist in
+                            if !exist {
+                                AuthService.shared.saveUserEmail(email: email)
+                                AuthService.shared.savePasswordToKeychain(password: password)
                                 nextView = .roleChoosing
                                 presentNextView.toggle()
                                 isLoading = false
-                            case .failure(let error):
+                            } else {
                                 showErrorAlert.toggle()
-                                self.error = error.localizedDescription
+                                self.error = "The email address is already in use by another account."
                                 isLoading = false
                             }
                         }
@@ -134,6 +131,9 @@ struct SignUpView: View {
             .alert(isPresented: $showErrorAlert, content: {
                 return Alert(title: Text(self.error), dismissButton: .default(Text("Ok")))
             })
+        }
+        .onTapGesture {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
         // Скрываем системную кнопку Back
         .navigationBarBackButtonHidden(true)

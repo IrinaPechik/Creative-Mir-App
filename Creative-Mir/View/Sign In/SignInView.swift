@@ -71,7 +71,6 @@ struct SignInView: View {
                             }
                         }
                     }
-                    
                     HStack {
                         Text("Don't have an account?")
                             .font(.custom("FuturaPT-Light", size: 20))
@@ -105,6 +104,9 @@ struct SignInView: View {
             .alert(isPresented: $showErrorAlert) {
                 return Alert(title: Text("Invalid email or password"), dismissButton: .default(Text("Ok")))
             }
+        }
+        .onTapGesture {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
         // Скрываем системную кнопку Back
         .navigationBarBackButtonHidden(true)

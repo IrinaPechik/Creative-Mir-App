@@ -31,13 +31,14 @@ struct PlaceLookupView: View {
             .listStyle(.plain)
             .searchable(text: $searchText)
                 .font(.custom("Lora-Regular", size: 16))
-            .onChange(of: searchText, perform: {text in
-                if !text.isEmpty {
-                    placeVM.search(text: text, region: locationManager.region)
+            .onChange(of: searchText) {
+                if !searchText.isEmpty {
+                    placeVM.search(text: searchText, region: locationManager.region)
                 } else {
                     placeVM.places = []
                 }
-            })
+            }
+        
             .toolbar {
                 ToolbarItem(placement: .automatic) {
                     Button {

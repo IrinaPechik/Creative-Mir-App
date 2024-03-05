@@ -14,7 +14,9 @@ struct UpploadPhotoFromWork: View {
     @EnvironmentObject var vm: PhotoPickerViewModel
     @State private var showErrorAlert = false
     @State private var error = ""
-    
+    @State private var isLoading = false
+
+    private var auth = AuthService.shared
     var text1: String {
         switch AuthService.shared.getUserRole() {
         case String(describing: UserRoles.supplier):
@@ -37,6 +39,52 @@ struct UpploadPhotoFromWork: View {
         }
     }
     
+    func handleUserRoleAndNavigate(_ imagesArray: [Data?]) {
+        let userRole = AuthService.shared.getUserRole()
+        
+        if userRole == String(describing: UserRoles.supplier) {
+            let advertisement = SupplierAdvertisemnt(legalStatus: auth.getPerformerCompanyOrIndividualStatus(), stageName: auth.getSupplierStageName(), companyName: auth.getPerformerCompanyName(), companyPosition: auth.getPerformerPositionInCompany(), skill: auth.getSupplierFirstSkill(), experience: auth.getSupplierFirstSkillExperience(), experienceMeasure: auth.getSupplierFirstSkillExperienceMeasure(), storyAboutWork: auth.getSupplierStoryAboutWork(), photosFromWork: imagesArray)
+            
+            var supplier = MWSupplier(id: auth.getUserId(), storyAboutYourself: auth.getSupplierStoryAboutYourself())
+            supplier.addAdvertisement(advertisement: advertisement)
+            
+            // Загрузка данных исполнителя в базу данных
+            DatabaseService.shared.setSupplier(supplier: supplier) { result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(_):
+                        self.presentNextView.toggle()
+                        self.isLoading = false
+                    case .failure(let error):
+                        self.showErrorAlert.toggle()
+                        self.error = error.localizedDescription
+                        self.isLoading = false
+                    }
+                }
+            }
+        } else if userRole == String(describing: UserRoles.venue) {
+            let advertisement = VenueAdvertisemnt(legalStatus: auth.getPerformerCompanyOrIndividualStatus(), companyName: auth.getPerformerCompanyName(), companyPosition: auth.getPerformerPositionInCompany(), locationAddress: auth.getVenueBuildingAddress(), locationName: auth.getVenueBuildingName(), locationDescription: auth.getVenuePlaceDescription(), photosFromWork: imagesArray)
+            
+            var venue = MWVenue(id: auth.getUserId())
+            venue.addAdvertisement(advertisement: advertisement)
+            
+            // Загрузка данных исполнителя в базу данных
+            DatabaseService.shared.setVenue(venue: venue) { result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(_):
+                        self.presentNextView.toggle()
+                        self.isLoading = false
+                    case .failure(let error):
+                        self.showErrorAlert.toggle()
+                        self.error = error.localizedDescription
+                        self.isLoading = false
+                    }
+                }
+            }
+        }
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -49,7 +97,7 @@ struct UpploadPhotoFromWork: View {
                 
                 VStack {
                     selectedImage.padding(vm.myImages.isEmpty ? 60 : 0)
-
+                    
                     if !vm.isEditing {
                         imageScroll
                     }
@@ -86,37 +134,115 @@ struct UpploadPhotoFromWork: View {
                     Text(cameraError.message)
                 })
                 
-                NextButtonViewSecond(buttonText: "N E X T", isDisabled: vm.myImages.isEmpty) {
+                //
+                //                NextButtonViewSecond(buttonText: "N E X T", isDisabled: vm.myImages.isEmpty || isLoading) {
+                //                    isLoading = true
+                //                    DispatchQueue.global(qos: .userInitiated).async {
+                //                        var imagesArray: [Data?] = []
+                //                        let group = DispatchGroup()
+                //
+                //                        // Сжатие изображений в фоновом потоке
+                //                        for currentImage in vm.myImages {
+                //                            group.enter()
+                //                            DispatchQueue.global(qos: .userInitiated).async {
+                //                                let jpegImage = currentImage.image.jpegData(compressionQuality: 0.5)
+                //                                imagesArray.append(jpegImage)
+                //                                group.leave()
+                //                            }
+                //                        }
+                //
+                //                        group.wait() // Дождаться завершения всех операций сжатия
+                //
+                //                        // Регистрация пользователя
+                //                        DispatchQueue.main.async {
+                //                            auth.signUp(email: auth.getUserEmail(), password: auth.getPasswordFromKeyChain()) { result in
+                //                                switch result {
+                //                                case .success(_):
+                //                                    DatabaseService.shared.setUser(user: MWUser(id: auth.getUserId(), email: auth.getUserEmail(), name: auth.getUserName(), surname: auth.getUserSurname(), birthday: auth.getUserBirthDateStr(), residentialAddress: auth.getUserLivingAddress(), avatarImage: auth.getUserProfilePhoto(), role: auth.getUserRole())) { result in
+                //                                        switch result {
+                //                                        case .success(_):
+                //                                            presentNextView.toggle()
+                //                                            isLoading = false
+                //                                        case .failure(let error):
+                //                                            showErrorAlert.toggle()
+                //                                            self.error = error.localizedDescription
+                //                                            isLoading = false
+                //                                        }
+                //                                    }
+                //                                case .failure(let error):
+                //                                    showErrorAlert.toggle()
+                //                                    self.error = error.localizedDescription
+                //                                    isLoading = false
+                //                                }
+                //                            }
+                //
+                //                            // Заполнение специальных данных исполнителя (supplier's or venue's)
+                //                            let userRole = AuthService.shared.getUserRole()
+                //                            if userRole == String(describing: UserRoles.supplier) {
+                //                                let advertisement = Advertisemnt(legalStatus: auth.getPerformerCompanyOrIndividualStatus(), stageName: auth.getSupplierStageName(), companyName: auth.getPerformerCompanyName(), companyPosition: auth.getPerformerPositionInCompany(), skill: auth.getSupplierFirstSkill(), experience: auth.getSupplierFirstSkillExperience(), experienceMeasure: auth.getSupplierFirstSkillExperienceMeasure(), storyAboutWork: auth.getSupplierStoryAboutWork(), photosFromWork: imagesArray)
+                //
+                //                                var supplier = MWSupplier(id: auth.getUserId(), storyAboutYourself: auth.getSupplierStoryAboutYourself())
+                //                                supplier.addAdvertisement(advertisement: advertisement)
+                //
+                //                                DatabaseService.shared.setSupplier(supplier: supplier) { result in
+                //                                    switch result {
+                //                                    case .success(_):
+                //                                        presentNextView.toggle()
+                //                                        isLoading = false
+                //                                    case .failure(let error):
+                //                                        showErrorAlert.toggle()
+                //                                        self.error = error.localizedDescription
+                //                                        isLoading = false
+                //                                    }
+                //                                }
+                //                            } else if userRole == String(describing: UserRoles.venue) {
+                //                                presentNextView.toggle()
+                //                                AuthService.shared.saveVenuePhotosOfThePlace(photosOfThePlaceJpeg: imagesArray)
+                //                                isLoading = false
+                //                            }
+                //                        }
+                //                    }
+                //                }
+                
+                
+                NextButtonViewSecond(buttonText: "N E X T", isDisabled: vm.myImages.isEmpty || isLoading) {
+                    isLoading = true
                     var imagesArray: [Data?] = []
+
+                    // Сжатие изображений в фоновом потоке
                     for currentImage in vm.myImages {
-                        var jpegImage = currentImage.image.jpegData(compressionQuality: 0.8)
+                        let jpegImage = currentImage.image.jpegData(compressionQuality: 0.5)
                         imagesArray.append(jpegImage)
                     }
-                    switch AuthService.shared.getUserRole() {
-                        case String(describing: UserRoles.supplier):
-                            print("saving supplier's photo")
-                            AuthService.shared.saveSupplierPhotosFromWork(workPhotosJpeg: imagesArray)
-                        DatabaseService.shared.setSupplier(supplier: MWSupplier(id: AuthService.shared.getUserId(), storyAboutYourself: AuthService.shared.getSupplierStoryAboutYourself(), legalStatus: AuthService.shared.getPerformerCompanyOrIndividualStatus(), stageName: AuthService.shared.getSupplierStageName(), companyName: AuthService.shared.getPerformerCompanyName(), companyPosition: AuthService.shared.getPerformerPositionInCompany(), skill: AuthService.shared.getSupplierFirstSkill(), experience: AuthService.shared.getSupplierFirstSkillExperience(), experienceMeasure: AuthService.shared.getSupplierFirstSkillExperienceMeasure(), storyAboutWork: AuthService.shared.getSupplierStoryAboutWork(), photosFromWork: AuthService.shared.getSupplierPhotosFromWork())) { result in
+                    DispatchQueue.global(qos: .userInitiated).async {
+                        // Регистрация пользователя в фоновом потоке
+                        auth.signUp(email: auth.getUserEmail(), password: auth.getPasswordFromKeyChain()) { result in
                             switch result {
                             case .success(_):
-                                presentNextView.toggle()
+                                let user = MWUser(id: auth.getUserId(), email: auth.getUserEmail(), name: auth.getUserName(), surname: auth.getUserSurname(), birthday: auth.getUserBirthDateStr(), residentialAddress: auth.getUserLivingAddress(), avatarImage: auth.getUserProfilePhoto(), role: auth.getUserRole())
+                                
+                                // Запись пользователя в базу данных также в фоновом потоке
+                                DatabaseService.shared.setUser(user: user) { result in
+                                    DispatchQueue.main.async {
+                                        switch result {
+                                        case .success(_):
+                                            self.handleUserRoleAndNavigate(imagesArray)
+                                        case .failure(let error):
+                                            self.showErrorAlert.toggle()
+                                            self.error = error.localizedDescription
+                                            self.isLoading = false
+                                        }
+                                    }
+                                }
                             case .failure(let error):
-                                showErrorAlert.toggle()
-                                self.error = error.localizedDescription
+                                DispatchQueue.main.async {
+                                    self.showErrorAlert.toggle()
+                                    self.error = error.localizedDescription
+                                    self.isLoading = false
+                                }
                             }
                         }
-                        case String(describing: UserRoles.venue):
-                            presentNextView.toggle()
-
-                            AuthService.shared.saveVenuePhotosOfThePlace(photosOfThePlaceJpeg: imagesArray)
-                            print("saving venue's photo")
-                        default:
-                            presentNextView.toggle()
-
-                            AuthService.shared.saveVenuePhotosOfThePlace(photosOfThePlaceJpeg: imagesArray)
-                            print("photo saving error")
                     }
-//                    presentNextView.toggle()
                 }
             }
             .navigationDestination(isPresented: $presentNextView) {

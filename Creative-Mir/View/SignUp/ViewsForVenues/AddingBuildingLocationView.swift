@@ -12,8 +12,10 @@ struct AddingBuildingLocationView: View {
     @State private var showPlaceLookupSheet = false
     @State var returnedPlace = Place(mapItem: MKMapItem())
     @State private var presentNextView = false
-    
+        
     @State private var placeName: String = ""
+    @State private var placeDescription: String = ""
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
@@ -56,8 +58,21 @@ struct AddingBuildingLocationView: View {
                 }
                 .padding(.leading, 20)
                 .padding(.trailing, 20)
-
-                NextButtonViewSecond(buttonText: "N E X T", isDisabled: returnedPlace.fullAddress.isEmpty || placeName.isEmpty) {
+                
+                TextField("Write about your place", text: $placeDescription, axis: .vertical)
+                    .multilineTextAlignment(.leading)
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 25)
+                            .stroke(Color.gray.opacity(0.2), lineWidth: 2)
+                    )
+                    .clipShape(RoundedRectangle(cornerRadius: 25))
+                    .padding()
+                    .lineLimit(9...)
+                    .font(.custom("Lora-Regular", size: 18))
+                    .frame(width: 360)
+                
+                NextButtonViewSecond(buttonText: "N E X T", isDisabled: returnedPlace.fullAddress.isEmpty || placeName.isEmpty || placeDescription.isEmpty) {
                     AuthService.shared.saveVenueBuildingAddress(address: returnedPlace.fullAddress)
                     AuthService.shared.saveVenueBuildingName(buildingName: placeName)
                     print(AuthService.shared.getVenueBuildingAddress())
@@ -65,7 +80,6 @@ struct AddingBuildingLocationView: View {
                     // Переход к следующей view
                     presentNextView.toggle()
                 }
-                .padding(.top, 100)
             }
             .navigationDestination(isPresented: $presentNextView) {
                 UpploadPhotoFromWork().environmentObject(PhotoPickerViewModel())
