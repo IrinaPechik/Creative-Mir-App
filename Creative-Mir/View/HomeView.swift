@@ -2,7 +2,7 @@
 //  HomeView.swift
 //  Creative-Mir
 //
-//  Created by Печик Дарья on 19.01.2024.
+//  Created by Печик Ирина on 19.01.2024.
 //
 
 import SwiftUI
