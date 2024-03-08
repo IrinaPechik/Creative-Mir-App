@@ -19,7 +19,8 @@ struct RootView: View {
                         .frame(height: 80)
                     if selectedPage == .generateIdeas {
 //                        Spacer()
-                        IdeasView()
+                        IdeaCategoryView(viewModel: IdeasCategoryViewModel())
+//                        IdeasView(viewModel: IdeasViewModel())
 //                        Spacer()
                     } else if selectedPage == .exploreSuppliers {
                         Spacer()
