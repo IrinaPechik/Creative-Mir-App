@@ -28,6 +28,14 @@ class DatabaseService {
         return db.collection("customers")
     }
     
+    private var ideasRef: CollectionReference {
+        return db.collection("ideas")
+    }
+    
+    private var ideasCategoryRef: CollectionReference {
+        return db.collection("ideaCategories")
+    }
+    
     private init() {}
 
     func setUser(user: MWUser, completion: @escaping (Result<MWUser, Error>) -> ()) {
@@ -92,4 +100,57 @@ class DatabaseService {
             }
         }
     }
+    
+    func getIdeas(completion: @escaping (Result<[MWIdea], Error>) -> ()) {
+        ideasRef.getDocuments { qSnap, error in
+            if let qSnap = qSnap {
+                var ideas = [MWIdea]()
+                for doc in qSnap.documents {
+                    if let idea = MWIdea(doc: doc) {
+                        ideas.append(idea)
+                    }
+                }
+                completion(.success(ideas))
+            } else if let error = error {
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func setIdea(idea: MWIdea, completion: @escaping (Result<MWIdea, Error>) -> ()) {
+        ideasRef.document(idea.id).setData(idea.representation) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(idea))
+            }
+        }
+    }
+    
+    func getIdeaCategories(completion: @escaping (Result<[MWIdeaCategory], Error>) -> ()) {
+        ideasCategoryRef.getDocuments { qSnap, error in
+            if let qSnap = qSnap {
+                var ideas = [MWIdeaCategory]()
+                for doc in qSnap.documents {
+                    if let idea = MWIdeaCategory(doc: doc) {
+                        ideas.append(idea)
+                    }
+                }
+                completion(.success(ideas))
+            } else if let error = error {
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func setIdeaCategories(category: MWIdeaCategory, completion: @escaping (Result<MWIdeaCategory, Error>) -> ()) {
+        ideasCategoryRef.document(category.id).setData(category.representation) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(category))
+            }
+        }
+    }
+    
 }
