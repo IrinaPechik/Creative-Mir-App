@@ -10,11 +10,13 @@ import PhotosUI
 
 struct UpploadPhotoFromWork: View {
     @State private var presentNextView = false
+    
     @State var actionSheetVisible = false
     @EnvironmentObject var vm: PhotoPickerViewModel
     @State private var showErrorAlert = false
     @State private var error = ""
     @State private var isLoading = false
+    @State private var userRole: String = ""
 
     private var auth = AuthService.shared
     var text1: String {
@@ -24,7 +26,7 @@ struct UpploadPhotoFromWork: View {
         case String(describing: UserRoles.venue):
             return "Upload photos"
         default:
-            return "Upload your"
+            return ""
         }
     }
     
@@ -35,21 +37,21 @@ struct UpploadPhotoFromWork: View {
         case String(describing: UserRoles.venue):
             return "of the place"
         default:
-            return "photo from work"
+            return ""
         }
     }
     
-    func handleUserRoleAndNavigate(_ imagesArray: [Data?]) {
-        let userRole = AuthService.shared.getUserRole()
+    func handleUserRoleAndNavigate(_ imagesArray: [Data]) {
+        userRole = AuthService.shared.getUserRole()
         
         if userRole == String(describing: UserRoles.supplier) {
-            let advertisement = SupplierAdvertisemnt(legalStatus: auth.getPerformerCompanyOrIndividualStatus(), stageName: auth.getSupplierStageName(), companyName: auth.getPerformerCompanyName(), companyPosition: auth.getPerformerPositionInCompany(), skill: auth.getSupplierFirstSkill(), experience: auth.getSupplierFirstSkillExperience(), experienceMeasure: auth.getSupplierFirstSkillExperienceMeasure(), storyAboutWork: auth.getSupplierStoryAboutWork(), photosFromWork: imagesArray)
+            let advertisement = SupplierAdvertisemnt(legalStatus: auth.getPerformerCompanyOrIndividualStatus(), stageName: auth.getSupplierStageName(), companyName: auth.getPerformerCompanyName(), companyPosition: auth.getPerformerPositionInCompany(), skill: auth.getSupplierFirstSkill(), experience: auth.getSupplierFirstSkillExperience(), experienceMeasure: auth.getSupplierFirstSkillExperienceMeasure(), storyAboutWork: auth.getSupplierStoryAboutWork())
             
             var supplier = MWSupplier(id: auth.getUserId(), storyAboutYourself: auth.getSupplierStoryAboutYourself())
             supplier.addAdvertisement(advertisement: advertisement)
             
             // Загрузка данных исполнителя в базу данных
-            DatabaseService.shared.setSupplier(supplier: supplier) { result in
+            DatabaseService.shared.setSupplier(supplier: supplier, images: imagesArray) { result in
                 DispatchQueue.main.async {
                     switch result {
                     case .success(_):
@@ -69,7 +71,7 @@ struct UpploadPhotoFromWork: View {
             venue.addAdvertisement(advertisement: advertisement)
             
             // Загрузка данных исполнителя в базу данных
-            DatabaseService.shared.setVenue(venue: venue) { result in
+            DatabaseService.shared.setVenue(venue: venue, images: imagesArray) { result in
                 DispatchQueue.main.async {
                     switch result {
                     case .success(_):
@@ -88,157 +90,91 @@ struct UpploadPhotoFromWork: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text(text1)
-                    .font(.custom("Lora-Regular", size: 35))
-                    .padding(.top, 60)
-                Text(text2)
-                    .font(.custom("Lora-Regular", size: 35))
-                    .padding(.bottom, 30)
-                
-                VStack {
-                    selectedImage.padding(vm.myImages.isEmpty ? 60 : 0)
+                if isLoading {
+                    ProgressView()
+                } else {
+                    Text(text1)
+                        .font(.custom("Lora-Regular", size: 35))
+                        .padding(.top, 60)
+                    Text(text2)
+                        .font(.custom("Lora-Regular", size: 35))
+                        .padding(.bottom, 30)
                     
-                    if !vm.isEditing {
-                        imageScroll
-                    }
                     VStack {
-                        if vm.image != nil {
-                            editGroup
+                        selectedImage.padding(vm.myImages.isEmpty ? 60 : 0)
+                        
+                        if !vm.isEditing {
+                            imageScroll
+                        }
+                        VStack {
+                            if vm.image != nil {
+                                editGroup
+                            }
+                        }
+                        .padding()
+                        Spacer()
+                    }
+                    .confirmationDialog("Choose photo", isPresented: self.$actionSheetVisible) {
+                        Button("Photo library") {
+                            vm.source = .library
+                            vm.showPicker = true
+                        }
+                        Button("Camera") {
+                            vm.source = .camera
+                            vm.showPhotoPicker()
                         }
                     }
-                    .padding()
-                    Spacer()
-                }
-                .confirmationDialog("Choose photo", isPresented: self.$actionSheetVisible) {
-                    Button("Photo library") {
-                        vm.source = .library
-                        vm.showPicker = true
+                    .task {
+                        if FileManager().docExist(named: fileName) {
+                            vm.loadMyImagesJSONFile()
+                        }
                     }
-                    Button("Camera") {
-                        vm.source = .camera
-                        vm.showPhotoPicker()
+                    .sheet(isPresented: $vm.showPicker) {
+                        ImagePicker(sourceType: vm.source == .library ? .photoLibrary : .camera, selectedImage: $vm.image)
+                            .ignoresSafeArea()
                     }
-                }
-                .task {
-                    if FileManager().docExist(named: fileName) {
-                        vm.loadMyImagesJSONFile()
-                    }
-                }
-                .sheet(isPresented: $vm.showPicker) {
-                    ImagePicker(sourceType: vm.source == .library ? .photoLibrary : .camera, selectedImage: $vm.image)
-                        .ignoresSafeArea()
-                }
-                .alert("Error", isPresented: $vm.showFileAlert, presenting: vm.appError, actions: { cameraError in
-                    cameraError.button
-                }, message: { cameraError in
-                    Text(cameraError.message)
-                })
-                
-                //
-                //                NextButtonViewSecond(buttonText: "N E X T", isDisabled: vm.myImages.isEmpty || isLoading) {
-                //                    isLoading = true
-                //                    DispatchQueue.global(qos: .userInitiated).async {
-                //                        var imagesArray: [Data?] = []
-                //                        let group = DispatchGroup()
-                //
-                //                        // Сжатие изображений в фоновом потоке
-                //                        for currentImage in vm.myImages {
-                //                            group.enter()
-                //                            DispatchQueue.global(qos: .userInitiated).async {
-                //                                let jpegImage = currentImage.image.jpegData(compressionQuality: 0.5)
-                //                                imagesArray.append(jpegImage)
-                //                                group.leave()
-                //                            }
-                //                        }
-                //
-                //                        group.wait() // Дождаться завершения всех операций сжатия
-                //
-                //                        // Регистрация пользователя
-                //                        DispatchQueue.main.async {
-                //                            auth.signUp(email: auth.getUserEmail(), password: auth.getPasswordFromKeyChain()) { result in
-                //                                switch result {
-                //                                case .success(_):
-                //                                    DatabaseService.shared.setUser(user: MWUser(id: auth.getUserId(), email: auth.getUserEmail(), name: auth.getUserName(), surname: auth.getUserSurname(), birthday: auth.getUserBirthDateStr(), residentialAddress: auth.getUserLivingAddress(), avatarImage: auth.getUserProfilePhoto(), role: auth.getUserRole())) { result in
-                //                                        switch result {
-                //                                        case .success(_):
-                //                                            presentNextView.toggle()
-                //                                            isLoading = false
-                //                                        case .failure(let error):
-                //                                            showErrorAlert.toggle()
-                //                                            self.error = error.localizedDescription
-                //                                            isLoading = false
-                //                                        }
-                //                                    }
-                //                                case .failure(let error):
-                //                                    showErrorAlert.toggle()
-                //                                    self.error = error.localizedDescription
-                //                                    isLoading = false
-                //                                }
-                //                            }
-                //
-                //                            // Заполнение специальных данных исполнителя (supplier's or venue's)
-                //                            let userRole = AuthService.shared.getUserRole()
-                //                            if userRole == String(describing: UserRoles.supplier) {
-                //                                let advertisement = Advertisemnt(legalStatus: auth.getPerformerCompanyOrIndividualStatus(), stageName: auth.getSupplierStageName(), companyName: auth.getPerformerCompanyName(), companyPosition: auth.getPerformerPositionInCompany(), skill: auth.getSupplierFirstSkill(), experience: auth.getSupplierFirstSkillExperience(), experienceMeasure: auth.getSupplierFirstSkillExperienceMeasure(), storyAboutWork: auth.getSupplierStoryAboutWork(), photosFromWork: imagesArray)
-                //
-                //                                var supplier = MWSupplier(id: auth.getUserId(), storyAboutYourself: auth.getSupplierStoryAboutYourself())
-                //                                supplier.addAdvertisement(advertisement: advertisement)
-                //
-                //                                DatabaseService.shared.setSupplier(supplier: supplier) { result in
-                //                                    switch result {
-                //                                    case .success(_):
-                //                                        presentNextView.toggle()
-                //                                        isLoading = false
-                //                                    case .failure(let error):
-                //                                        showErrorAlert.toggle()
-                //                                        self.error = error.localizedDescription
-                //                                        isLoading = false
-                //                                    }
-                //                                }
-                //                            } else if userRole == String(describing: UserRoles.venue) {
-                //                                presentNextView.toggle()
-                //                                AuthService.shared.saveVenuePhotosOfThePlace(photosOfThePlaceJpeg: imagesArray)
-                //                                isLoading = false
-                //                            }
-                //                        }
-                //                    }
-                //                }
-                
-                
-                NextButtonViewSecond(buttonText: "N E X T", isDisabled: vm.myImages.isEmpty || isLoading) {
-                    isLoading = true
-                    var imagesArray: [Data?] = []
-
-                    // Сжатие изображений в фоновом потоке
-                    for currentImage in vm.myImages {
-                        let jpegImage = currentImage.image.jpegData(compressionQuality: 0.5)
-                        imagesArray.append(jpegImage)
-                    }
-                    DispatchQueue.global(qos: .userInitiated).async {
-                        // Регистрация пользователя в фоновом потоке
-                        auth.signUp(email: auth.getUserEmail(), password: auth.getPasswordFromKeyChain()) { result in
-                            switch result {
-                            case .success(_):
-                                let user = MWUser(id: auth.getUserId(), email: auth.getUserEmail(), name: auth.getUserName(), surname: auth.getUserSurname(), birthday: auth.getUserBirthDateStr(), residentialAddress: auth.getUserLivingAddress(), avatarImage: auth.getUserProfilePhoto(), role: auth.getUserRole())
-                                
-                                // Запись пользователя в базу данных также в фоновом потоке
-                                DatabaseService.shared.setUser(user: user) { result in
-                                    DispatchQueue.main.async {
-                                        switch result {
-                                        case .success(_):
-                                            self.handleUserRoleAndNavigate(imagesArray)
-                                        case .failure(let error):
-                                            self.showErrorAlert.toggle()
-                                            self.error = error.localizedDescription
-                                            self.isLoading = false
+                    .alert("Error", isPresented: $vm.showFileAlert, presenting: vm.appError, actions: { cameraError in
+                        cameraError.button
+                    }, message: { cameraError in
+                        Text(cameraError.message)
+                    })
+                    
+                    
+                    NextButtonViewSecond(buttonText: "N E X T", isDisabled: vm.myImages.isEmpty || isLoading) {
+                        isLoading = true
+                        var imagesArray: [Data] = []
+                        
+                        // Сжатие изображений в фоновом потоке
+                        for currentImage in vm.myImages {
+                            if let jpegImage = currentImage.image.jpegData(compressionQuality: 0.2) {
+                                imagesArray.append(jpegImage)
+                            }
+                        }
+                        
+                        DispatchQueue.global(qos: .userInitiated).async {
+                            auth.signUp(email: auth.getUserEmail(), password: auth.getPasswordFromKeyChain()) { result in
+                                switch result {
+                                case .success(_):
+                                    let user = MWUser(id: auth.getUserId(), email: auth.getUserEmail(), name: auth.getUserName(), surname: auth.getUserSurname(), birthday: auth.getUserBirthDateStr(), residentialAddress: auth.getUserLivingAddress(), role: auth.getUserRole())
+                                    // Запись пользователя в базу данных также в фоновом потоке
+                                    DatabaseService.shared.setUser(user: user, imageData: auth.getUserProfilePhoto()!) { result in
+                                        DispatchQueue.main.async {
+                                            switch result {
+                                            case .success(_):
+                                                self.handleUserRoleAndNavigate(imagesArray)
+                                            case .failure(let error):
+                                                self.showErrorAlert.toggle()
+                                                self.error = error.localizedDescription
+                                                self.isLoading = false
+                                            }
                                         }
                                     }
-                                }
-                            case .failure(let error):
-                                DispatchQueue.main.async {
-                                    self.showErrorAlert.toggle()
-                                    self.error = error.localizedDescription
-                                    self.isLoading = false
+                                case .failure(let error):
+                                    DispatchQueue.main.async {
+                                        self.showErrorAlert.toggle()
+                                        self.error = error.localizedDescription
+                                        self.isLoading = false
+                                    }
                                 }
                             }
                         }
@@ -246,7 +182,12 @@ struct UpploadPhotoFromWork: View {
                 }
             }
             .navigationDestination(isPresented: $presentNextView) {
-                Text("next view")
+                // TODO: в зависимости от того, какой пользователь, показывать страницу
+                if userRole == String(describing: UserRoles.supplier) {
+                    SupplierProfileView()
+                } else if userRole == String(describing: UserRoles.venue) {
+                    VenueProfileView()
+                }
             }
             .alert(isPresented: $showErrorAlert, content: {
                 return Alert(title: Text(self.error), dismissButton: .default(Text("Ok")))
@@ -290,3 +231,4 @@ struct ButtonLabel: View {
         .foregroundColor(.black)
     }
 }
+
