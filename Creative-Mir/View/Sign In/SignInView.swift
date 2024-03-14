@@ -14,6 +14,7 @@ struct SignInView: View {
     }
     @State private var email = ""
     @State private var password = ""
+    @State private var userRole: String = ""
     
     @State private var isEmailValid = true
     @State private var isPasswordValid = true
@@ -64,6 +65,14 @@ struct SignInView: View {
                             switch result {
                             case .success(_):
                                 nextView = .signIn
+                                DatabaseService.shared.getUserRole(email: email.lowercased()) { res in
+                                    switch res {
+                                    case .success(var role):
+                                        userRole = role
+                                    case .failure(let error):
+                                        print(error)
+                                    }
+                                }
                                 presentNextView.toggle()
                             case .failure(_):
                                 print("error")
@@ -96,7 +105,15 @@ struct SignInView: View {
                 case .signUp:
                     SignUpView()
                 case .signIn:
-                    HomeView()
+//                    let userRole = AuthService.shared.getUserRole()
+                    if userRole == "customer" {
+                        RootView()
+                    } else if userRole == "supplier" {
+                       SupplierProfileView()
+                    } else if userRole == "venue" {
+                        VenueProfileView()
+                    } 
+                    
                 case .forgotPassword:
                     ForgotPasswordView()
                 }
