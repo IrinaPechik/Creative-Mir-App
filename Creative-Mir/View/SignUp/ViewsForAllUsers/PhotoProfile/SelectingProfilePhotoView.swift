@@ -30,9 +30,10 @@ struct SelectingProfilePhotoView: View {
                 NextButtonViewSecond(buttonText: "F I N I S H", isDisabled: vm.image == nil || isLoading) {
                     isLoading = true
                     // Переход к следующей view
-                    let jpegImage = vm.image?.jpegData(compressionQuality: 0.8)
-                    
-                    AuthService.shared.saveUserProfilePhoto(profilePhotoJpeg: jpegImage)
+                    // Сохраняем фото
+                    let imageData = vm.image?.jpegData(compressionQuality: 0.5)
+
+//                    AuthService.shared.saveUserProfilePhoto(profilePhotoJpeg: jpegImage)
 
                     // Если customer - то тут регистрируем и далее переходим в личный кабинет.
                     // Если performer - регистрируем там, где заканчивается ввод их данных.
@@ -41,7 +42,7 @@ struct SelectingProfilePhotoView: View {
                         auth.signUp(email: auth.getUserEmail(), password: auth.getPasswordFromKeyChain()) { result in
                             switch result {
                             case .success(_):
-                                DatabaseService.shared.setUser(user: MWUser(id: auth.getUserId(), email: auth.getUserEmail(), name: auth.getUserName(), surname: auth.getUserSurname(), birthday: auth.getUserBirthDateStr(), residentialAddress: auth.getUserLivingAddress(), avatarImage: auth.getUserProfilePhoto(), role: auth.getUserRole())) { result in
+                                DatabaseService.shared.setUser(user: MWUser(id: auth.getUserId(), email: auth.getUserEmail(), name: auth.getUserName(), surname: auth.getUserSurname(), birthday: auth.getUserBirthDateStr(), residentialAddress: auth.getUserLivingAddress(), role: auth.getUserRole()), imageData: imageData!) { result in
                                     switch result {
                                     case .success(_):
                                         let customer = MWCustomer(id: auth.getUserId())
@@ -73,6 +74,7 @@ struct SelectingProfilePhotoView: View {
                             }
                         }
                     } else {
+                        AuthService.shared.saveUserProfilePhoto(profilePhotoJpeg: imageData)
                         presentNextView.toggle()
                     }
                 }
@@ -105,7 +107,7 @@ struct SelectingProfilePhotoView: View {
                 switch AuthService.shared.getUserRole() {
                 case String(describing: UserRoles.customer):
                     // Переход в личный кабинет
-                    Text("customer")
+                    RootView()
                 case String(describing: UserRoles.supplier):
                     InformationAboutSupplierView()
                 case String(describing: UserRoles.venue):
