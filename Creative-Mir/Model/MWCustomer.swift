@@ -9,7 +9,7 @@ import Foundation
 
 struct MWCustomer: Identifiable, Codable {
     var id: String
-
+    // TODO: добавить избранные объявления
     var representation: [String: Any] {
         var repres = [String: Any]()
         repres["id"] = self.id

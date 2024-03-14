@@ -38,7 +38,7 @@ struct SupplierAdvertisemnt: Codable {
     var experience: Int
     var experienceMeasure: String
     var storyAboutWork: String
-    var photosFromWork: [Data?]
+//    var photosFromWork: [Data?]
     
     var representation: [String: Any] {
         var repres = [String: Any]()
@@ -50,7 +50,7 @@ struct SupplierAdvertisemnt: Codable {
         repres["experience"] = experience
         repres["experienceMeasure"] = experienceMeasure
         repres["storyAboutWork"] = storyAboutWork
-        repres["photosFromWork"] = photosFromWork
+//        repres["photosFromWork"] = photosFromWork
         return repres
     }
 }
