@@ -38,32 +38,57 @@ class DatabaseService {
     
     private init() {}
 
-    func setUser(user: MWUser, completion: @escaping (Result<MWUser, Error>) -> ()) {
+    func setUser(user: MWUser, imageData: Data, completion: @escaping (Result<MWUser, Error>) -> ()) {
         usersRef.document(user.id).setData(user.representation) { error in
             if let error = error {
                 completion(.failure(error))
             } else {
-                completion(.success(user))
+                // TODO: Проверить, по какому id сохранять картинку
+                StorageService.shared.uploadUserAvatarImage(userId: user.id, image: imageData) { result in
+                    switch result {
+                    case .success(let sizeInfo):
+                        print(sizeInfo)
+                        completion(.success(user))
+                    case .failure(let error):
+                        print("error \(error)")
+                    }
+                }
             }
         }
     }
     
-    func setSupplier(supplier: MWSupplier, completion: @escaping (Result<MWSupplier, Error>) -> ()) {
+    func setSupplier(supplier: MWSupplier, images: [Data], completion: @escaping (Result<MWSupplier, Error>) -> ()) {
         suppliersRef.document(supplier.id).setData(supplier.representation) { error in
             if let error = error {
                 completion(.failure(error))
             } else {
-                completion(.success(supplier))
+                StorageService.shared.uploadSuppliersPhotoFromWorkImages(supplierId: supplier.id, images: images) { result in
+                    switch result {
+                    case .success(let sizeInfo):
+                        print(sizeInfo)
+                        completion(.success(supplier))
+                    case .failure(let error):
+                        print("error \(error)")
+                    }
+                }
             }
         }
     }
     
-    func setVenue(venue: MWVenue, completion: @escaping (Result<MWVenue, Error>) -> ()) {
+    func setVenue(venue: MWVenue, images: [Data],  completion: @escaping (Result<MWVenue, Error>) -> ()) {
         venuesRef.document(venue.id).setData(venue.representation) { error in
             if let error = error {
                 completion(.failure(error))
             } else {
-                completion(.success(venue))
+                StorageService.shared.uploadVenuesPhotoFromWorkImages(venueId: venue.id, images: images) { result in
+                    switch result {
+                    case .success(let sizeInfo):
+                        print(sizeInfo)
+                        completion(.success(venue))
+                    case .failure(let error):
+                        print("error \(error)")
+                    }
+                }
             }
         }
     }
@@ -101,12 +126,12 @@ class DatabaseService {
         }
     }
     
-    func getIdeas(completion: @escaping (Result<[MWIdea], Error>) -> ()) {
+    func getIdeas(by categoryId: String, completion: @escaping (Result<[MWIdea], Error>) -> ()) {
         ideasRef.getDocuments { qSnap, error in
             if let qSnap = qSnap {
                 var ideas = [MWIdea]()
                 for doc in qSnap.documents {
-                    if let idea = MWIdea(doc: doc) {
+                    if let idea = MWIdea(doc: doc), idea.categoryId == categoryId {
                         ideas.append(idea)
                     }
                 }
@@ -149,6 +174,38 @@ class DatabaseService {
                 completion(.failure(error))
             } else {
                 completion(.success(category))
+            }
+        }
+    }
+    
+    func getUserRole(email: String, completion: @escaping (Result<String, Error>) -> ()) {
+        usersRef.getDocuments { qSnap, error in
+            if let qSnap = qSnap {
+                var user: MWUser
+                for doc in qSnap.documents {
+                    if let user1 = MWUser(doc: doc), user1.email == email {
+                        user = user1
+                        completion(.success(user.role))
+                    }
+                }
+            } else if let error = error {
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getUser(id: String, completion: @escaping (Result<MWUser, Error>) -> ()) {
+        usersRef.getDocuments { qSnap, error in
+            if let qSnap = qSnap {
+                var user: MWUser
+                for doc in qSnap.documents {
+                    if let user1 = MWUser(doc: doc), user1.id == id {
+                        user = user1
+                        completion(.success(user))
+                    }
+                }
+            } else if let error = error {
+                completion(.failure(error))
             }
         }
     }
