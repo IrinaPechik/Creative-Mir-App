@@ -10,7 +10,12 @@ import SwiftUI
 struct RootView: View {
     @State var selectedTab: Tabs = .home
     @State private var selectedPage: TopBars = .generateIdeas
-
+    
+    @State private var presentNextView: Bool = false
+    @State var chosenIdCategory: String = ""
+    
+    @State var presentIdeaCardView: Bool = false
+    @State var chosenIdea: MWIdea? = nil
     var body: some View {
         NavigationView {
             VStack {
@@ -18,10 +23,10 @@ struct RootView: View {
                     TopBar(selectedTopBar: $selectedPage)
                         .frame(height: 80)
                     if selectedPage == .generateIdeas {
-//                        Spacer()
-                        IdeaCategoryView(viewModel: IdeasCategoryViewModel())
-//                        IdeasView(viewModel: IdeasViewModel())
-//                        Spacer()
+                        Spacer()
+                        IdeaCategoryView(viewModel: IdeasCategoryViewModel(), chosenCategoryId: $chosenIdCategory, presentNextView: $presentNextView)
+                            .frame(height: 450)
+                        Spacer()
                     } else if selectedPage == .exploreSuppliers {
                         Spacer()
                         Text("ideas")
@@ -31,23 +36,30 @@ struct RootView: View {
                         Text("ideas")
                         Spacer()
                     }
-//                    CustomerFunctionsPickerView()
                 } else if selectedTab == .star {
                     StarView()
                 } else if selectedTab == .message {
                     MessageView()
                 } else if selectedTab == .profile {
-                    ProfileView()
+                    CustomerProfileView()
                 }
+                
                 CustomTabBar(selectedTab: $selectedTab)
+            }
+            .sheet(isPresented: $presentNextView) {
+                IdeasView(viewModel: IdeasViewModel(), chosenIdCategory: $chosenIdCategory, presentIdeaCardView: $presentIdeaCardView, chosenIdea: $chosenIdea)
+            }
+        }
+        // Скрываем системную кнопку Back
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                customBackButton()
             }
         }
     }
 }
 
-#Preview {
-    RootView()
-}
 
 struct MessageView: View {
     var body: some View {
@@ -71,13 +83,6 @@ struct StarView: View {
     }
 }
 
-struct ProfileView: View {
-    var body: some View {
-        ZStack {
-            Color.orange.ignoresSafeArea()
-            Text("Profile Tab")
-                .font(.largeTitle)
-                .foregroundStyle(.white)
-        }
-    }
+#Preview {
+    CustomerProfileView()
 }

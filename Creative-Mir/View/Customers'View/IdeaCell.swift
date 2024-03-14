@@ -8,29 +8,30 @@
 import SwiftUI
 
 struct IdeaCell: View {
-    @State var idea: MWIdea = MWIdea(id: "1",
-                                      name: "Pappy Pawty",
-                                      image: "jj",
-                                     description: "Description of my idea",
-                                     shortDescription: "short descr",
-                                      eventType: "Some Event",
-                                      ageRestriction: 18,
-                                      venuesRecommendations: "Recommendations for venues",
-                                      suppliersRecommendations: "Recommendations for suppliers",
-                                      peopleLimit: 100,
-                                      colorScheme: "Blue")
+    @State var idea: MWIdea
+    
     @State var isLiked = false
+    @State var uiImage: UIImage? = nil
+    
     var body: some View {
         VStack(alignment: .leading) {
             ZStack(alignment: .topTrailing) {
-                // Заглушка
-                Image("avatar")
-                    .resizable()
-                    .scaledToFit()
+                if uiImage == nil {
+                    ProgressView()
+                        .scaleEffect(1.5)
+                        .frame(width: 172, height: 150)
+                } else {
+                    Image(uiImage: uiImage!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 172, height: 150)
+                        .padding(.bottom, 10)
+                }
+
                 Image(systemName: "heart.fill")
-                    .font(.title)
+                    .font(.title2)
                     .foregroundColor(isLiked ? .red : .white)
-                    .padding()
+                    .padding(10)
                     .onTapGesture {
                         withAnimation(.easeInOut(duration: 0.2)) {
                             isLiked.toggle()
@@ -47,14 +48,34 @@ struct IdeaCell: View {
             }
             .padding()
         }
+        .frame(width: 172, height: 269)
         .background()
         .clipShape(RoundedRectangle(cornerRadius: 20))
-
+        .onAppear {
+            StorageService.shared.downloadIdeaImage(id: self.idea.id) {result in
+                switch result {
+                case .success(let data):
+                    if let img = UIImage(data: data) {
+                        self.uiImage = img
+                    }
+                case.failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    IdeaCell()
+    IdeaCell(idea: MWIdea(id: "7", categoryId: "1",
+                          name: "Pappy Pawty",
+                         description: "Description of my idea",
+                         shortDescription: "short descr",
+                          ageRestriction: 18,
+                          venuesRecommendations: "Recommendations for venues",
+                          suppliersRecommendations: "Recommendations for suppliers",
+                          peopleLimit: 100,
+                          colorScheme: "Blue"))
         .shadow(radius: 20)
 
 }

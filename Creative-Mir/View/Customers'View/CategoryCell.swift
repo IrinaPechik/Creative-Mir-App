@@ -8,65 +8,73 @@
 import SwiftUI
 
 struct CategoryCell: View {
-    @State var category: MWIdeaCategory = MWIdeaCategory(id: "1", categoryName: "Birthday", image: "")
-    @State var isLiked = false
-//    @State var numberOfIdeas: Int
+    @State var category: MWIdeaCategory = MWIdeaCategory(id: "1", categoryName: "Birthday")
+    @Binding var chosenCategoryId: String
+    @Binding var presentNextView: Bool
+
+    @State var uiImage: UIImage? = nil
     
     var body: some View {
         VStack(alignment: .center) {
-            ZStack(alignment: .topTrailing) {
-                // Заглушка
-                Image("avatar")
+            if uiImage == nil {
+                ProgressView()
+                    .scaleEffect(1.5)
+                    .frame(height: 250)
+            } else {
+                Image(uiImage: uiImage!)
                     .resizable()
-                    .scaledToFill()
-//                    .frame(width: 345, height: 228)
-
-                Image(systemName: "heart.fill")
-                    .font(.title)
-                    .foregroundColor(isLiked ? .red : .white)
-                    .padding()
-                    .onTapGesture {
-                        withAnimation(.easeInOut(duration: 0.2)) {
-                            isLiked.toggle()
-                        }
-                    }
+                    .aspectRatio(contentMode: .fill)
+                    .frame(height: 150)
+                    .padding(.bottom, 99)
             }
             VStack(alignment: .center, spacing: 5) {
-                Text(category.categoryName)
-                    .font(.custom("Lora-Regular", size: 20))
-                // Можно добавить количество идей
+                Text("\(category.categoryName) party")
+                    .font(.custom("Lora-Regular", size: 32))
+                // TODO: Можно добавить количество идей
                 Text("Ideas for your best \(category.categoryName.lowercased())")
-                    .font(.custom("Lora-Regular", size: 15))
+                    .font(.custom("FuturaPT-Light", size: 20))
                     .foregroundStyle(.gray)
                     .padding(.bottom, 40)
                 Button {
-                    // TODO: в зависимости от того, какую категорию пользовтель хочет сгенерировать, отображать страницу с этими идеями
+                    // В зависимости от того, какую категорию пользователь хочет сгенерировать, отображать страницу с этими идеями
+                    chosenCategoryId = category.id
+                    presentNextView = true
                 } label: {
                     HStack {
                         Image(systemName: "sparkles")
                             .foregroundStyle(.black)
-                        Text("Generate ideas")
+                        Text("generate ideas")
                             .foregroundStyle(.black)
-                            .font(.custom("Marcellus-Regular", size: 20))
+                            .font(.custom("PlayfairDisplay-Medium", size: 20))
                     }
                 }
                 .frame(width: 237, height: 54)
-                .background(Color(red: 230/255, green: 230/255, blue: 230/255, opacity: 40))
+                .background(Color(red: 230/255, green: 230/255, blue: 230/255, opacity: 0.4))
                 .clipShape(RoundedRectangle(cornerRadius: 40))
-
             }
             .padding()
 
         }
-        .frame(width: 360, height: 550)
+        .frame(width: 360, height: 459)
         .background()
         .clipShape(RoundedRectangle(cornerRadius: 20))
-
+        .onAppear {
+            StorageService.shared.downloadCategoryImage(id: self.category.id) { result in
+                switch result {
+                case .success(let data):
+                    if let img = UIImage(data: data) {
+                        self.uiImage = img
+                    }
+                case.failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    CategoryCell()
+    CategoryCell(chosenCategoryId: .constant("1"), presentNextView: .constant(false))
         .shadow(radius: 20)
 
 }

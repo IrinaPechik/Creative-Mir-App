@@ -9,17 +9,28 @@ import SwiftUI
 
 struct IdeaCategoryView: View {
     @StateObject var viewModel: IdeasCategoryViewModel
+    @Binding var chosenCategoryId: String
+    @Binding var presentNextView: Bool
     var body: some View {
-        NavigationView {
-            ScrollView(.horizontal) {
-                LazyHStack {
-                    ForEach(viewModel.categories, id: \.id) { category in
-                        CategoryCell(category: category)
-                            .shadow(radius: 8)
+            VStack(spacing: 20) {
+                if viewModel.categories.isEmpty {
+                    ProgressView()
+                        .scaleEffect(2.0)
+                } else {
+                    Text("Choose event category")
+                        .font(.custom("Lora-Regular", size: 34))
+                    ScrollView(.horizontal) {
+                        LazyHStack {
+                            ForEach(viewModel.categories, id: \.id) { category in
+                                CategoryCell(category: category, chosenCategoryId: $chosenCategoryId, presentNextView: $presentNextView)
+                                    .shadow(radius: 8)
+                            }
+                        }
                     }
+                    .scrollIndicators(.hidden)
+                    .frame(height: 500)
                 }
             }
-        } 
         .onAppear {
             self.viewModel.getCategories()
         }
@@ -27,5 +38,5 @@ struct IdeaCategoryView: View {
 }
 
 #Preview {
-    IdeaCategoryView(viewModel: IdeasCategoryViewModel())
+    IdeaCategoryView(viewModel: IdeasCategoryViewModel(), chosenCategoryId: .constant("1"), presentNextView: .constant(false))
 }
