@@ -12,6 +12,8 @@
 		610267782B8FB5AD0071C1F3 /* LegalUserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610267772B8FB5AD0071C1F3 /* LegalUserInfoView.swift */; };
 		610D8F642B95C73E00C92799 /* MWUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610D8F632B95C73E00C92799 /* MWUser.swift */; };
 		610D8F662B96364800C92799 /* MWSupplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610D8F652B96364800C92799 /* MWSupplier.swift */; };
+		611C5D7B2BA083880051BEF1 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611C5D7A2BA083880051BEF1 /* StorageService.swift */; };
+		611D14222BA1CA4C000C224B /* IdeaCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611D14212BA1CA4C000C224B /* IdeaCard.swift */; };
 		612C75812B99ADEC0081E003 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612C75802B99ADEC0081E003 /* CustomTabBar.swift */; };
 		612C75832B99AE130081E003 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612C75822B99AE130081E003 /* RootView.swift */; };
 		612C75852B99B9580081E003 /* IdeasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612C75842B99B9580081E003 /* IdeasView.swift */; };
@@ -29,6 +31,7 @@
 		616B49FF2B692735006EB65E /* NameEnteringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616B49FE2B692735006EB65E /* NameEnteringView.swift */; };
 		616B4A022B6930CF006EB65E /* Lora-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 616B4A012B6930CF006EB65E /* Lora-Regular.ttf */; };
 		616B4A042B6938E1006EB65E /* Marcellus-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 616B4A032B6938E1006EB65E /* Marcellus-Regular.ttf */; };
+		616B71672BA22B04006B92CB /* CustomerProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616B71662BA22B04006B92CB /* CustomerProfileView.swift */; };
 		61730B642B51553F0063C9CE /* Creative_MirApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61730B632B51553F0063C9CE /* Creative_MirApp.swift */; };
 		61730B662B51553F0063C9CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61730B652B51553F0063C9CE /* ContentView.swift */; };
 		61730B682B5155430063C9CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 61730B672B5155430063C9CE /* Assets.xcassets */; };
@@ -37,6 +40,8 @@
 		617B13A52B9497950074BE04 /* AddingBuildingLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617B13A42B9497950074BE04 /* AddingBuildingLocationView.swift */; };
 		617B13A72B949EEC0074BE04 /* FullAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617B13A62B949EEC0074BE04 /* FullAddressViewModel.swift */; };
 		617B13A92B94A1060074BE04 /* FullAddressLokupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617B13A82B94A1060074BE04 /* FullAddressLokupView.swift */; };
+		61A2C8212BA36E510022ED7A /* SupplierProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A2C8202BA36E510022ED7A /* SupplierProfileView.swift */; };
+		61A2C8242BA36FC10022ED7A /* VenueProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A2C8232BA36FC10022ED7A /* VenueProfileView.swift */; };
 		61A699362B9B88A30027138F /* IdeasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A699352B9B88A30027138F /* IdeasViewModel.swift */; };
 		61A699382B9BAFBE0027138F /* IdeaCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A699372B9BAFBE0027138F /* IdeaCategoryView.swift */; };
 		61A6993A2B9BAFF40027138F /* IdeasCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A699392B9BAFF40027138F /* IdeasCategoryViewModel.swift */; };
@@ -97,7 +102,6 @@
 		61EBFEBF2B6A661000526020 /* BirthdateEnteringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBFEBE2B6A661000526020 /* BirthdateEnteringView.swift */; };
 		61EBFEC12B6A984900526020 /* AdressSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBFEC02B6A984900526020 /* AdressSelectionView.swift */; };
 		61FA4A3B2B5A68EC00551852 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FA4A3A2B5A68EB00551852 /* ForgotPasswordView.swift */; };
-		61FA4A3F2B5A8A0600551852 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FA4A3E2B5A8A0600551852 /* HomeView.swift */; };
 		61FAA9652B5FD05A00F8BEE6 /* UserEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FAA9642B5FD05A00F8BEE6 /* UserEnums.swift */; };
 		61FAA9672B5FD6E900F8BEE6 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FAA9662B5FD6E900F8BEE6 /* DatabaseService.swift */; };
 /* End PBXBuildFile section */
@@ -108,6 +112,8 @@
 		610267772B8FB5AD0071C1F3 /* LegalUserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LegalUserInfoView.swift; sourceTree = "<group>"; };
 		610D8F632B95C73E00C92799 /* MWUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWUser.swift; sourceTree = "<group>"; };
 		610D8F652B96364800C92799 /* MWSupplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWSupplier.swift; sourceTree = "<group>"; };
+		611C5D7A2BA083880051BEF1 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		611D14212BA1CA4C000C224B /* IdeaCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdeaCard.swift; sourceTree = "<group>"; };
 		612C75802B99ADEC0081E003 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		612C75822B99AE130081E003 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		612C75842B99B9580081E003 /* IdeasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdeasView.swift; sourceTree = "<group>"; };
@@ -125,6 +131,7 @@
 		616B49FE2B692735006EB65E /* NameEnteringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameEnteringView.swift; sourceTree = "<group>"; };
 		616B4A012B6930CF006EB65E /* Lora-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lora-Regular.ttf"; sourceTree = "<group>"; };
 		616B4A032B6938E1006EB65E /* Marcellus-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Marcellus-Regular.ttf"; sourceTree = "<group>"; };
+		616B71662BA22B04006B92CB /* CustomerProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerProfileView.swift; sourceTree = "<group>"; };
 		61730B602B51553F0063C9CE /* Creative-Mir.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Creative-Mir.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		61730B632B51553F0063C9CE /* Creative_MirApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creative_MirApp.swift; sourceTree = "<group>"; };
 		61730B652B51553F0063C9CE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -135,6 +142,8 @@
 		617B13A42B9497950074BE04 /* AddingBuildingLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingBuildingLocationView.swift; sourceTree = "<group>"; };
 		617B13A62B949EEC0074BE04 /* FullAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullAddressViewModel.swift; sourceTree = "<group>"; };
 		617B13A82B94A1060074BE04 /* FullAddressLokupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullAddressLokupView.swift; sourceTree = "<group>"; };
+		61A2C8202BA36E510022ED7A /* SupplierProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplierProfileView.swift; sourceTree = "<group>"; };
+		61A2C8232BA36FC10022ED7A /* VenueProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueProfileView.swift; sourceTree = "<group>"; };
 		61A699352B9B88A30027138F /* IdeasViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdeasViewModel.swift; sourceTree = "<group>"; };
 		61A699372B9BAFBE0027138F /* IdeaCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdeaCategoryView.swift; sourceTree = "<group>"; };
 		61A699392B9BAFF40027138F /* IdeasCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdeasCategoryViewModel.swift; sourceTree = "<group>"; };
@@ -168,7 +177,6 @@
 		61EBFEBE2B6A661000526020 /* BirthdateEnteringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdateEnteringView.swift; sourceTree = "<group>"; };
 		61EBFEC02B6A984900526020 /* AdressSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdressSelectionView.swift; sourceTree = "<group>"; };
 		61FA4A3A2B5A68EB00551852 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
-		61FA4A3E2B5A8A0600551852 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		61FAA9642B5FD05A00F8BEE6 /* UserEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEnums.swift; sourceTree = "<group>"; };
 		61FAA9662B5FD6E900F8BEE6 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -215,11 +223,13 @@
 		612C757F2B99AD3F0081E003 /* Customers'View */ = {
 			isa = PBXGroup;
 			children = (
+				616B71662BA22B04006B92CB /* CustomerProfileView.swift */,
 				612C75822B99AE130081E003 /* RootView.swift */,
 				612C75842B99B9580081E003 /* IdeasView.swift */,
 				612C758D2B9A0E1E0081E003 /* IdeaCell.swift */,
 				61A699372B9BAFBE0027138F /* IdeaCategoryView.swift */,
 				61A6993D2B9BB5BA0027138F /* CategoryCell.swift */,
+				611D14212BA1CA4C000C224B /* IdeaCard.swift */,
 			);
 			path = "Customers'View";
 			sourceTree = "<group>";
@@ -326,14 +336,31 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		61A2C81F2BA36E1F0022ED7A /* Suppliers Views */ = {
+			isa = PBXGroup;
+			children = (
+				61A2C8202BA36E510022ED7A /* SupplierProfileView.swift */,
+			);
+			path = "Suppliers Views";
+			sourceTree = "<group>";
+		};
+		61A2C8222BA36FA90022ED7A /* VenuesViews */ = {
+			isa = PBXGroup;
+			children = (
+				61A2C8232BA36FC10022ED7A /* VenueProfileView.swift */,
+			);
+			path = VenuesViews;
+			sourceTree = "<group>";
+		};
 		61A815A72B57D35B0072971A /* View */ = {
 			isa = PBXGroup;
 			children = (
 				61EBFEB62B6A437000526020 /* CustomViews */,
+				61A2C8222BA36FA90022ED7A /* VenuesViews */,
+				61A2C81F2BA36E1F0022ED7A /* Suppliers Views */,
 				612C757F2B99AD3F0081E003 /* Customers'View */,
 				61FA4A3D2B5A890E00551852 /* SignUp */,
 				61FA4A3C2B5A68F500551852 /* Sign In */,
-				61FA4A3E2B5A8A0600551852 /* HomeView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -345,6 +372,7 @@
 				61A815E52B57F2AD0072971A /* AuthService.swift */,
 				61FAA9662B5FD6E900F8BEE6 /* DatabaseService.swift */,
 				61434B522B87828500370524 /* LocationManager.swift */,
+				611C5D7A2BA083880051BEF1 /* StorageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -598,7 +626,6 @@
 				61434B4D2B8779E500370524 /* PlaceLookupView.swift in Sources */,
 				610D8F642B95C73E00C92799 /* MWUser.swift in Sources */,
 				61730B732B5158E80063C9CE /* SignUpView.swift in Sources */,
-				61FA4A3F2B5A8A0600551852 /* HomeView.swift in Sources */,
 				61C626232B931DF400BBC6F0 /* MyImageError.swift in Sources */,
 				61A699382B9BAFBE0027138F /* IdeaCategoryView.swift in Sources */,
 				612C75852B99B9580081E003 /* IdeasView.swift in Sources */,
@@ -607,6 +634,7 @@
 				61A699362B9B88A30027138F /* IdeasViewModel.swift in Sources */,
 				61EBFEB82B6A439300526020 /* NavigationCustomView.swift in Sources */,
 				6136A1562B52E4DF00E47975 /* Validatior.swift in Sources */,
+				61A2C8212BA36E510022ED7A /* SupplierProfileView.swift in Sources */,
 				61DCB7A02B8DFFD800D97C7F /* letsAddYourFirstAdvertismentView.swift in Sources */,
 				61A6993E2B9BB5BA0027138F /* CategoryCell.swift in Sources */,
 				61A6993A2B9BAFF40027138F /* IdeasCategoryViewModel.swift in Sources */,
@@ -621,6 +649,7 @@
 				61FAA9672B5FD6E900F8BEE6 /* DatabaseService.swift in Sources */,
 				61434B4F2B877B5B00370524 /* Place.swift in Sources */,
 				61730B642B51553F0063C9CE /* Creative_MirApp.swift in Sources */,
+				611D14222BA1CA4C000C224B /* IdeaCard.swift in Sources */,
 				61434B512B877E8100370524 /* PlaceViewModel.swift in Sources */,
 				61EBFEC12B6A984900526020 /* AdressSelectionView.swift in Sources */,
 				61FAA9652B5FD05A00F8BEE6 /* UserEnums.swift in Sources */,
@@ -629,9 +658,12 @@
 				61ACBA9A2B8C8EA10037EC2B /* PhotoSourcePicker.swift in Sources */,
 				61A815AB2B57DD320072971A /* RoleChoosingView.swift in Sources */,
 				61FA4A3B2B5A68EC00551852 /* ForgotPasswordView.swift in Sources */,
+				616B71672BA22B04006B92CB /* CustomerProfileView.swift in Sources */,
 				61B7BFB72B91FDCF00AD6F6D /* ProfessionInputView.swift in Sources */,
 				617B13A52B9497950074BE04 /* AddingBuildingLocationView.swift in Sources */,
+				61A2C8242BA36FC10022ED7A /* VenueProfileView.swift in Sources */,
 				61640C042B90CDF20089E172 /* ProfessionalSkills.swift in Sources */,
+				611C5D7B2BA083880051BEF1 /* StorageService.swift in Sources */,
 				61C626212B931D9C00BBC6F0 /* Filemanager+Extension.swift in Sources */,
 				61A6993C2B9BB0EF0027138F /* MWIdeaCategory.swift in Sources */,
 				61EBFEBB2B6A4E2E00526020 /* CustomNextButtonsView.swift in Sources */,
