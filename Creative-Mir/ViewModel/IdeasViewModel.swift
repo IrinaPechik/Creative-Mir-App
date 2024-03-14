@@ -9,9 +9,9 @@ import Foundation
 
 class IdeasViewModel: ObservableObject {
     @Published var ideas: [MWIdea] = [MWIdea]()
-
-    func getIdeas() {
-        DatabaseService.shared.getIdeas { result in
+    
+    func getIdeas(ideaId: String) {
+        DatabaseService.shared.getIdeas(by: ideaId) { result in
             switch result {
             case .success(let ideas):
                 self.ideas = ideas
