@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 struct MWVenue: Identifiable, Codable {
     var id: String
@@ -25,6 +26,24 @@ struct MWVenue: Identifiable, Codable {
     mutating func addAdvertisement(advertisement: VenueAdvertisemnt) {
         advertisements.append(advertisement)
     }
+    
+    init(id: String, advertisements: [VenueAdvertisemnt] = []) {
+        self.id = id
+        self.advertisements = advertisements
+    }
+    
+    init?(doc: QueryDocumentSnapshot) {
+        let data = doc.data()
+        guard let id = data["id"] as? String else {return nil}
+        guard let advertisementsData = data["advertisements"] as? [[String: Any]] else { return nil }
+        // Преобразуем массив словарей в массив VenueAdvertisemnt, используя compactMap
+        let advertisements: [VenueAdvertisemnt] = advertisementsData.compactMap { dict -> VenueAdvertisemnt? in
+            return VenueAdvertisemnt(from: dict)
+        }
+
+        self.id = id
+        self.advertisements = advertisements
+    }
 }
 
 struct VenueAdvertisemnt: Codable {
@@ -34,9 +53,7 @@ struct VenueAdvertisemnt: Codable {
     var locationAddress: String
     var locationName: String
     var locationDescription: String
-    
-    var photosFromWork: [Data?]
-    
+        
     var representation: [String: Any] {
         var repres = [String: Any]()
         repres["legalStatus"] = legalStatus
@@ -45,7 +62,25 @@ struct VenueAdvertisemnt: Codable {
         repres["locationAddress"] = locationAddress
         repres["locationName"] = locationName
         repres["locationDescription"] = locationDescription
-        repres["photosFromWork"] = photosFromWork
         return repres
+    }
+    
+    init(legalStatus: String, companyName: String? = nil, companyPosition: String? = nil, locationAddress: String, locationName: String, locationDescription: String) {
+        self.legalStatus = legalStatus
+        self.companyName = companyName
+        self.companyPosition = companyPosition
+        self.locationAddress = locationAddress
+        self.locationName = locationName
+        self.locationDescription = locationDescription
+    }
+    
+    
+    init(from dictionary: [String: Any]) {
+        self.legalStatus = dictionary["legalStatus"] as? String ?? ""
+        self.companyName = dictionary["companyName"] as? String
+        self.companyPosition = dictionary["companyPosition"] as? String
+        self.locationAddress = dictionary["locationAddress"] as? String ?? ""
+        self.locationName = dictionary["locationName"] as? String ?? ""
+        self.locationDescription = dictionary["locationDescription"] as? String ?? ""
     }
 }
