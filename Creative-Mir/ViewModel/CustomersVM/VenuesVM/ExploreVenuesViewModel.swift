@@ -11,13 +11,15 @@ class ExploreVenuesViewModel: ObservableObject {
     @Published var venues: [MWVenue] = [MWVenue]()
     @Published var likedVenues: [MWVenue] = [MWVenue]()
     
-    func getVenues() {
+    func getVenues(completion: @escaping (Result<[MWVenue], Error>) -> ()) {
         DatabaseService.shared.getVenues { result in
             switch result {
-            case .success(let ideas):
-                self.venues = ideas
+            case .success(let venues):
+                self.venues = venues
+                completion(.success(venues))
             case .failure(let error):
                 print(error.localizedDescription)
+                completion(.failure(error))
             }
         }
     }

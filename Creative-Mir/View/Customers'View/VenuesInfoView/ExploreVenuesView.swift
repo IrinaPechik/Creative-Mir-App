@@ -9,9 +9,11 @@ import SwiftUI
 
 struct ExploreVenuesView: View {
     @StateObject var viewModel: ExploreVenuesViewModel
+    @State private var showEmptyError: Bool = false
+
     var body: some View {
         VStack(alignment: .leading) {
-            if viewModel.venues.isEmpty {
+            if showEmptyError {
                 Text("There are no registered venues yet 😓")
                     .font(.custom("Manrope-Bold", size: 27))
                     .frame(width: 320)
@@ -32,7 +34,14 @@ struct ExploreVenuesView: View {
             }
         }
         .onAppear {
-            self.viewModel.getVenues()
+            self.viewModel.getVenues() { res in
+                switch res {
+                case .success(_):
+                    showEmptyError = false
+                case .failure(_):
+                    showEmptyError = true
+                }
+            }
         }
     }
 }

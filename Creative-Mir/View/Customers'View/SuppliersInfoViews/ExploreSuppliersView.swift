@@ -9,14 +9,13 @@ import SwiftUI
 
 struct ExploreSuppliersView: View {
     @StateObject var viewModel: ExploreSuplierViewModel
+    @State private var showEmptyError: Bool = false
     var body: some View {
         VStack(alignment: .leading) {
-            if viewModel.suppliers.isEmpty {
-//                Spacer()
+            if showEmptyError {
                 Text("There are no registered suppliers yet 😓")
                     .font(.custom("Manrope-Bold", size: 27))
                     .frame(width: 320)
-//                Spacer()
             } else {
                 Text("Explore Suppliers")
                     .font(.custom("Manrope-Bold", size: 32))
@@ -34,7 +33,14 @@ struct ExploreSuppliersView: View {
             }
         }
         .onAppear {
-            self.viewModel.getSuppliers()
+            self.viewModel.getSuppliers() { res in
+                switch res {
+                case .success(_):
+                    showEmptyError = false
+                case .failure(_):
+                    showEmptyError = true
+                }
+            }
         }
     }
 }

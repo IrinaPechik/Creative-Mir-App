@@ -9,10 +9,13 @@ import SwiftUI
 
 struct LikedAdvertisementsView: View {
     @ObservedObject var viewModel:LikedAdvertisementsViewModel
-    
+    @State private var showSuppliersEmpty: Bool = true
+    @State private var showVenuesEmpty: Bool = true
+    @State private var showIdeasEmpty: Bool = true // change later
+
     var body: some View {
         VStack(alignment: .leading) {
-            if $viewModel.likedSuppliers.isEmpty {
+            if showSuppliersEmpty && showVenuesEmpty && showIdeasEmpty {
                 Spacer()
                 Text("You don't have any favorite advertisements yet 😓")
                     .font(.custom("Manrope-Bold", size: 25))
@@ -33,8 +36,22 @@ struct LikedAdvertisementsView: View {
             }
         }
         .onAppear {
-            viewModel.getLikedSuppliers(customerId: AuthService.shared.currentUser?.uid ?? "id")
-            viewModel.getLikedVenues(customerId: AuthService.shared.currentUser?.uid ?? "id")
+            viewModel.getLikedSuppliers(customerId: AuthService.shared.currentUser?.uid ?? "id") { res in
+                switch res {
+                case .success(_):
+                    showSuppliersEmpty = false
+                case .failure(_):
+                    showSuppliersEmpty = true
+                }
+            }
+            viewModel.getLikedVenues(customerId: AuthService.shared.currentUser?.uid ?? "id") { res in
+                switch res {
+                case .success(_):
+                    showVenuesEmpty = false
+                case .failure(_):
+                    showVenuesEmpty = true
+                }
+            }
         }
     }
 }

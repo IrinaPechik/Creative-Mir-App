@@ -12,13 +12,15 @@ class ExploreSuplierViewModel: ObservableObject {
     @Published var suppliers: [MWSupplier] = [MWSupplier]()
     @Published var likedSuppliers: [MWSupplier] = [MWSupplier]()
     
-    func getSuppliers() {
+    func getSuppliers(completion: @escaping (Result<[MWSupplier], Error>) -> ()) {
         DatabaseService.shared.getSuppliers { result in
             switch result {
-            case .success(let ideas):
-                self.suppliers = ideas
+            case .success(let suppliers):
+                self.suppliers = suppliers
+                completion(.success(suppliers))
             case .failure(let error):
                 print(error.localizedDescription)
+                completion(.failure(error))
             }
         }
     }

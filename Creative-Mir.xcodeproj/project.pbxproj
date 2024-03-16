@@ -28,6 +28,7 @@
 		6160981D2B9216C700EDF358 /* UpploadPhotoFromWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6160981C2B9216C700EDF358 /* UpploadPhotoFromWork.swift */; };
 		61640C012B90803D0089E172 /* StageNameInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61640C002B90803D0089E172 /* StageNameInfoView.swift */; };
 		61640C042B90CDF20089E172 /* ProfessionalSkills.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61640C032B90CDF20089E172 /* ProfessionalSkills.swift */; };
+		616742B12BA5F3F60001F104 /* SupplierCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616742B02BA5F3F60001F104 /* SupplierCard.swift */; };
 		616B49FF2B692735006EB65E /* NameEnteringView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616B49FE2B692735006EB65E /* NameEnteringView.swift */; };
 		616B4A022B6930CF006EB65E /* Lora-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 616B4A012B6930CF006EB65E /* Lora-Regular.ttf */; };
 		616B4A042B6938E1006EB65E /* Marcellus-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 616B4A032B6938E1006EB65E /* Marcellus-Regular.ttf */; };
@@ -139,6 +140,7 @@
 		6160981C2B9216C700EDF358 /* UpploadPhotoFromWork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpploadPhotoFromWork.swift; sourceTree = "<group>"; };
 		61640C002B90803D0089E172 /* StageNameInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StageNameInfoView.swift; sourceTree = "<group>"; };
 		61640C032B90CDF20089E172 /* ProfessionalSkills.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfessionalSkills.swift; sourceTree = "<group>"; };
+		616742B02BA5F3F60001F104 /* SupplierCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplierCard.swift; sourceTree = "<group>"; };
 		616B49FE2B692735006EB65E /* NameEnteringView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameEnteringView.swift; sourceTree = "<group>"; };
 		616B4A012B6930CF006EB65E /* Lora-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lora-Regular.ttf"; sourceTree = "<group>"; };
 		616B4A032B6938E1006EB65E /* Marcellus-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Marcellus-Regular.ttf"; sourceTree = "<group>"; };
@@ -439,6 +441,7 @@
 			children = (
 				61A2C8252BA377CE0022ED7A /* ExploreSuppliersView.swift */,
 				61A2C82A2BA378870022ED7A /* SupplierCell.swift */,
+				616742B02BA5F3F60001F104 /* SupplierCard.swift */,
 			);
 			path = SuppliersInfoViews;
 			sourceTree = "<group>";
@@ -797,6 +800,7 @@
 				619470192BA59B1D009D5F6B /* VenueCell.swift in Sources */,
 				610217232B9771DA0087DCF8 /* MWCustomer.swift in Sources */,
 				610267782B8FB5AD0071C1F3 /* LegalUserInfoView.swift in Sources */,
+				616742B12BA5F3F60001F104 /* SupplierCard.swift in Sources */,
 				612C758A2B99D5320081E003 /* MWIdea.swift in Sources */,
 				61ACBA952B8C849F0037EC2B /* PhotoPickerView.swift in Sources */,
 				6160981D2B9216C700EDF358 /* UpploadPhotoFromWork.swift in Sources */,

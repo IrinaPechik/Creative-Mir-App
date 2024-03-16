@@ -15,11 +15,13 @@ struct SupplierCell: View {
     @State var uiImage: UIImage? = nil
     @State var isLiked = false
 
-    @State var user: MWUser? = nil
+    @State var user: MWUser = MWUser(id: "id", email: "email", name: "name", surname: "surname", birthday: "birthday", residentialAddress: "residentialAddress", role: "residentialAddress")
+    
+    @State var presentSupplierInfo: Bool = false
     
     var body: some View {
         VStack(alignment: .leading) {
-            if let user = user {
+//            if let user = user {
                     if let uiImage = uiImage {
                         HStack {
                             Image(uiImage: uiImage)
@@ -66,13 +68,20 @@ struct SupplierCell: View {
                                 }
                         }
                     }
-            }
+//            }
         }
         .frame(width: 380, height: 100)
         .background()
 
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .shadow(color: Color(uiColor: UIColor(red: 0/255, green: 12/255, blue: 75/255, alpha: 0.06)),radius: 8, x: 3, y: 3)
+        
+        .onTapGesture {
+            presentSupplierInfo = true
+        }
+        .sheet(isPresented: $presentSupplierInfo) {
+            SupplierCard(supplier: $supplier, user: $user, advIndex: $advIndex)
+        }
         .onAppear {
             StorageService.shared.downloadUserAvatarImage(id: supplier.id) { result in
                 switch result {

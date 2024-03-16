@@ -293,14 +293,21 @@ class DatabaseService {
 
         likedSuppliersRef.getDocuments { snapshot, error in
             if let error = error {
-                            print("Error fetching favorite products: \(error.localizedDescription)")
+                            print("Error fetching favorite suppliers: \(error.localizedDescription)")
                             completion(.failure(error))
                             return
             }
-                        
+
             guard let documents = snapshot?.documents else {
-                print("No favorite products found")
-                completion(.success([]))
+                print("No favorite suppliers found")
+                let customError = NSError(domain: "YourDomain", code: 404, userInfo: [NSLocalizedDescriptionKey: "No favorite suppliers found"])
+                completion(.failure(customError))
+                return
+            }
+            if documents.isEmpty {
+                print("No favorite suppliers found")
+                let customError = NSError(domain: "YourDomain", code: 404, userInfo: [NSLocalizedDescriptionKey: "No favorite suppliers found"])
+                completion(.failure(customError))
                 return
             }
 //            let likedSuppliers = documents.compactMap {document -> MWSupplier? in
@@ -336,16 +343,24 @@ class DatabaseService {
 
         likedVenuesRef.getDocuments { snapshot, error in
             if let error = error {
-                            print("Error fetching favorite products: \(error.localizedDescription)")
+                            print("Error fetching favorite venues: \(error.localizedDescription)")
                             completion(.failure(error))
                             return
             }
                         
             guard let documents = snapshot?.documents else {
-                print("No favorite products found")
-                completion(.success([]))
+                print("No favorite venues found")
+                let customError = NSError(domain: "YourDomain", code: 404, userInfo: [NSLocalizedDescriptionKey: "No favorite venues found"])
+                completion(.failure(customError))
                 return
             }
+            if documents.isEmpty {
+                print("No favorite venues found")
+                let customError = NSError(domain: "YourDomain", code: 404, userInfo: [NSLocalizedDescriptionKey: "No favorite venues found"])
+                completion(.failure(customError))
+                return
+            }
+        
             let likedVenues = documents.compactMap { document -> MWVenue? in
                         let data = document.data()
                         guard let id = data["id"] as? String,
