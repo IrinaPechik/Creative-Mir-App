@@ -65,7 +65,7 @@ struct UpploadPhotoFromWork: View {
                 }
             }
         } else if userRole == String(describing: UserRoles.venue) {
-            let advertisement = VenueAdvertisemnt(legalStatus: auth.getPerformerCompanyOrIndividualStatus(), companyName: auth.getPerformerCompanyName(), companyPosition: auth.getPerformerPositionInCompany(), locationAddress: auth.getVenueBuildingAddress(), locationName: auth.getVenueBuildingName(), locationDescription: auth.getVenuePlaceDescription(), photosFromWork: imagesArray)
+            let advertisement = VenueAdvertisemnt(legalStatus: auth.getPerformerCompanyOrIndividualStatus(), companyName: auth.getPerformerCompanyName(), companyPosition: auth.getPerformerPositionInCompany(), locationAddress: auth.getVenueBuildingAddress(), locationName: auth.getVenueBuildingName(), locationDescription: auth.getVenuePlaceDescription()/*, photosFromWork: imagesArray*/)
             
             var venue = MWVenue(id: auth.getUserId())
             venue.addAdvertisement(advertisement: advertisement)

@@ -69,6 +69,8 @@ struct SignInView: View {
                                     switch res {
                                     case .success(var role):
                                         userRole = role
+                                        AuthService.shared.saveUserRole(role: userRole)
+                                        AuthService.shared.saveUserId(id: AuthService.shared.currentUser?.uid ?? "id")
                                     case .failure(let error):
                                         print(error)
                                     }

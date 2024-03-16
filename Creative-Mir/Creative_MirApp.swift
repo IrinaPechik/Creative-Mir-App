@@ -15,14 +15,14 @@ struct Creative_MirApp: App {
     @State private var isUserAuthenticated: Bool?
     @State private var showSignInView: Bool = false
     @State private var userRole: String = ""
-//    init() {
-//            for i in UIFont.familyNames {
-//                print(i)
-//                for fontName in UIFont.fontNames(forFamilyName: i) {
-//                    print("-- \(fontName)")
-//                }
-//            }
-//        }
+    init() {
+            for i in UIFont.familyNames {
+                print(i)
+                for fontName in UIFont.fontNames(forFamilyName: i) {
+                    print("-- \(fontName)")
+                }
+            }
+        }
     var body: some Scene {
         WindowGroup {
             if AuthService.shared.isUserAuthenticated(){

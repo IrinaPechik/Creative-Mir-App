@@ -40,8 +40,19 @@
 		617B13A52B9497950074BE04 /* AddingBuildingLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617B13A42B9497950074BE04 /* AddingBuildingLocationView.swift */; };
 		617B13A72B949EEC0074BE04 /* FullAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617B13A62B949EEC0074BE04 /* FullAddressViewModel.swift */; };
 		617B13A92B94A1060074BE04 /* FullAddressLokupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617B13A82B94A1060074BE04 /* FullAddressLokupView.swift */; };
+		618FBEBB2BA4A15B003C2275 /* Lora-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 618FBEBA2BA4A15A003C2275 /* Lora-Medium.ttf */; };
+		618FBEBD2BA4AC93003C2275 /* Manrope-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 618FBEBC2BA4AC93003C2275 /* Manrope-Medium.ttf */; };
+		618FBEBF2BA4ACA5003C2275 /* Manrope-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 618FBEBE2BA4ACA5003C2275 /* Manrope-Bold.ttf */; };
+		618FBEC12BA4CC1C003C2275 /* ExploreSuplierViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618FBEC02BA4CC1C003C2275 /* ExploreSuplierViewModel.swift */; };
+		618FBEC32BA4EB49003C2275 /* LikedAdvertisementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618FBEC22BA4EB49003C2275 /* LikedAdvertisementsView.swift */; };
+		618FBEC52BA4EBB5003C2275 /* LikedAdvertisementsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618FBEC42BA4EBB5003C2275 /* LikedAdvertisementsViewModel.swift */; };
+		6194700F2BA58853009D5F6B /* ExploreVenuesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6194700E2BA58853009D5F6B /* ExploreVenuesView.swift */; };
+		619470172BA5891C009D5F6B /* ExploreVenuesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619470162BA5891C009D5F6B /* ExploreVenuesViewModel.swift */; };
+		619470192BA59B1D009D5F6B /* VenueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619470182BA59B1D009D5F6B /* VenueCell.swift */; };
 		61A2C8212BA36E510022ED7A /* SupplierProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A2C8202BA36E510022ED7A /* SupplierProfileView.swift */; };
 		61A2C8242BA36FC10022ED7A /* VenueProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A2C8232BA36FC10022ED7A /* VenueProfileView.swift */; };
+		61A2C8262BA377CE0022ED7A /* ExploreSuppliersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A2C8252BA377CE0022ED7A /* ExploreSuppliersView.swift */; };
+		61A2C82B2BA378870022ED7A /* SupplierCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A2C82A2BA378870022ED7A /* SupplierCell.swift */; };
 		61A699362B9B88A30027138F /* IdeasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A699352B9B88A30027138F /* IdeasViewModel.swift */; };
 		61A699382B9BAFBE0027138F /* IdeaCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A699372B9BAFBE0027138F /* IdeaCategoryView.swift */; };
 		61A6993A2B9BAFF40027138F /* IdeasCategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A699392B9BAFF40027138F /* IdeasCategoryViewModel.swift */; };
@@ -142,8 +153,19 @@
 		617B13A42B9497950074BE04 /* AddingBuildingLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingBuildingLocationView.swift; sourceTree = "<group>"; };
 		617B13A62B949EEC0074BE04 /* FullAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullAddressViewModel.swift; sourceTree = "<group>"; };
 		617B13A82B94A1060074BE04 /* FullAddressLokupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullAddressLokupView.swift; sourceTree = "<group>"; };
+		618FBEBA2BA4A15A003C2275 /* Lora-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lora-Medium.ttf"; path = "../../../../Fonts/Lora/static/Lora-Medium.ttf"; sourceTree = "<group>"; };
+		618FBEBC2BA4AC93003C2275 /* Manrope-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Manrope-Medium.ttf"; path = "../../../../Manrope/static/Manrope-Medium.ttf"; sourceTree = "<group>"; };
+		618FBEBE2BA4ACA5003C2275 /* Manrope-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Manrope-Bold.ttf"; path = "../../../../Manrope/static/Manrope-Bold.ttf"; sourceTree = "<group>"; };
+		618FBEC02BA4CC1C003C2275 /* ExploreSuplierViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSuplierViewModel.swift; sourceTree = "<group>"; };
+		618FBEC22BA4EB49003C2275 /* LikedAdvertisementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedAdvertisementsView.swift; sourceTree = "<group>"; };
+		618FBEC42BA4EBB5003C2275 /* LikedAdvertisementsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedAdvertisementsViewModel.swift; sourceTree = "<group>"; };
+		6194700E2BA58853009D5F6B /* ExploreVenuesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreVenuesView.swift; sourceTree = "<group>"; };
+		619470162BA5891C009D5F6B /* ExploreVenuesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreVenuesViewModel.swift; sourceTree = "<group>"; };
+		619470182BA59B1D009D5F6B /* VenueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueCell.swift; sourceTree = "<group>"; };
 		61A2C8202BA36E510022ED7A /* SupplierProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplierProfileView.swift; sourceTree = "<group>"; };
 		61A2C8232BA36FC10022ED7A /* VenueProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueProfileView.swift; sourceTree = "<group>"; };
+		61A2C8252BA377CE0022ED7A /* ExploreSuppliersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSuppliersView.swift; sourceTree = "<group>"; };
+		61A2C82A2BA378870022ED7A /* SupplierCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplierCell.swift; sourceTree = "<group>"; };
 		61A699352B9B88A30027138F /* IdeasViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdeasViewModel.swift; sourceTree = "<group>"; };
 		61A699372B9BAFBE0027138F /* IdeaCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdeaCategoryView.swift; sourceTree = "<group>"; };
 		61A699392B9BAFF40027138F /* IdeasCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdeasCategoryViewModel.swift; sourceTree = "<group>"; };
@@ -223,13 +245,13 @@
 		612C757F2B99AD3F0081E003 /* Customers'View */ = {
 			isa = PBXGroup;
 			children = (
-				616B71662BA22B04006B92CB /* CustomerProfileView.swift */,
 				612C75822B99AE130081E003 /* RootView.swift */,
-				612C75842B99B9580081E003 /* IdeasView.swift */,
-				612C758D2B9A0E1E0081E003 /* IdeaCell.swift */,
-				61A699372B9BAFBE0027138F /* IdeaCategoryView.swift */,
-				61A6993D2B9BB5BA0027138F /* CategoryCell.swift */,
-				611D14212BA1CA4C000C224B /* IdeaCard.swift */,
+				61A2C8292BA378590022ED7A /* IdeaCategoryInfoView */,
+				61A2C8282BA3783F0022ED7A /* IdeasInfoView */,
+				61A2C8272BA378250022ED7A /* SuppliersInfoViews */,
+				6194700D2BA587CD009D5F6B /* VenuesInfoView */,
+				616B71662BA22B04006B92CB /* CustomerProfileView.swift */,
+				618FBEC22BA4EB49003C2275 /* LikedAdvertisementsView.swift */,
 			);
 			path = "Customers'View";
 			sourceTree = "<group>";
@@ -327,13 +349,73 @@
 		618656CA2B89426500E537B1 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				619470112BA58883009D5F6B /* AddressVM */,
+				619470102BA5885F009D5F6B /* CustomersVM */,
 				61ACBAA12B8C907D0037EC2B /* PhotoProfile */,
-				61434B502B877E8100370524 /* PlaceViewModel.swift */,
-				617B13A62B949EEC0074BE04 /* FullAddressViewModel.swift */,
-				61A699352B9B88A30027138F /* IdeasViewModel.swift */,
-				61A699392B9BAFF40027138F /* IdeasCategoryViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6194700D2BA587CD009D5F6B /* VenuesInfoView */ = {
+			isa = PBXGroup;
+			children = (
+				6194700E2BA58853009D5F6B /* ExploreVenuesView.swift */,
+				619470182BA59B1D009D5F6B /* VenueCell.swift */,
+			);
+			path = VenuesInfoView;
+			sourceTree = "<group>";
+		};
+		619470102BA5885F009D5F6B /* CustomersVM */ = {
+			isa = PBXGroup;
+			children = (
+				619470152BA58902009D5F6B /* VenuesVM */,
+				619470142BA588E0009D5F6B /* SuppliersVM */,
+				619470132BA588CE009D5F6B /* CategoriesVM */,
+				619470122BA588C1009D5F6B /* IdeasVM */,
+				618FBEC42BA4EBB5003C2275 /* LikedAdvertisementsViewModel.swift */,
+			);
+			path = CustomersVM;
+			sourceTree = "<group>";
+		};
+		619470112BA58883009D5F6B /* AddressVM */ = {
+			isa = PBXGroup;
+			children = (
+				617B13A62B949EEC0074BE04 /* FullAddressViewModel.swift */,
+				61434B502B877E8100370524 /* PlaceViewModel.swift */,
+			);
+			path = AddressVM;
+			sourceTree = "<group>";
+		};
+		619470122BA588C1009D5F6B /* IdeasVM */ = {
+			isa = PBXGroup;
+			children = (
+				61A699352B9B88A30027138F /* IdeasViewModel.swift */,
+			);
+			path = IdeasVM;
+			sourceTree = "<group>";
+		};
+		619470132BA588CE009D5F6B /* CategoriesVM */ = {
+			isa = PBXGroup;
+			children = (
+				61A699392B9BAFF40027138F /* IdeasCategoryViewModel.swift */,
+			);
+			path = CategoriesVM;
+			sourceTree = "<group>";
+		};
+		619470142BA588E0009D5F6B /* SuppliersVM */ = {
+			isa = PBXGroup;
+			children = (
+				618FBEC02BA4CC1C003C2275 /* ExploreSuplierViewModel.swift */,
+			);
+			path = SuppliersVM;
+			sourceTree = "<group>";
+		};
+		619470152BA58902009D5F6B /* VenuesVM */ = {
+			isa = PBXGroup;
+			children = (
+				619470162BA5891C009D5F6B /* ExploreVenuesViewModel.swift */,
+			);
+			path = VenuesVM;
 			sourceTree = "<group>";
 		};
 		61A2C81F2BA36E1F0022ED7A /* Suppliers Views */ = {
@@ -350,6 +432,34 @@
 				61A2C8232BA36FC10022ED7A /* VenueProfileView.swift */,
 			);
 			path = VenuesViews;
+			sourceTree = "<group>";
+		};
+		61A2C8272BA378250022ED7A /* SuppliersInfoViews */ = {
+			isa = PBXGroup;
+			children = (
+				61A2C8252BA377CE0022ED7A /* ExploreSuppliersView.swift */,
+				61A2C82A2BA378870022ED7A /* SupplierCell.swift */,
+			);
+			path = SuppliersInfoViews;
+			sourceTree = "<group>";
+		};
+		61A2C8282BA3783F0022ED7A /* IdeasInfoView */ = {
+			isa = PBXGroup;
+			children = (
+				612C75842B99B9580081E003 /* IdeasView.swift */,
+				612C758D2B9A0E1E0081E003 /* IdeaCell.swift */,
+				611D14212BA1CA4C000C224B /* IdeaCard.swift */,
+			);
+			path = IdeasInfoView;
+			sourceTree = "<group>";
+		};
+		61A2C8292BA378590022ED7A /* IdeaCategoryInfoView */ = {
+			isa = PBXGroup;
+			children = (
+				61A6993D2B9BB5BA0027138F /* CategoryCell.swift */,
+				61A699372B9BAFBE0027138F /* IdeaCategoryView.swift */,
+			);
+			path = IdeaCategoryInfoView;
 			sourceTree = "<group>";
 		};
 		61A815A72B57D35B0072971A /* View */ = {
@@ -443,6 +553,9 @@
 		61D7D1402B51C08000BA0A26 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				618FBEBE2BA4ACA5003C2275 /* Manrope-Bold.ttf */,
+				618FBEBC2BA4AC93003C2275 /* Manrope-Medium.ttf */,
+				618FBEBA2BA4A15A003C2275 /* Lora-Medium.ttf */,
 				616B4A032B6938E1006EB65E /* Marcellus-Regular.ttf */,
 				616B4A012B6930CF006EB65E /* Lora-Regular.ttf */,
 				61D7D1472B51CC5E00BA0A26 /* OpenSans-Light.ttf */,
@@ -602,8 +715,11 @@
 				616B4A042B6938E1006EB65E /* Marcellus-Regular.ttf in Resources */,
 				616B4A022B6930CF006EB65E /* Lora-Regular.ttf in Resources */,
 				61D7D1482B51CC5E00BA0A26 /* OpenSans-Regular.ttf in Resources */,
+				618FBEBF2BA4ACA5003C2275 /* Manrope-Bold.ttf in Resources */,
 				61D7D1452B51CAA900BA0A26 /* Futura-pt-light.ttf in Resources */,
+				618FBEBB2BA4A15B003C2275 /* Lora-Medium.ttf in Resources */,
 				61730B6C2B5155430063C9CE /* Preview Assets.xcassets in Resources */,
+				618FBEBD2BA4AC93003C2275 /* Manrope-Medium.ttf in Resources */,
 				61D7D1422B51C0C500BA0A26 /* PlayfairDisplay-Medium.ttf in Resources */,
 				61730B682B5155430063C9CE /* Assets.xcassets in Resources */,
 				61A815AD2B57EC1F0072971A /* GoogleService-Info.plist in Resources */,
@@ -621,12 +737,14 @@
 				61730B662B51553F0063C9CE /* ContentView.swift in Sources */,
 				61ACBA9C2B8C8FD60037EC2B /* SelectingProfilePhotoView.swift in Sources */,
 				61ACBA9E2B8C904D0037EC2B /* ImagePicker.swift in Sources */,
+				618FBEC52BA4EBB5003C2275 /* LikedAdvertisementsViewModel.swift in Sources */,
 				617B13A92B94A1060074BE04 /* FullAddressLokupView.swift in Sources */,
 				61640C012B90803D0089E172 /* StageNameInfoView.swift in Sources */,
 				61434B4D2B8779E500370524 /* PlaceLookupView.swift in Sources */,
 				610D8F642B95C73E00C92799 /* MWUser.swift in Sources */,
 				61730B732B5158E80063C9CE /* SignUpView.swift in Sources */,
 				61C626232B931DF400BBC6F0 /* MyImageError.swift in Sources */,
+				618FBEC32BA4EB49003C2275 /* LikedAdvertisementsView.swift in Sources */,
 				61A699382B9BAFBE0027138F /* IdeaCategoryView.swift in Sources */,
 				612C75852B99B9580081E003 /* IdeasView.swift in Sources */,
 				61C626272B93355E00BBC6F0 /* UpploadPhotoFromWork + Extension.swift in Sources */,
@@ -641,6 +759,7 @@
 				612C75832B99AE130081E003 /* RootView.swift in Sources */,
 				61434B532B87828500370524 /* LocationManager.swift in Sources */,
 				61A815A62B57CBD40072971A /* AutorizationFields.swift in Sources */,
+				618FBEC12BA4CC1C003C2275 /* ExploreSuplierViewModel.swift in Sources */,
 				616B49FF2B692735006EB65E /* NameEnteringView.swift in Sources */,
 				61C626252B931E4300BBC6F0 /* MyImage.swift in Sources */,
 				61EBFEBF2B6A661000526020 /* BirthdateEnteringView.swift in Sources */,
@@ -650,18 +769,22 @@
 				61434B4F2B877B5B00370524 /* Place.swift in Sources */,
 				61730B642B51553F0063C9CE /* Creative_MirApp.swift in Sources */,
 				611D14222BA1CA4C000C224B /* IdeaCard.swift in Sources */,
+				61A2C82B2BA378870022ED7A /* SupplierCell.swift in Sources */,
 				61434B512B877E8100370524 /* PlaceViewModel.swift in Sources */,
 				61EBFEC12B6A984900526020 /* AdressSelectionView.swift in Sources */,
 				61FAA9652B5FD05A00F8BEE6 /* UserEnums.swift in Sources */,
+				61A2C8262BA377CE0022ED7A /* ExploreSuppliersView.swift in Sources */,
 				612C75812B99ADEC0081E003 /* CustomTabBar.swift in Sources */,
 				61ACBA982B8C8C960037EC2B /* PhotoPickerViewModel.swift in Sources */,
 				61ACBA9A2B8C8EA10037EC2B /* PhotoSourcePicker.swift in Sources */,
+				619470172BA5891C009D5F6B /* ExploreVenuesViewModel.swift in Sources */,
 				61A815AB2B57DD320072971A /* RoleChoosingView.swift in Sources */,
 				61FA4A3B2B5A68EC00551852 /* ForgotPasswordView.swift in Sources */,
 				616B71672BA22B04006B92CB /* CustomerProfileView.swift in Sources */,
 				61B7BFB72B91FDCF00AD6F6D /* ProfessionInputView.swift in Sources */,
 				617B13A52B9497950074BE04 /* AddingBuildingLocationView.swift in Sources */,
 				61A2C8242BA36FC10022ED7A /* VenueProfileView.swift in Sources */,
+				6194700F2BA58853009D5F6B /* ExploreVenuesView.swift in Sources */,
 				61640C042B90CDF20089E172 /* ProfessionalSkills.swift in Sources */,
 				611C5D7B2BA083880051BEF1 /* StorageService.swift in Sources */,
 				61C626212B931D9C00BBC6F0 /* Filemanager+Extension.swift in Sources */,
@@ -671,6 +794,7 @@
 				61A815E62B57F2AD0072971A /* AuthService.swift in Sources */,
 				612C758C2B99EE6A0081E003 /* TopBar.swift in Sources */,
 				610217212B9767D60087DCF8 /* MWVenue.swift in Sources */,
+				619470192BA59B1D009D5F6B /* VenueCell.swift in Sources */,
 				610217232B9771DA0087DCF8 /* MWCustomer.swift in Sources */,
 				610267782B8FB5AD0071C1F3 /* LegalUserInfoView.swift in Sources */,
 				612C758A2B99D5320081E003 /* MWIdea.swift in Sources */,

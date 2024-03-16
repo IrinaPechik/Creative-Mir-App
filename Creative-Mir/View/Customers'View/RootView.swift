@@ -21,7 +21,7 @@ struct RootView: View {
             VStack {
                 if selectedTab == .home {
                     TopBar(selectedTopBar: $selectedPage)
-                        .frame(height: 80)
+                        .frame(height: 70)
                     if selectedPage == .generateIdeas {
                         Spacer()
                         IdeaCategoryView(viewModel: IdeasCategoryViewModel(), chosenCategoryId: $chosenIdCategory, presentNextView: $presentNextView)
@@ -29,15 +29,16 @@ struct RootView: View {
                         Spacer()
                     } else if selectedPage == .exploreSuppliers {
                         Spacer()
-                        Text("ideas")
+                        ExploreSuppliersView(viewModel: ExploreSuplierViewModel())
                         Spacer()
                     } else if selectedPage == .exploreVenues {
                         Spacer()
-                        Text("ideas")
+                        ExploreVenuesView(viewModel: ExploreVenuesViewModel())
                         Spacer()
                     }
                 } else if selectedTab == .star {
-                    StarView()
+                    LikedAdvertisementsView(viewModel: LikedAdvertisementsViewModel())
+                    Spacer()
                 } else if selectedTab == .message {
                     MessageView()
                 } else if selectedTab == .profile {
@@ -66,17 +67,6 @@ struct MessageView: View {
         ZStack {
             Color.green.ignoresSafeArea()
             Text("Message Tab")
-                .font(.largeTitle)
-                .foregroundStyle(.white)
-        }
-    }
-}
-
-struct StarView: View {
-    var body: some View {
-        ZStack {
-            Color.pink.ignoresSafeArea()
-            Text("Star Tab")
                 .font(.largeTitle)
                 .foregroundStyle(.white)
         }
