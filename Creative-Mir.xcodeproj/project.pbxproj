@@ -41,6 +41,7 @@
 		617B13A52B9497950074BE04 /* AddingBuildingLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617B13A42B9497950074BE04 /* AddingBuildingLocationView.swift */; };
 		617B13A72B949EEC0074BE04 /* FullAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617B13A62B949EEC0074BE04 /* FullAddressViewModel.swift */; };
 		617B13A92B94A1060074BE04 /* FullAddressLokupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617B13A82B94A1060074BE04 /* FullAddressLokupView.swift */; };
+		618692AC2BB973F300F73B7F /* CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618692AB2BB973F200F73B7F /* CustomFonts.swift */; };
 		618FBEBB2BA4A15B003C2275 /* Lora-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 618FBEBA2BA4A15A003C2275 /* Lora-Medium.ttf */; };
 		618FBEBD2BA4AC93003C2275 /* Manrope-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 618FBEBC2BA4AC93003C2275 /* Manrope-Medium.ttf */; };
 		618FBEBF2BA4ACA5003C2275 /* Manrope-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 618FBEBE2BA4ACA5003C2275 /* Manrope-Bold.ttf */; };
@@ -155,6 +156,7 @@
 		617B13A42B9497950074BE04 /* AddingBuildingLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddingBuildingLocationView.swift; sourceTree = "<group>"; };
 		617B13A62B949EEC0074BE04 /* FullAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullAddressViewModel.swift; sourceTree = "<group>"; };
 		617B13A82B94A1060074BE04 /* FullAddressLokupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullAddressLokupView.swift; sourceTree = "<group>"; };
+		618692AB2BB973F200F73B7F /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
 		618FBEBA2BA4A15A003C2275 /* Lora-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lora-Medium.ttf"; path = "../../../../Fonts/Lora/static/Lora-Medium.ttf"; sourceTree = "<group>"; };
 		618FBEBC2BA4AC93003C2275 /* Manrope-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Manrope-Medium.ttf"; path = "../../../../Manrope/static/Manrope-Medium.ttf"; sourceTree = "<group>"; };
 		618FBEBE2BA4ACA5003C2275 /* Manrope-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Manrope-Bold.ttf"; path = "../../../../Manrope/static/Manrope-Bold.ttf"; sourceTree = "<group>"; };
@@ -565,6 +567,7 @@
 				61D7D1462B51CC5E00BA0A26 /* OpenSans-Regular.ttf */,
 				61D7D1412B51C0C500BA0A26 /* PlayfairDisplay-Medium.ttf */,
 				61D7D1442B51CAA900BA0A26 /* Futura-pt-light.ttf */,
+				618692AB2BB973F200F73B7F /* CustomFonts.swift */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -773,6 +776,7 @@
 				61730B642B51553F0063C9CE /* Creative_MirApp.swift in Sources */,
 				611D14222BA1CA4C000C224B /* IdeaCard.swift in Sources */,
 				61A2C82B2BA378870022ED7A /* SupplierCell.swift in Sources */,
+				618692AC2BB973F300F73B7F /* CustomFonts.swift in Sources */,
 				61434B512B877E8100370524 /* PlaceViewModel.swift in Sources */,
 				61EBFEC12B6A984900526020 /* AdressSelectionView.swift in Sources */,
 				61FAA9652B5FD05A00F8BEE6 /* UserEnums.swift in Sources */,
