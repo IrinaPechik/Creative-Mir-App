@@ -42,6 +42,7 @@
 		617B13A72B949EEC0074BE04 /* FullAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617B13A62B949EEC0074BE04 /* FullAddressViewModel.swift */; };
 		617B13A92B94A1060074BE04 /* FullAddressLokupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617B13A82B94A1060074BE04 /* FullAddressLokupView.swift */; };
 		618692AC2BB973F300F73B7F /* CustomFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618692AB2BB973F200F73B7F /* CustomFonts.swift */; };
+		618692AE2BB97E7600F73B7F /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618692AD2BB97E7600F73B7F /* ColorExtension.swift */; };
 		618FBEBB2BA4A15B003C2275 /* Lora-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 618FBEBA2BA4A15A003C2275 /* Lora-Medium.ttf */; };
 		618FBEBD2BA4AC93003C2275 /* Manrope-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 618FBEBC2BA4AC93003C2275 /* Manrope-Medium.ttf */; };
 		618FBEBF2BA4ACA5003C2275 /* Manrope-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 618FBEBE2BA4ACA5003C2275 /* Manrope-Bold.ttf */; };
@@ -157,6 +158,7 @@
 		617B13A62B949EEC0074BE04 /* FullAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullAddressViewModel.swift; sourceTree = "<group>"; };
 		617B13A82B94A1060074BE04 /* FullAddressLokupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullAddressLokupView.swift; sourceTree = "<group>"; };
 		618692AB2BB973F200F73B7F /* CustomFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomFonts.swift; sourceTree = "<group>"; };
+		618692AD2BB97E7600F73B7F /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		618FBEBA2BA4A15A003C2275 /* Lora-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lora-Medium.ttf"; path = "../../../../Fonts/Lora/static/Lora-Medium.ttf"; sourceTree = "<group>"; };
 		618FBEBC2BA4AC93003C2275 /* Manrope-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Manrope-Medium.ttf"; path = "../../../../Manrope/static/Manrope-Medium.ttf"; sourceTree = "<group>"; };
 		618FBEBE2BA4ACA5003C2275 /* Manrope-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Manrope-Bold.ttf"; path = "../../../../Manrope/static/Manrope-Bold.ttf"; sourceTree = "<group>"; };
@@ -551,6 +553,7 @@
 			isa = PBXGroup;
 			children = (
 				61C626202B931D9C00BBC6F0 /* Filemanager+Extension.swift */,
+				618692AD2BB97E7600F73B7F /* ColorExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -798,6 +801,7 @@
 				61A6993C2B9BB0EF0027138F /* MWIdeaCategory.swift in Sources */,
 				61EBFEBB2B6A4E2E00526020 /* CustomNextButtonsView.swift in Sources */,
 				61EBFEBD2B6A4EA000526020 /* CustomTextViews.swift in Sources */,
+				618692AE2BB97E7600F73B7F /* ColorExtension.swift in Sources */,
 				61A815E62B57F2AD0072971A /* AuthService.swift in Sources */,
 				612C758C2B99EE6A0081E003 /* TopBar.swift in Sources */,
 				610217212B9767D60087DCF8 /* MWVenue.swift in Sources */,
