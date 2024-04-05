@@ -30,9 +30,9 @@ struct Creative_MirApp: App {
                 if userRole == "customer" {
                     RootView()
                 } else if userRole == "supplier" {
-                    SupplierProfileView()
+                    SupplierRootView()
                 } else {
-                    VenueProfileView()
+                    VenueRootView()
                 }
             } else {
                 SignInView()
@@ -54,7 +54,7 @@ struct Creative_MirApp: App {
 //            if let bundleIdentifier = Bundle.main.bundleIdentifier {
 //                UserDefaults.standard.removePersistentDomain(forName: bundleIdentifier)
 //            }
-            
+//            
 //            
 //            let defaults = UserDefaults.standard
 //            let dictionary = defaults.dictionaryRepresentation()

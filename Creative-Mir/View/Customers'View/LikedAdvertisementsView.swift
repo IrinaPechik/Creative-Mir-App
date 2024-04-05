@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct LikedAdvertisementsView: View {
-    @ObservedObject var viewModel:LikedAdvertisementsViewModel
+    @ObservedObject var viewModel: LikedAdvertisementsViewModel
+    
     @State private var showSuppliersEmpty: Bool = true
     @State private var showVenuesEmpty: Bool = true
-    @State private var showIdeasEmpty: Bool = true // change later
 
     var body: some View {
         VStack(alignment: .leading) {
-            if showSuppliersEmpty && showVenuesEmpty && showIdeasEmpty {
+            if showSuppliersEmpty && showVenuesEmpty {
                 Spacer()
                 Text("You don't have any favorite advertisements yet 😓")
                     .font(.custom("Manrope-Bold", size: 25))
@@ -23,6 +23,7 @@ struct LikedAdvertisementsView: View {
             } else {
                 Text("Liked announcements")
                     .font(.custom("Manrope-Bold", size: 32))
+                    .padding()
                 ScrollView {
                     VStack(alignment: .leading, spacing: 32)  {
                         ForEach(viewModel.likedSuppliers, id: \.id) {supplier in
@@ -33,6 +34,7 @@ struct LikedAdvertisementsView: View {
                         }
                     }
                 }
+                .scrollIndicators(.hidden)
             }
         }
         .onAppear {

@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct IdeaCard: View {
-    @Binding var chosenIdea: MWIdea?
+    @StateObject var viewModel: IdeasViewModel
+
+    @Binding var chosenIdea: MWIdea
     @State var uiImage: UIImage? = nil
-    @State var isLiked = false
+    @Binding var isLiked: Bool
     @State var color: UIColor = .gray
     var body: some View {
         ScrollView {
             VStack(alignment: .center) {
-                if let uiImage = uiImage, let chosenIdea = chosenIdea {
+                if let uiImage = uiImage/*, let chosenIdea = chosenIdea*/ {
                     ZStack(alignment: .topTrailing) {
                         Image(uiImage: uiImage)
                             .resizable()
@@ -27,6 +29,11 @@ struct IdeaCard: View {
                             .onTapGesture {
                                 withAnimation(.easeInOut(duration: 0.2)) {
                                     isLiked.toggle()
+                                }
+                                if isLiked {
+                                    viewModel.addLikeToIdea(customerId: AuthService.shared.currentUser?.uid ?? "id", idea: self.chosenIdea)
+                                } else {
+                                    viewModel.removeLikeFromIdea(customerId: AuthService.shared.currentUser?.uid ?? "id", idea: self.chosenIdea)
                                 }
                             }
                     }
@@ -86,7 +93,7 @@ struct IdeaCard: View {
         }
         .scrollIndicators(.hidden)
         .onAppear {
-            StorageService.shared.downloadIdeaImage(id: self.chosenIdea!.id) {result in
+            StorageService.shared.downloadIdeaImage(id: self.chosenIdea.id) {result in
                 switch result {
                 case .success(let data):
                     if let img = UIImage(data: data) {
@@ -96,12 +103,21 @@ struct IdeaCard: View {
                     print(error.localizedDescription)
                 }
             }
+            DatabaseService.shared.checkWasIdeaLikedById(customerId: AuthService.shared.currentUser?.uid ?? "id", ideaId: chosenIdea.id) { res in
+                switch res {
+                case .success(let wasLiked):
+                    isLiked = wasLiked
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
         }
     }
 }
 
+
 #Preview {
-    IdeaCard(chosenIdea: .constant(MWIdea(id: "7",
+    IdeaCard(viewModel: IdeasViewModel(), chosenIdea: .constant(MWIdea(id: "7",
                                     categoryId: "4",
                                     name: "Puppy Pawty",
                                     description: "Get ready to wag your tails and bark with delight at the \"Puppy Pawty\" – the ultimate celebration for our furry friends! Picture a whimsically decorated venue adorned paw-print banners, and doggy-themed decorations. Pups of all shapes and sizes prance around, sporting adorable party hats and wagging their tails with excitement. From a doggy fashion show showcasing the latest canine couture to a playful game of fetch and a \"best trick\" competition, there's no shortage of tail-wagging fun. As their humans mingle and share stories, four-legged guests indulge in delicious treats like pup-friendly birthday cake and refreshing bowls of water. With every woof and wiggle, it's evident that this Puppy Pawty is a barking success, leaving paw prints of joy on the hearts of all who attend.",
@@ -110,5 +126,5 @@ struct IdeaCard: View {
                                     venuesRecommendations: "Verve dog boutique",
                                     suppliersRecommendations: "merimeri",
                                     peopleLimit: 20,
-                                    colorScheme: "Green")))
+                                                                       colorScheme: "Green")), isLiked: .constant(false))
 }

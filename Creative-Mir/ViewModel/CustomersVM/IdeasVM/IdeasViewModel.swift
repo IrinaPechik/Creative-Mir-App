@@ -20,4 +20,24 @@ class IdeasViewModel: ObservableObject {
             }
         }
     }
+    
+    func addLikeToIdea(customerId: String, idea: MWIdea) {
+        DatabaseService.shared.setLikedIdeaToCustomer(customerId: customerId, idea: idea) { error in
+            if error != nil {
+                print("erroe while saving liked idea")
+            } else {
+                print("liked idea was saved")
+            }
+        }
+    }
+    
+    func removeLikeFromIdea(customerId: String, idea: MWIdea) {
+        DatabaseService.shared.deleteLikedIdeaToCustomer(customerId: customerId, idea: idea) { error in
+            if error != nil {
+                print("erroe while deleting liked idea")
+            } else {
+                print("liked idea was deleted")
+            }
+        }
+    }
 }

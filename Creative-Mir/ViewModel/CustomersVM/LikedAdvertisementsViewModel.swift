@@ -10,6 +10,7 @@ import Foundation
 class LikedAdvertisementsViewModel: ObservableObject {
     @Published var likedSuppliers: [MWSupplier] = [MWSupplier]()
     @Published var likedVenues: [MWVenue] = [MWVenue]()
+
     
     func getLikedSuppliers(customerId: String, completion: @escaping (Result<[MWSupplier], Error>) -> ()) {
         DatabaseService.shared.getLikedSuppliers(customerId: customerId) { result in

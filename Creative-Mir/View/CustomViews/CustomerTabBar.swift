@@ -7,15 +7,15 @@
 
 import SwiftUI
 
-enum Tabs: Int {
+enum CustomerTabs: Int {
     case home = 0
-    case star = 1
-    case message = 2
+    case likedAdvertisements = 1
+    case likedIdeas = 2
     case profile = 3
 }
 
-struct CustomTabBar: View {
-    @Binding var selectedTab: Tabs
+struct CustomerTabBar: View {
+    @Binding var selectedTab: CustomerTabs
     
     var body: some View {
         HStack(alignment: .center, spacing: 60) {
@@ -30,24 +30,24 @@ struct CustomTabBar: View {
             .tint(selectedTab == .home ? .black : .gray)
             
             Button {
-                selectedTab = .star
+                selectedTab = .likedAdvertisements
+            } label: {
+                Image(systemName: "suit.heart")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 24, height: 24)
+            }
+            .tint(selectedTab == .likedAdvertisements ? .black : .gray)
+            
+            Button {
+                selectedTab = .likedIdeas
             } label: {
                 Image(systemName: "star")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 24, height: 24)
             }
-            .tint(selectedTab == .star ? .black : .gray)
-            
-            Button {
-                selectedTab = .message
-            } label: {
-                Image(systemName: "message")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 24, height: 24)
-            }
-            .tint(selectedTab == .message ? .black : .gray)
+            .tint(selectedTab == .likedIdeas ? .black : .gray)
             
             Button {
                 selectedTab = .profile
@@ -59,10 +59,9 @@ struct CustomTabBar: View {
             }
             .tint(selectedTab == .profile ? .black : .gray)
         }
-//        .frame(height: 82)
     }
 }
 
 #Preview {
-    CustomTabBar(selectedTab: .constant(.home))
+    CustomerTabBar(selectedTab: .constant(.home))
 }

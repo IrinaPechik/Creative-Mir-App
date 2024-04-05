@@ -15,11 +15,13 @@ struct VenueCell: View {
     @State var uiImage: UIImage? = nil
     @State private var isLiked = false
 
-    @State var user: MWUser? = nil
+    @State var user: MWUser = MWUser(id: "id", email: "email", name: "name", surname: "surname", birthday: "birthday", residentialAddress: "residentialAddress", role: "residentialAddress")
     
+    @State var presentVenueInfo: Bool = false
+
     var body: some View {
         VStack(alignment: .leading) {
-            if let user = user {
+//            if let user = user {
                     if let uiImage = uiImage {
                         HStack {
                             Image(uiImage: uiImage)
@@ -29,7 +31,7 @@ struct VenueCell: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 20))
                             VStack(alignment: .leading) {
                                 Text(venue.advertisements[advIndex].locationName)
-                                    .font(.custom("Manrope-Bold", size: 20))
+                                    
                                 if venue.advertisements[advIndex].legalStatus == "company" {
                                     Text("\(venue.advertisements[advIndex].companyName!), \(venue.advertisements[advIndex].companyPosition!)")
                                         .font(.custom("Manrope-Bold", size: 16))
@@ -60,11 +62,16 @@ struct VenueCell: View {
                                 }
                         }
                     }
-            }
+//            }
         }
         .frame(width: 380, height: 100)
         .background()
-
+        .onTapGesture {
+            presentVenueInfo = true
+        }
+        .sheet(isPresented: $presentVenueInfo) {
+            VenueCard(venue: $venue, user: $user, advIndex: $advIndex)
+        }
         .clipShape(RoundedRectangle(cornerRadius: 20))
         .shadow(color: Color(uiColor: UIColor(red: 0/255, green: 12/255, blue: 75/255, alpha: 0.06)),radius: 8, x: 3, y: 3)
         .onAppear {
@@ -99,5 +106,5 @@ struct VenueCell: View {
 }
 
 #Preview {
-    VenueCell(viewModel: ExploreVenuesViewModel(), venue: MWVenue(id: "1", advertisements: [VenueAdvertisemnt(legalStatus: "individual", locationAddress: "East London", locationName: "Vibes Ville Venue", locationDescription: "the best")]), advIndex: 0)
+    VenueCell(viewModel: ExploreVenuesViewModel(), venue: MWVenue(id: "1", advertisements: [VenueAdvertisemnt(legalStatus: "individual", locationAddress: "East London", locationName: "Vibes Ville Venue", locationDescription: "the best")]), advIndex: 0, user: MWUser(id: "id", email: "email", name: "name", surname: "surname", birthday: "birthday", residentialAddress: "residentialAddress", role: "residentialAddress"))
 }

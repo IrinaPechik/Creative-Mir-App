@@ -1,27 +1,27 @@
 //
-//  SupplierCard.swift
+//  VenueCard.swift
 //  Creative-Mir
 //
-//  Created by Печик Ирина on 16.03.2024.
+//  Created by Печик Ирина on 31.03.2024.
 //
 
 import SwiftUI
 
-struct SupplierCard: View {
-    @Binding var supplier: MWSupplier
+struct VenueCard: View {
+    @Binding var venue: MWVenue
     @Binding var user: MWUser
     @State var uiImage: UIImage? = nil
-    @State var photosFromWork: [UIImage] = []
+    @State var placePhotos: [UIImage] = []
     @Binding var advIndex: Int
-    
     @State private var showBookAlert: Bool = false
+
     var body: some View {
         VStack {
             if let uiImage = uiImage {
                 Spacer()
                 VStack {
                     VStack(alignment: .leading, spacing: 3) {
-                        Text(supplier.advertisements[advIndex].skill)
+                        Text(venue.advertisements[advIndex].locationName)
                             .font(customFont: .PlayfairDisplayMedium, size: 48)
                         HStack {
                             Image(uiImage: uiImage)
@@ -30,21 +30,12 @@ struct SupplierCard: View {
                                 .aspectRatio(contentMode: .fit)
                                 .clipShape(RoundedRectangle(cornerRadius: 20))
                             VStack(alignment: .leading) {
-                                if supplier.advertisements[advIndex].legalStatus == "individual" {
-                                    if supplier.advertisements[advIndex].stageName == nil {
-                                        Text("\(user.name) \(user.surname)")
-                                            .font(customFont: .PlayfairDisplayMedium, size: 30)
-                                    } else {
-                                        Text("\(supplier.advertisements[advIndex].stageName!)")
-                                    }
-                                } else {
-                                    Text("\(supplier.advertisements[advIndex].companyName!), \(supplier.advertisements[advIndex].companyPosition!)")
-                                        .font(customFont: .PlayfairDisplayMedium, size: 30)
+                                Text("\(user.name) \(user.surname)")
+                                    .font(customFont: .PlayfairDisplayMedium, size: 30)
+                                if venue.advertisements[advIndex].legalStatus == "company" {
+                                    Text("\(venue.advertisements[advIndex].companyName ?? "") \(venue.advertisements[advIndex].companyPosition ?? "")")
+                                        .font(customFont: .PlayfairDisplayMedium, size: 48)
                                 }
-                                Text(user.residentialAddress)
-                                    .font(customFont: .LoraRegular, size: 18)
-                                Text("\(supplier.advertisements[advIndex].experience) \(supplier.advertisements[advIndex].experienceMeasure) of experience")
-                                    .font(customFont: .LoraRegular, size: 18)
                                 Text(user.email)
                                     .font(customFont: .LoraRegular, size: 18)
                             }
@@ -56,17 +47,9 @@ struct SupplierCard: View {
                     ScrollView {
                         VStack(alignment: .leading) {
                             HStack {
-                                Text("About me:").font(customFont: .LoraRegular, size: 24)
+                                Text("About\nlocation:").font(customFont: .LoraRegular, size: 24)
                                     .padding(.trailing)
-                                Text(supplier.storyAboutYourself)
-                                    .font(customFont: .OpenSansLight, size: 16)
-                                Spacer()
-                            }
-                            .padding()
-                            HStack {
-                                Text("About my\n career:").font(customFont: .LoraRegular, size: 24)
-                                    .padding(.trailing)
-                                Text(supplier.storyAboutYourself)
+                                Text(venue.advertisements[advIndex].locationDescription)
                                     .font(customFont: .OpenSansLight, size: 16)
                                 Spacer()
                             }
@@ -74,9 +57,9 @@ struct SupplierCard: View {
                             
                             ScrollView {
                                 HStack {
-                                    Text("My work\n photos:").font(customFont: .LoraRegular, size: 24)
+                                    Text("Place\nphotos:").font(customFont: .LoraRegular, size: 24)
                                         .padding(.trailing)
-                                    ForEach(photosFromWork, id: \.self) { photo in
+                                    ForEach(placePhotos, id: \.self) { photo in
                                         Image(uiImage: photo)
                                             .resizable()
                                             .frame(width: 110, height: 110)
@@ -106,17 +89,16 @@ struct SupplierCard: View {
                     }
                 }
             }
-            
         }
         .frame(maxWidth: .infinity)
         .background(Color.backgroundColor)
         .sheet(isPresented: $showBookAlert) {
             withAnimation {
-                BookField(performerId: supplier.id, showBookAlert: $showBookAlert)
+                BookField(performerId: venue.id, showBookAlert: $showBookAlert)
             }
         }
         .onAppear {
-            StorageService.shared.downloadUserAvatarImage(id: supplier.id) { result in
+            StorageService.shared.downloadUserAvatarImage(id: venue.id) { result in
                 switch result {
                 case .success(let data):
                     if let img = UIImage(data: data) {
@@ -127,12 +109,12 @@ struct SupplierCard: View {
                 }
             }
             
-            StorageService.shared.downloadSuppliersPhotoFromWorkImages(id: supplier.id) { result in
+            StorageService.shared.downloadVenuesPhotoFromWorkImages(id: venue.id) { result in
                 switch result {
                 case .success(let data):
                     for photo in data {
                         if let img = UIImage(data: photo) {
-                            photosFromWork.append(img)
+                            placePhotos.append(img)
                         }
                     }
                 case.failure(let error):
@@ -141,12 +123,8 @@ struct SupplierCard: View {
             }
         }
     }
-    
-    func submit() {
-        print("You entered")
-    }
 }
 
 #Preview {
-    SupplierCard(supplier: .constant(MWSupplier(id: "BU7G1DeIskbftR05qMc5jL0uIZf2", storyAboutYourself: "Music isn't just my job; it's my lifeblood. From the moment the music starts playing, I feel alive, and I want nothing more than to share that feeling with everyone around me. My sets are more than just a collection of songs; they're stories waiting to be told, emotions waiting to be felt. When I see the crowd moving and feeling the music as deeply as I do, it's like pure magic. That's what being a DJ means to me - spreading joy, energy, and love through the power of music.", advertisements: [SupplierAdvertisemnt(legalStatus: "individual", skill: "DJ", experience: 3, experienceMeasure: "years", storyAboutWork: "I'm Anna, a DJ bursting with passion and energy. When I step behind the decks, it's like stepping into a world where music becomes magic. With every beat I drop, I aim to take my audience on a thrilling journey filled with rhythm and emotion.")])), user: .constant(MWUser(id: "BU7G1DeIskbftR05qMc5jL0uIZf2", email: "anna@gmail.com", name: "Anne", surname: "Daniel", birthday: "31.12.1998", residentialAddress: "Cotati, United States", role: "supplier")), photosFromWork: [], advIndex: .constant(0))
+    VenueCard(venue: .constant(MWVenue(id: "45iixJ9bz2bAcsVl4xIQlcoivSo1", advertisements: [VenueAdvertisemnt(legalStatus: "individual", locationAddress: "East London", locationName: "Vibes Ville Venue", locationDescription: "the best")])), user: .constant(MWUser(id: "id", email: "email", name: "name", surname: "surname", birthday: "birthday", residentialAddress: "residentialAddress", role: "residentialAddress")), advIndex: .constant(0))
 }

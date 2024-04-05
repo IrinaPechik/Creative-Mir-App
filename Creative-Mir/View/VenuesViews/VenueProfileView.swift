@@ -14,26 +14,35 @@ struct VenueProfileView: View {
     @State var uiImages: [UIImage] = []
     @State private var nextView: ViewStack = .signIn
     @State private var presentNextView: Bool = false
+    @State var user: MWUser = MWUser(id: "id", email: "email", name: "name", surname: "surname", birthday: "birthday", residentialAddress: "residentialAddress", role: "residentialAddress")
+    @State var venue: MWVenue = MWVenue(id: "id")
+    @State private var isLoading = true
+    
     var body: some View {
         VStack {
-            Text("VenueProfileView")
-            ForEach(uiImages, id: \.self) { uiImage in
-                    Image(uiImage: uiImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 100, height: 100) // Настройте размер по вашему усмотрению
-                        .padding(.vertical, 5)
-                }
-            Button("Log out") {
-                Task {
-                    do {
-                        try AuthService.shared.signOut()
-                        presentNextView.toggle()
-                        nextView = .signIn
-                    } catch {
-                        
+            if isLoading {
+                Spacer()
+                ProgressView()
+                Spacer()
+            } else {
+                HStack {
+                    Spacer()
+                    Button("Log out") {
+                        Task {
+                            do {
+                                try AuthService.shared.signOut()
+                                presentNextView.toggle()
+                                nextView = .signIn
+                            } catch {
+                                
+                            }
+                        }
                     }
+                    .foregroundStyle(.black)
+                    .padding(.trailing)
                 }
+                .background(Color.backgroundColor)
+                VenueCard(venue: $venue, user: $user, advIndex: .constant(0))
             }
         }
         .fullScreenCover(isPresented: $presentNextView) {
@@ -44,20 +53,41 @@ struct VenueProfileView: View {
         }
         .onAppear {
             print(AuthService.shared.currentUser?.uid  ?? "id")
-            StorageService.shared.downloadVenuesPhotoFromWorkImages(id: AuthService.shared.currentUser?.uid ?? "id", completion: {
-                result in
+            
+            DatabaseService.shared.getUser(id: AuthService.shared.currentUser?.uid ?? "id") { result in
                 switch result {
-                case .success(let data):
-                    for d in data {
-                        if let img = UIImage(data: d) {
-                            uiImages.append(img)
+                case .success(let user):
+                    self.user = user
+                    DatabaseService.shared.getVenue(id: AuthService.shared.currentUser?.uid ?? "id") { result in
+                        switch result {
+                        case .success(let venue):
+                            self.venue = venue
+                            isLoading = false
+                        case .failure(let error):
+                            print(error.localizedDescription)
                         }
                     }
-                case.failure(let error):
+                case .failure(let error):
                     print(error.localizedDescription)
                 }
-            })
+            }
         }
+//        .onAppear {
+//            print(AuthService.shared.currentUser?.uid  ?? "id")
+//            StorageService.shared.downloadVenuesPhotoFromWorkImages(id: AuthService.shared.currentUser?.uid ?? "id", completion: {
+//                result in
+//                switch result {
+//                case .success(let data):
+//                    for d in data {
+//                        if let img = UIImage(data: d) {
+//                            uiImages.append(img)
+//                        }
+//                    }
+//                case.failure(let error):
+//                    print(error.localizedDescription)
+//                }
+//            })
+//        }
     }
 }
 

@@ -19,42 +19,82 @@ struct CustomerProfileView: View {
 //    @State var customer: MWCustomer? = nil
     
     var body: some View {
-        VStack {
+        VStack() {
+            HStack {
+                Spacer()
+                Button("Log out") {
+                    Task {
+                        do {
+                            try AuthService.shared.signOut()
+                            presentNextView.toggle()
+                            nextView = .signIn
+                        } catch {
+                            
+                        }
+                    }
+                }
+                .foregroundStyle(.black)
+                .padding(.trailing)
+            }
             if let uiImage = uiImage {
                 Image(uiImage: uiImage)
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .clipShape(Circle())
-                    .frame(width: 200)
+                    .frame(width: 300)
                     .padding(.top, 30)
                 if let user = user {
-                    Text("\(user.name) \(user.surname)")
-                        .font(.custom("PlayfairDisplay-Medium", size: 40))
-                    Text(user.birthday)
-                        .font(.custom("Lora-Regular", size: 20))
-                    Text(user.residentialAddress)
-                        .font(.custom("Lora-Regular", size: 20))
+                    VStack {
+                        Text("\(user.name) \(user.surname)")
+                            .font(customFont: .PlayfairDisplayMedium, size: 40)
+                            .padding()
+                        HStack {
+                            Text("Birth date:")
+                                .font(customFont: .LoraRegular, size: 25)
+                                .padding(.trailing)
+                            Text(user.birthday)
+                                .font(customFont: .OpenSansLight, size: 20)
+                            Spacer()
+                        }
+                        .padding()
+                        
+                        HStack {
+                            Text("Residential address:")
+                                .font(customFont: .LoraRegular, size: 25)
+                                .padding(.trailing)
+                            Text(user.residentialAddress)
+                                .font(customFont: .OpenSansLight, size: 20)
+                            Spacer()
+                        }
+                        .padding()
+                        
+                        HStack {
+                            Text("Email:")
+                                .font(customFont: .LoraRegular, size: 25)
+                                .padding(.trailing)
+                            Text(user.email)
+                                .font(customFont: .OpenSansLight, size: 20)
+                            Spacer()
+                        }
+                        .padding()
 
-                    Spacer()
+                        Spacer()
+                    }
+                    .frame(maxWidth: .infinity)
+                    .background(.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .ignoresSafeArea(edges: .bottom)
                 }
                 
             } else {
                 ProgressView()
                     .scaleEffect(1.5)
             }
-            Button("Log out") {
-                Task {
-                    do {
-                        try AuthService.shared.signOut()
-                        presentNextView.toggle()
-                        nextView = .signIn
-                    } catch {
-                        
-                    }
-                }
-            }
-
         }
+        .frame(maxWidth: .infinity)
+        .background(Color.backgroundColor)
+        .ignoresSafeArea(edges: .bottom)
+
         .fullScreenCover(isPresented: $presentNextView) {
             switch nextView {
             case .signIn:
@@ -84,6 +124,7 @@ struct CustomerProfileView: View {
     }
 }
 
-#Preview {
-    CustomerProfileView(uiImage: UIImage(named: "avatar"), user: MWUser(id: "8M9CPw1LXWON1o2iQ2cb7M0a4OB2", email: "irinapechik@gmail.com", name: "Irina", surname: "Pechik", birthday: "06.10.2003", residentialAddress: "Moscow, Russia", role: "customer"))
-}
+//#Preview {
+////    CustomerProfileView(user: MWUser(id: "6Ij6cvVzB2acMnWAiWMinxeWQHy2", email: "irinapechik@gmail.com", name: "Irina", surname: "Pechik", birthday: "06.10.2003", residentialAddress: "Moscow, Russia", role: "customer"))
+////    CustomerProfileView(uiImage: UIImage(named: "avatar"), user: MWUser(id: "6Ij6cvVzB2acMnWAiWMinxeWQHy2", email: "irinapechik@gmail.com", name: "Irina", surname: "Pechik", birthday: "06.10.2003", residentialAddress: "Moscow, Russia", role: "customer"))
+//}

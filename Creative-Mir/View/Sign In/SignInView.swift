@@ -111,10 +111,10 @@ struct SignInView: View {
                     if userRole == "customer" {
                         RootView()
                     } else if userRole == "supplier" {
-                       SupplierProfileView()
+                       SupplierRootView()
                     } else if userRole == "venue" {
-                        VenueProfileView()
-                    } 
+                        VenueRootView()
+                    }
                     
                 case .forgotPassword:
                     ForgotPasswordView()

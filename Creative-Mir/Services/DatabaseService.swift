@@ -36,6 +36,10 @@ class DatabaseService {
         return db.collection("ideaCategories")
     }
     
+    private var bookingRef: CollectionReference {
+        return db.collection("booking")
+    }
+    
     private init() {}
     
     // MARK: -  Setting all types of users to data base.
@@ -161,6 +165,38 @@ class DatabaseService {
         }
     }
     
+    func getSupplier(id: String, completion: @escaping (Result<MWSupplier, Error>) -> ()) {
+        suppliersRef.getDocuments { qSnap, error in
+            if let qSnap = qSnap {
+                var user: MWSupplier
+                for doc in qSnap.documents {
+                    if let user1 = MWSupplier(doc: doc), user1.id == id {
+                        user = user1
+                        completion(.success(user))
+                    }
+                }
+            } else if let error = error {
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getVenue(id: String, completion: @escaping (Result<MWVenue, Error>) -> ()) {
+        venuesRef.getDocuments { qSnap, error in
+            if let qSnap = qSnap {
+                var user: MWVenue
+                for doc in qSnap.documents {
+                    if let user1 = MWVenue(doc: doc), user1.id == id {
+                        user = user1
+                        completion(.success(user))
+                    }
+                }
+            } else if let error = error {
+                completion(.failure(error))
+            }
+        }
+    }
+    
     func getSuppliers(completion: @escaping (Result<[MWSupplier], Error>) -> ()) {
         suppliersRef.getDocuments { qSnap, error in
             if let qSnap = qSnap {
@@ -225,6 +261,21 @@ class DatabaseService {
         }
     }
     
+    // MARK:  Метод добавления идеи в избранное покупателя
+    func setLikedIdeaToCustomer(customerId: String, idea: MWIdea, completion: @escaping (Error?) -> Void) {
+        let likedIdaeRef = customersRef.document(customerId).collection("likedIdeas")
+        
+        likedIdaeRef.addDocument(data: idea.representation) { error in
+            if let error = error {
+                print("Error adding idea to favorites: \(error.localizedDescription)")
+                completion(error)
+            } else {
+                print("Idea added to favorites successfully")
+                completion(nil)
+            }
+        }
+    }
+    
     // MARK: Метод удаления поставщика услуг из избранного покупателя
     func deleteLikedSupplierToCustomer(customerId: String, supplier: MWSupplier, completion: @escaping (Error?) -> Void) {
         let likedSuppliersRef = customersRef.document(customerId).collection("likedSuppliers")
@@ -280,6 +331,38 @@ class DatabaseService {
                         completion(error)
                     } else {
                         print("Product removed from favorites successfully")
+                        completion(nil)
+                    }
+                }
+            }
+        }
+    }
+    
+    // MARK: Метод удаления идеи из избранного покупателя
+    func deleteLikedIdeaToCustomer(customerId: String, idea: MWIdea, completion: @escaping (Error?) -> Void) {
+        let likedIdeaRef = customersRef.document(customerId).collection("likedIdeas")
+
+        let query = likedIdeaRef.whereField("id", isEqualTo: idea.id)
+        
+        query.getDocuments { snapshot, error in
+            if let error = error {
+                print("Error removing idea from favorites: \(error.localizedDescription)")
+                completion(error)
+                return
+            }
+            guard let documents = snapshot?.documents else {
+                print("Document not found")
+                completion(nil)
+                return
+            }
+            
+            for document in documents {
+                document.reference.delete { error in
+                    if let error = error {
+                        print("Error removing idea from favorites: \(error.localizedDescription)")
+                        completion(error)
+                    } else {
+                        print("Idea removed from favorites successfully")
                         completion(nil)
                     }
                 }
@@ -379,6 +462,52 @@ class DatabaseService {
         }
     }
     
+    // MARK: Метод получения избранных идей
+    func getLikedIdeas(customerId: String, completion: @escaping (Result<[MWIdea], Error>) -> ()) {
+        let likedIdeasRef = customersRef.document(customerId).collection("likedIdeas")
+
+        likedIdeasRef.getDocuments { snapshot, error in
+            if let error = error {
+                            print("Error fetching favorite ideas: \(error.localizedDescription)")
+                            completion(.failure(error))
+                            return
+            }
+                        
+            guard let documents = snapshot?.documents else {
+                print("No favorite ideas found")
+                let customError = NSError(domain: "YourDomain", code: 404, userInfo: [NSLocalizedDescriptionKey: "No favorite ideas found"])
+                completion(.failure(customError))
+                return
+            }
+            if documents.isEmpty {
+                print("No favorite idaes found")
+                let customError = NSError(domain: "YourDomain", code: 404, userInfo: [NSLocalizedDescriptionKey: "No favorite ideas found"])
+                completion(.failure(customError))
+                return
+            }
+        
+            let likedIdeas = documents.compactMap { document -> MWIdea? in
+                        let data = document.data()
+                        guard let id = data["id"] as? String,
+                              let categoryId = data["categoryId"] as? String,
+                              let name = data["name"] as? String,
+                              let description = data["description"] as? String,
+                              let shortDescription = data["shortDescription"] as? String,
+                              let ageRestriction = data["ageRestriction"] as? Int,
+                              let venuesRecommendations = data["venuesRecommendations"] as? String,
+                              let suppliersRecommendations = data["suppliersRecommendations"] as? String,
+                              let peopleLimit = data["peopleLimit"] as? Int,
+                              let colorScheme = data["colorScheme"] as? String
+                               else {
+                            print("Invalid idea data")
+                            return nil
+                        }
+                        return MWIdea(id: id, categoryId: categoryId, name: name, description: description, shortDescription: shortDescription, ageRestriction: ageRestriction, venuesRecommendations: venuesRecommendations, suppliersRecommendations: suppliersRecommendations, peopleLimit: peopleLimit, colorScheme: colorScheme)
+                    }
+                    completion(.success(likedIdeas))
+        }
+    }
+    
     // MARK: Метод проверки есть ли поставщик услуг в избранном у покупателя
     func checkWasSupplierLikedById(customerId: String, supplierId: String, completion: @escaping (Result<Bool, Error>) -> ()) {
         let likedSuppliersRef = customersRef.document(customerId).collection("likedSuppliers")
@@ -417,6 +546,30 @@ class DatabaseService {
             
             guard let documents = snapshot?.documents else {
                 print("No favorite products found for id: \(venueId)")
+                completion(.success(false))
+                return
+            }
+            
+            // Если количество документов больше нуля, значит продукт найден в списке избранных
+            let isLiked = documents.count > 0
+            completion(.success(isLiked))
+        }
+    }
+    
+    // MARK: Метод проверки есть ли арендодатель в избранном у покупателя
+    func checkWasIdeaLikedById(customerId: String, ideaId: String, completion: @escaping (Result<Bool, Error>) -> ()) {
+        let likedIdeasRef = customersRef.document(customerId).collection("likedIdeas")
+
+        let query = likedIdeasRef.whereField("id", isEqualTo: ideaId)
+        query.getDocuments { snapshot, error in
+            if let error = error {
+                print("Error checking if idea is liked by id: \(error.localizedDescription)")
+                completion(.failure(error))
+                return
+            }
+            
+            guard let documents = snapshot?.documents else {
+                print("No favorite ideas found for id: \(ideaId)")
                 completion(.success(false))
                 return
             }
@@ -475,6 +628,51 @@ class DatabaseService {
                 completion(.failure(error))
             } else {
                 completion(.success(category))
+            }
+        }
+    }
+    
+    func setBooking(booking: MWBooking, completion: @escaping (Result<MWBooking, Error>) -> ()) {
+        bookingRef.document(booking.id).setData(booking.representation) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(booking))
+            }
+        }
+    }
+    // MARK: - Getting bookings
+    
+    // MARK: Get all bookings by performer id
+    func getBookingsByPerformerId(by performerId: String, completion: @escaping (Result<[MWBooking], Error>) -> ()) {
+        bookingRef.getDocuments { qSnap, error in
+            if let qSnap = qSnap {
+                var bookings = [MWBooking]()
+                for doc in qSnap.documents {
+                    if let booking = MWBooking(doc: doc), booking.performerId == performerId, booking.bookingStatus == "отправлена" {
+                        bookings.append(booking)
+                    }
+                }
+                completion(.success(bookings))
+            } else if let error = error {
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    // MARK: Get bookings by customer id
+    func getBookingsByCustomerid(by customerId: String, completion: @escaping (Result<[MWBooking], Error>) -> ()) {
+        bookingRef.getDocuments { qSnap, error in
+            if let qSnap = qSnap {
+                var bookings = [MWBooking]()
+                for doc in qSnap.documents {
+                    if let booking = MWBooking(doc: doc), booking.customerId == customerId {
+                        bookings.append(booking)
+                    }
+                }
+                completion(.success(bookings))
+            } else if let error = error {
+                completion(.failure(error))
             }
         }
     }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RootView: View {
-    @State var selectedTab: Tabs = .home
+    @State var selectedTab: CustomerTabs = .home
     @State private var selectedPage: TopBars = .generateIdeas
     
     @State private var presentNextView: Bool = false
@@ -36,19 +36,20 @@ struct RootView: View {
                         ExploreVenuesView(viewModel: ExploreVenuesViewModel())
                         Spacer()
                     }
-                } else if selectedTab == .star {
+                } else if selectedTab == .likedAdvertisements {
                     LikedAdvertisementsView(viewModel: LikedAdvertisementsViewModel())
                     Spacer()
-                } else if selectedTab == .message {
-                    MessageView()
+                } else if selectedTab == .likedIdeas {
+                    LikedIdeas(viewModel: LikedIdeasViewModel())
+                    Spacer()
                 } else if selectedTab == .profile {
                     CustomerProfileView()
                 }
                 
-                CustomTabBar(selectedTab: $selectedTab)
+                CustomerTabBar(selectedTab: $selectedTab)
             }
             .sheet(isPresented: $presentNextView) {
-                IdeasView(viewModel: IdeasViewModel(), chosenIdCategory: $chosenIdCategory, presentIdeaCardView: $presentIdeaCardView, chosenIdea: $chosenIdea)
+                IdeasView(viewModel: IdeasViewModel(), chosenIdCategory: $chosenIdCategory)
             }
         }
         // Скрываем системную кнопку Back
@@ -73,6 +74,6 @@ struct MessageView: View {
     }
 }
 
-#Preview {
-    CustomerProfileView()
-}
+//#Preview {
+//    CustomerProfileView()
+//}
