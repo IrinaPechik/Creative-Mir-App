@@ -14,15 +14,12 @@ struct CustomerProfileView: View {
     @State var uiImage: UIImage? = nil
     @State private var nextView: ViewStack = .signIn
     @State private var presentNextView: Bool = false
-    
     @State var user: MWUser? = nil
-//    @State var customer: MWCustomer? = nil
-    
     var body: some View {
         VStack() {
             HStack {
                 Spacer()
-                Button("Log out") {
+                Button {
                     Task {
                         do {
                             try AuthService.shared.signOut()
@@ -32,9 +29,13 @@ struct CustomerProfileView: View {
                             
                         }
                     }
+                } label: {
+                    Text("Log out")
+                        .font(customFont: .ManropeBold, size: 20)
                 }
                 .foregroundStyle(.black)
                 .padding(.trailing)
+
             }
             if let uiImage = uiImage {
                 Image(uiImage: uiImage)
@@ -77,7 +78,7 @@ struct CustomerProfileView: View {
                             Spacer()
                         }
                         .padding()
-
+                        Spacer()
                         Spacer()
                     }
                     .frame(maxWidth: .infinity)
@@ -123,8 +124,3 @@ struct CustomerProfileView: View {
         }
     }
 }
-
-//#Preview {
-////    CustomerProfileView(user: MWUser(id: "6Ij6cvVzB2acMnWAiWMinxeWQHy2", email: "irinapechik@gmail.com", name: "Irina", surname: "Pechik", birthday: "06.10.2003", residentialAddress: "Moscow, Russia", role: "customer"))
-////    CustomerProfileView(uiImage: UIImage(named: "avatar"), user: MWUser(id: "6Ij6cvVzB2acMnWAiWMinxeWQHy2", email: "irinapechik@gmail.com", name: "Irina", surname: "Pechik", birthday: "06.10.2003", residentialAddress: "Moscow, Russia", role: "customer"))
-//}

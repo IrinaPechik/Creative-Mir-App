@@ -14,6 +14,8 @@ struct VenueCard: View {
     @State var placePhotos: [UIImage] = []
     @Binding var advIndex: Int
     @State private var showBookAlert: Bool = false
+    @State var doesBookingExist: Bool = false
+    @State var showBookButton: Bool = true
 
     var body: some View {
         VStack {
@@ -75,7 +77,7 @@ struct VenueCard: View {
                     .background(.white)
                     .clipShape(RoundedRectangle(cornerRadius: 16))
                     .ignoresSafeArea(edges: .bottom)
-                    if AuthService.shared.getUserRole() == "customer" {
+                    if AuthService.shared.getUserRole() == "customer" && showBookButton && !doesBookingExist{
                         Button(action: {
                             showBookAlert = true
                         }, label: {
@@ -86,6 +88,10 @@ struct VenueCard: View {
                         .frame(width: 200, height: 50)
                         .background(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
+                    } else if doesBookingExist {
+                        Text("Booked")
+                            .font(customFont: .PlayfairDisplayMedium, size: 30)
+                            .foregroundStyle(.black)
                     }
                 }
             }
@@ -94,7 +100,7 @@ struct VenueCard: View {
         .background(Color.backgroundColor)
         .sheet(isPresented: $showBookAlert) {
             withAnimation {
-                BookField(performerId: venue.id, showBookAlert: $showBookAlert)
+                BookField(performerId: venue.id, showBookAlert: $showBookAlert, doesBookingExist: $doesBookingExist)
             }
         }
         .onAppear {
@@ -118,6 +124,14 @@ struct VenueCard: View {
                         }
                     }
                 case.failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+            DatabaseService.shared.doesBookingExists(customerId: AuthService.shared.currentUser!.uid, performerId: venue.id) { result in
+                switch result {
+                case .success(let success):
+                    doesBookingExist = success
+                case .failure(let error):
                     print(error.localizedDescription)
                 }
             }

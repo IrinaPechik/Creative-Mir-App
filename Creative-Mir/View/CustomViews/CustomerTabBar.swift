@@ -12,6 +12,7 @@ enum CustomerTabs: Int {
     case likedAdvertisements = 1
     case likedIdeas = 2
     case profile = 3
+    case bookings = 4
 }
 
 struct CustomerTabBar: View {
@@ -48,6 +49,16 @@ struct CustomerTabBar: View {
                     .frame(width: 24, height: 24)
             }
             .tint(selectedTab == .likedIdeas ? .black : .gray)
+            
+            Button {
+                selectedTab = .bookings
+            } label: {
+                Image(systemName: "list.bullet.clipboard")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 24, height: 24)
+            }
+            .tint(selectedTab == .bookings ? .black : .gray)
             
             Button {
                 selectedTab = .profile

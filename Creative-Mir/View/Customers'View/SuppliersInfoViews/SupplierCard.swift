@@ -15,6 +15,11 @@ struct SupplierCard: View {
     @Binding var advIndex: Int
     
     @State private var showBookAlert: Bool = false
+    @State var showBookButton: Bool = true
+    @State var showBookMessage: Bool = false
+    @State var bookMessage: String = ""
+    @State var bookStatus: String = ""
+    @State var doesBookingExist: Bool = false
     var body: some View {
         VStack {
             if let uiImage = uiImage {
@@ -53,46 +58,46 @@ struct SupplierCard: View {
                     }
                     .padding(.leading)
                     Spacer()
-                    ScrollView {
-                        VStack(alignment: .leading) {
-                            HStack {
-                                Text("About me:").font(customFont: .LoraRegular, size: 24)
-                                    .padding(.trailing)
-                                Text(supplier.storyAboutYourself)
-                                    .font(customFont: .OpenSansLight, size: 16)
-                                Spacer()
-                            }
-                            .padding()
-                            HStack {
-                                Text("About my\n career:").font(customFont: .LoraRegular, size: 24)
-                                    .padding(.trailing)
-                                Text(supplier.storyAboutYourself)
-                                    .font(customFont: .OpenSansLight, size: 16)
-                                Spacer()
-                            }
-                            .padding()
-                            
-                            ScrollView {
+                        ScrollView {
+                            VStack(alignment: .leading) {
                                 HStack {
-                                    Text("My work\n photos:").font(customFont: .LoraRegular, size: 24)
+                                    Text("About me:").font(customFont: .LoraRegular, size: 24)
                                         .padding(.trailing)
-                                    ForEach(photosFromWork, id: \.self) { photo in
-                                        Image(uiImage: photo)
-                                            .resizable()
-                                            .frame(width: 110, height: 110)
-                                            .aspectRatio(contentMode: .fit)
-                                            .clipShape(RoundedRectangle(cornerRadius: 20))
+                                    Text(supplier.storyAboutYourself)
+                                        .font(customFont: .OpenSansLight, size: 16)
+                                    Spacer()
+                                }
+                                .padding()
+                                HStack {
+                                    Text("About my\n career:").font(customFont: .LoraRegular, size: 24)
+                                        .padding(.trailing)
+                                    Text(supplier.storyAboutYourself)
+                                        .font(customFont: .OpenSansLight, size: 16)
+                                    Spacer()
+                                }
+                                .padding()
+                                
+                                ScrollView {
+                                    HStack {
+                                        Text("My work\n photos:").font(customFont: .LoraRegular, size: 24)
+                                            .padding(.trailing)
+                                        ForEach(photosFromWork, id: \.self) { photo in
+                                            Image(uiImage: photo)
+                                                .resizable()
+                                                .frame(width: 110, height: 110)
+                                                .aspectRatio(contentMode: .fit)
+                                                .clipShape(RoundedRectangle(cornerRadius: 20))
+                                        }
                                     }
                                 }
+                                .padding()
                             }
-                            .padding()
                         }
-                    }
-                    .frame(maxWidth: .infinity)
-                    .background(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
-                    .ignoresSafeArea(edges: .bottom)
-                    if AuthService.shared.getUserRole() == "customer" {
+                        .frame(maxWidth: .infinity)
+                        .background(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 16))
+                        .ignoresSafeArea(edges: .bottom)
+                    if AuthService.shared.getUserRole() == "customer" && showBookButton && !doesBookingExist {
                         Button(action: {
                             showBookAlert = true
                         }, label: {
@@ -103,6 +108,10 @@ struct SupplierCard: View {
                         .frame(width: 200, height: 50)
                         .background(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 20))
+                    } else if doesBookingExist {
+                        Text("Booked")
+                            .font(customFont: .PlayfairDisplayMedium, size: 30)
+                            .foregroundStyle(.black)
                     }
                 }
             }
@@ -112,7 +121,7 @@ struct SupplierCard: View {
         .background(Color.backgroundColor)
         .sheet(isPresented: $showBookAlert) {
             withAnimation {
-                BookField(performerId: supplier.id, showBookAlert: $showBookAlert)
+                BookField(performerId: supplier.id, showBookAlert: $showBookAlert, doesBookingExist: $doesBookingExist)
             }
         }
         .onAppear {
@@ -136,6 +145,14 @@ struct SupplierCard: View {
                         }
                     }
                 case.failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+            DatabaseService.shared.doesBookingExists(customerId: AuthService.shared.currentUser!.uid, performerId: supplier.id) { result in
+                switch result {
+                case .success(let success):
+                    doesBookingExist = success
+                case .failure(let error):
                     print(error.localizedDescription)
                 }
             }

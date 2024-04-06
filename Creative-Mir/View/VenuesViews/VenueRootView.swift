@@ -18,10 +18,11 @@ struct VenueRootView: View {
                     VenueProfileView()
                     Spacer()
                 } else if selectedTab == .bookingRequests {
-                    Text("booking requests")
+//                    Text("booking requests")
+                    BookingRequests(viewModel: BookingRequestsViewModel())
                     Spacer()
                 } else {
-                    Text("approved booking requests")
+                    ApprovedBookingRequests(viewModel: BookingRequestsViewModel())
                     Spacer()
                 }
                 SupplierTabBar(selectedTab: $selectedTab)

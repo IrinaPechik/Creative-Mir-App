@@ -644,12 +644,28 @@ class DatabaseService {
     // MARK: - Getting bookings
     
     // MARK: Get all bookings by performer id
-    func getBookingsByPerformerId(by performerId: String, completion: @escaping (Result<[MWBooking], Error>) -> ()) {
+    func getSentBookingsByPerformerId(by performerId: String, completion: @escaping (Result<[MWBooking], Error>) -> ()) {
         bookingRef.getDocuments { qSnap, error in
             if let qSnap = qSnap {
                 var bookings = [MWBooking]()
                 for doc in qSnap.documents {
-                    if let booking = MWBooking(doc: doc), booking.performerId == performerId, booking.bookingStatus == "отправлена" {
+                    if let booking = MWBooking(doc: doc), booking.performerId == performerId, booking.bookingStatus.lowercased() == "sent" {
+                        bookings.append(booking)
+                    }
+                }
+                completion(.success(bookings))
+            } else if let error = error {
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func getApprovedBookingsByPerformerId(by performerId: String, completion: @escaping (Result<[MWBooking], Error>) -> ()) {
+        bookingRef.getDocuments { qSnap, error in
+            if let qSnap = qSnap {
+                var bookings = [MWBooking]()
+                for doc in qSnap.documents {
+                    if let booking = MWBooking(doc: doc), booking.performerId == performerId, booking.bookingStatus.lowercased() == "approved" {
                         bookings.append(booking)
                     }
                 }
@@ -673,6 +689,51 @@ class DatabaseService {
                 completion(.success(bookings))
             } else if let error = error {
                 completion(.failure(error))
+            }
+        }
+    }
+    
+    func doesBookingExists(customerId: String, performerId: String, completion: @escaping (Result<Bool, Error>) -> ()) {
+        getBookingsByCustomerid(by: customerId) { bookRes in
+            switch bookRes {
+            case .success(let bookings):
+                for booking in bookings {
+                    if booking.performerId == performerId {
+                        completion(.success(true))
+                        return
+                    }
+                }
+                completion(.success(false))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func deleteBooking(bookingId: String, completion: @escaping (Error?) -> Void) {
+        bookingRef.document(bookingId).delete { error in
+            if let error = error {
+                completion(error)
+            } else {
+                completion(nil)
+            }
+        }
+    }
+    func updateBookingStatus(bookingId: String, newStatus: String, completion: @escaping (Error?) -> Void) {
+        let bookingRef2 = bookingRef.document(bookingId)
+
+        bookingRef2.getDocument { document, error in
+            if let document = document, document.exists {
+                bookingRef2.updateData(["bookingStatus": newStatus]) { error in
+                    if let error = error {
+                        completion(error)
+                    } else {
+                        completion(nil)
+                    }
+                }
+            } else {
+                // Document with the specified bookingId does not exist
+                completion(NSError(domain: "Firestore", code: 404, userInfo: [NSLocalizedDescriptionKey: "Booking document not found"]))
             }
         }
     }

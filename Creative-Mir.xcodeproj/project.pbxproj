@@ -62,7 +62,6 @@
 		6199C2862BBC1F410011BD4E /* MWBooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199C2852BBC1F410011BD4E /* MWBooking.swift */; };
 		6199C2882BBC5F9F0011BD4E /* BookingRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199C2872BBC5F9F0011BD4E /* BookingRequests.swift */; };
 		6199C28A2BBC60550011BD4E /* BookingRequestsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199C2892BBC60550011BD4E /* BookingRequestsViewModel.swift */; };
-		6199C28C2BBC688A0011BD4E /* BookingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199C28B2BBC688A0011BD4E /* BookingCell.swift */; };
 		61A2C8212BA36E510022ED7A /* SupplierProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A2C8202BA36E510022ED7A /* SupplierProfileView.swift */; };
 		61A2C8242BA36FC10022ED7A /* VenueProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A2C8232BA36FC10022ED7A /* VenueProfileView.swift */; };
 		61A2C8262BA377CE0022ED7A /* ExploreSuppliersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A2C8252BA377CE0022ED7A /* ExploreSuppliersView.swift */; };
@@ -121,6 +120,14 @@
 		61D7D1482B51CC5E00BA0A26 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 61D7D1462B51CC5E00BA0A26 /* OpenSans-Regular.ttf */; };
 		61D7D1492B51CC5E00BA0A26 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 61D7D1472B51CC5E00BA0A26 /* OpenSans-Light.ttf */; };
 		61DCB7A02B8DFFD800D97C7F /* letsAddYourFirstAdvertismentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DCB79F2B8DFFD800D97C7F /* letsAddYourFirstAdvertismentView.swift */; };
+		61E4C8A12BC1737C00A02741 /* CustomerBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4C8A02BC1737C00A02741 /* CustomerBookViewModel.swift */; };
+		61E4C8A32BC1808500A02741 /* CustomerBookingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4C8A22BC1808500A02741 /* CustomerBookingView.swift */; };
+		61E4C8A52BC18B9D00A02741 /* SupplierBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4C8A42BC18B9D00A02741 /* SupplierBookCell.swift */; };
+		61E4C8A92BC1B0E400A02741 /* SupplierBookCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4C8A82BC1B0E400A02741 /* SupplierBookCard.swift */; };
+		61E4C8AD2BC1BAD200A02741 /* VenueBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4C8AC2BC1BAD200A02741 /* VenueBookCell.swift */; };
+		61E4C8AF2BC1BC3800A02741 /* VenueBookCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4C8AE2BC1BC3800A02741 /* VenueBookCard.swift */; };
+		61E4C8B12BC1C0DC00A02741 /* CustomerBookingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4C8B02BC1C0DC00A02741 /* CustomerBookingCell.swift */; };
+		61E4C8B32BC1D39200A02741 /* ApprovedBookingRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4C8B22BC1D39200A02741 /* ApprovedBookingRequests.swift */; };
 		61EBFEB82B6A439300526020 /* NavigationCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBFEB72B6A439300526020 /* NavigationCustomView.swift */; };
 		61EBFEBB2B6A4E2E00526020 /* CustomNextButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBFEBA2B6A4E2E00526020 /* CustomNextButtonsView.swift */; };
 		61EBFEBD2B6A4EA000526020 /* CustomTextViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EBFEBC2B6A4EA000526020 /* CustomTextViews.swift */; };
@@ -189,7 +196,6 @@
 		6199C2852BBC1F410011BD4E /* MWBooking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MWBooking.swift; sourceTree = "<group>"; };
 		6199C2872BBC5F9F0011BD4E /* BookingRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingRequests.swift; sourceTree = "<group>"; };
 		6199C2892BBC60550011BD4E /* BookingRequestsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingRequestsViewModel.swift; sourceTree = "<group>"; };
-		6199C28B2BBC688A0011BD4E /* BookingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingCell.swift; sourceTree = "<group>"; };
 		61A2C8202BA36E510022ED7A /* SupplierProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplierProfileView.swift; sourceTree = "<group>"; };
 		61A2C8232BA36FC10022ED7A /* VenueProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueProfileView.swift; sourceTree = "<group>"; };
 		61A2C8252BA377CE0022ED7A /* ExploreSuppliersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSuppliersView.swift; sourceTree = "<group>"; };
@@ -221,6 +227,14 @@
 		61D7D1462B51CC5E00BA0A26 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		61D7D1472B51CC5E00BA0A26 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		61DCB79F2B8DFFD800D97C7F /* letsAddYourFirstAdvertismentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = letsAddYourFirstAdvertismentView.swift; sourceTree = "<group>"; };
+		61E4C8A02BC1737C00A02741 /* CustomerBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerBookViewModel.swift; sourceTree = "<group>"; };
+		61E4C8A22BC1808500A02741 /* CustomerBookingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerBookingView.swift; sourceTree = "<group>"; };
+		61E4C8A42BC18B9D00A02741 /* SupplierBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplierBookCell.swift; sourceTree = "<group>"; };
+		61E4C8A82BC1B0E400A02741 /* SupplierBookCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupplierBookCard.swift; sourceTree = "<group>"; };
+		61E4C8AC2BC1BAD200A02741 /* VenueBookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueBookCell.swift; sourceTree = "<group>"; };
+		61E4C8AE2BC1BC3800A02741 /* VenueBookCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueBookCard.swift; sourceTree = "<group>"; };
+		61E4C8B02BC1C0DC00A02741 /* CustomerBookingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerBookingCell.swift; sourceTree = "<group>"; };
+		61E4C8B22BC1D39200A02741 /* ApprovedBookingRequests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApprovedBookingRequests.swift; sourceTree = "<group>"; };
 		61EBFEB72B6A439300526020 /* NavigationCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCustomView.swift; sourceTree = "<group>"; };
 		61EBFEBA2B6A4E2E00526020 /* CustomNextButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNextButtonsView.swift; sourceTree = "<group>"; };
 		61EBFEBC2B6A4EA000526020 /* CustomTextViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextViews.swift; sourceTree = "<group>"; };
@@ -273,6 +287,10 @@
 		612C757F2B99AD3F0081E003 /* Customers'View */ = {
 			isa = PBXGroup;
 			children = (
+				61E4C8AB2BC1BABC00A02741 /* VenueBookingView */,
+				61E4C8AA2BC1BA5F00A02741 /* SupplierBookingView */,
+				61E4C8A22BC1808500A02741 /* CustomerBookingView.swift */,
+				61E4C8A02BC1737C00A02741 /* CustomerBookViewModel.swift */,
 				6199C2832BBC19580011BD4E /* BookField.swift */,
 				612C75822B99AE130081E003 /* RootView.swift */,
 				61A2C8292BA378590022ED7A /* IdeaCategoryInfoView */,
@@ -500,8 +518,10 @@
 		61A815A72B57D35B0072971A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				61E4C8B22BC1D39200A02741 /* ApprovedBookingRequests.swift */,
 				6199C2892BBC60550011BD4E /* BookingRequestsViewModel.swift */,
 				6199C2872BBC5F9F0011BD4E /* BookingRequests.swift */,
+				61E4C8B02BC1C0DC00A02741 /* CustomerBookingCell.swift */,
 				61EBFEB62B6A437000526020 /* CustomViews */,
 				61A2C8222BA36FA90022ED7A /* VenuesViews */,
 				61A2C81F2BA36E1F0022ED7A /* Suppliers Views */,
@@ -605,6 +625,24 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		61E4C8AA2BC1BA5F00A02741 /* SupplierBookingView */ = {
+			isa = PBXGroup;
+			children = (
+				61E4C8A42BC18B9D00A02741 /* SupplierBookCell.swift */,
+				61E4C8A82BC1B0E400A02741 /* SupplierBookCard.swift */,
+			);
+			path = SupplierBookingView;
+			sourceTree = "<group>";
+		};
+		61E4C8AB2BC1BABC00A02741 /* VenueBookingView */ = {
+			isa = PBXGroup;
+			children = (
+				61E4C8AC2BC1BAD200A02741 /* VenueBookCell.swift */,
+				61E4C8AE2BC1BC3800A02741 /* VenueBookCard.swift */,
+			);
+			path = VenueBookingView;
+			sourceTree = "<group>";
+		};
 		61EBFEB62B6A437000526020 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -615,7 +653,6 @@
 				612C75802B99ADEC0081E003 /* CustomerTabBar.swift */,
 				612C758B2B99EE6A0081E003 /* TopBar.swift */,
 				6199C27F2BBBF4C20011BD4E /* SupplierTabBar.swift */,
-				6199C28B2BBC688A0011BD4E /* BookingCell.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -784,13 +821,13 @@
 				617B13A92B94A1060074BE04 /* FullAddressLokupView.swift in Sources */,
 				61640C012B90803D0089E172 /* StageNameInfoView.swift in Sources */,
 				61434B4D2B8779E500370524 /* PlaceLookupView.swift in Sources */,
-				6199C28C2BBC688A0011BD4E /* BookingCell.swift in Sources */,
 				610D8F642B95C73E00C92799 /* MWUser.swift in Sources */,
 				618692B62BB9CBDA00F73B7F /* LikedIdeasViewModel.swift in Sources */,
 				6199C28A2BBC60550011BD4E /* BookingRequestsViewModel.swift in Sources */,
 				61730B732B5158E80063C9CE /* SignUpView.swift in Sources */,
 				61C626232B931DF400BBC6F0 /* MyImageError.swift in Sources */,
 				618FBEC32BA4EB49003C2275 /* LikedAdvertisementsView.swift in Sources */,
+				61E4C8B12BC1C0DC00A02741 /* CustomerBookingCell.swift in Sources */,
 				61A699382B9BAFBE0027138F /* IdeaCategoryView.swift in Sources */,
 				612C75852B99B9580081E003 /* IdeasView.swift in Sources */,
 				61C626272B93355E00BBC6F0 /* UpploadPhotoFromWork + Extension.swift in Sources */,
@@ -814,6 +851,7 @@
 				6199C2862BBC1F410011BD4E /* MWBooking.swift in Sources */,
 				61ACBAA72B8CA9FD0037EC2B /* InformationAboutSupplierView.swift in Sources */,
 				61FAA9672B5FD6E900F8BEE6 /* DatabaseService.swift in Sources */,
+				61E4C8A12BC1737C00A02741 /* CustomerBookViewModel.swift in Sources */,
 				6199C2882BBC5F9F0011BD4E /* BookingRequests.swift in Sources */,
 				61434B4F2B877B5B00370524 /* Place.swift in Sources */,
 				61730B642B51553F0063C9CE /* Creative_MirApp.swift in Sources */,
@@ -829,15 +867,19 @@
 				6199C2822BBC10AC0011BD4E /* VenueRootView.swift in Sources */,
 				612C75812B99ADEC0081E003 /* CustomerTabBar.swift in Sources */,
 				61ACBA982B8C8C960037EC2B /* PhotoPickerViewModel.swift in Sources */,
+				61E4C8A32BC1808500A02741 /* CustomerBookingView.swift in Sources */,
 				61ACBA9A2B8C8EA10037EC2B /* PhotoSourcePicker.swift in Sources */,
 				619470172BA5891C009D5F6B /* ExploreVenuesViewModel.swift in Sources */,
 				61A815AB2B57DD320072971A /* RoleChoosingView.swift in Sources */,
+				61E4C8A92BC1B0E400A02741 /* SupplierBookCard.swift in Sources */,
 				61FA4A3B2B5A68EC00551852 /* ForgotPasswordView.swift in Sources */,
+				61E4C8A52BC18B9D00A02741 /* SupplierBookCell.swift in Sources */,
 				616B71672BA22B04006B92CB /* CustomerProfileView.swift in Sources */,
 				61B7BFB72B91FDCF00AD6F6D /* ProfessionInputView.swift in Sources */,
 				617B13A52B9497950074BE04 /* AddingBuildingLocationView.swift in Sources */,
 				61A2C8242BA36FC10022ED7A /* VenueProfileView.swift in Sources */,
 				6194700F2BA58853009D5F6B /* ExploreVenuesView.swift in Sources */,
+				61E4C8AF2BC1BC3800A02741 /* VenueBookCard.swift in Sources */,
 				61640C042B90CDF20089E172 /* ProfessionalSkills.swift in Sources */,
 				611C5D7B2BA083880051BEF1 /* StorageService.swift in Sources */,
 				61C626212B931D9C00BBC6F0 /* Filemanager+Extension.swift in Sources */,
@@ -856,6 +898,8 @@
 				612C758A2B99D5320081E003 /* MWIdea.swift in Sources */,
 				61ACBA952B8C849F0037EC2B /* PhotoPickerView.swift in Sources */,
 				6160981D2B9216C700EDF358 /* UpploadPhotoFromWork.swift in Sources */,
+				61E4C8AD2BC1BAD200A02741 /* VenueBookCell.swift in Sources */,
+				61E4C8B32BC1D39200A02741 /* ApprovedBookingRequests.swift in Sources */,
 				610D8F662B96364800C92799 /* MWSupplier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

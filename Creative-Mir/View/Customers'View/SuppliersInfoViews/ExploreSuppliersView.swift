@@ -32,6 +32,7 @@ struct ExploreSuppliersView: View {
                 .frame(width: 390)
             }
         }
+        .scrollIndicators(.hidden)
         .onAppear {
             self.viewModel.getSuppliers() { res in
                 switch res {

@@ -22,7 +22,7 @@ struct SupplierRootView: View {
 //                    Text("booking requests")
                     Spacer()
                 } else {
-                    Text("approved booking requests")
+                    ApprovedBookingRequests(viewModel: BookingRequestsViewModel())
                     Spacer()
                 }
                 SupplierTabBar(selectedTab: $selectedTab)

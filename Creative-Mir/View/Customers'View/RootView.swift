@@ -44,6 +44,10 @@ struct RootView: View {
                     Spacer()
                 } else if selectedTab == .profile {
                     CustomerProfileView()
+                    Spacer()
+                } else if selectedTab == .bookings {
+                    CustomerBookingView(bookingViewModel: CustomerBookViewModel())
+                    Spacer()
                 }
                 
                 CustomerTabBar(selectedTab: $selectedTab)
