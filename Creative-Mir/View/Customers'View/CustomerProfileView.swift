@@ -15,6 +15,7 @@ struct CustomerProfileView: View {
     @State private var nextView: ViewStack = .signIn
     @State private var presentNextView: Bool = false
     @State var user: MWUser? = nil
+    @State var isEditing: Bool = false
     var body: some View {
         VStack() {
             HStack {
@@ -35,8 +36,19 @@ struct CustomerProfileView: View {
                 }
                 .foregroundStyle(.black)
                 .padding(.trailing)
-
             }
+            .padding(.bottom)
+            HStack {
+                Spacer()
+                Image(systemName: "pencil.circle")
+                    .font(.system(size: 24))
+                    .foregroundStyle(isEditing ? .black : .gray)
+                    .padding(.trailing)
+                    .onTapGesture {
+                        isEditing.toggle()
+                    }
+            }
+            
             if let uiImage = uiImage {
                 Image(uiImage: uiImage)
                     .resizable()
@@ -101,6 +113,9 @@ struct CustomerProfileView: View {
             case .signIn:
                 SignInView()
             }
+        }
+        .sheet(isPresented: $isEditing) {
+//            NameEnteringView()
         }
         .onAppear {
             DatabaseService.shared.getUser(id: AuthService.shared.currentUser!.uid) { result in
