@@ -115,7 +115,7 @@ struct CustomerProfileView: View {
             }
         }
         .sheet(isPresented: $isEditing) {
-//            NameEnteringView()
+            CustomerProfileEditing(viewModel: CustomerProfileViewModel(), isEditing: $isEditing)
         }
         .onAppear {
             DatabaseService.shared.getUser(id: AuthService.shared.currentUser!.uid) { result in

@@ -19,17 +19,29 @@ struct Place: Identifiable {
     var name: String {
         self.mapItem.name ?? ""
     }
-    
-    var address: String {
-        let placemark = self.mapItem.placemark
-        var cityAndState = ""
-        
-        cityAndState = placemark.locality ?? "" // city
-        if let country = placemark.country {
-            cityAndState = cityAndState.isEmpty ? country : "\(cityAndState), \(country)"
+    var address: String
+    {
+        get{
+            let placemark = self.mapItem.placemark
+            var cityAndState = ""
+            
+            cityAndState = placemark.locality ?? "" // city
+            if let country = placemark.country {
+                cityAndState = cityAndState.isEmpty ? country : "\(cityAndState), \(country)"
+            }
+            return cityAndState
         }
-        return cityAndState
     }
+//    var address: String {
+//        let placemark = self.mapItem.placemark
+//        var cityAndState = ""
+//        
+//        cityAndState = placemark.locality ?? "" // city
+//        if let country = placemark.country {
+//            cityAndState = cityAndState.isEmpty ? country : "\(cityAndState), \(country)"
+//        }
+//        return cityAndState
+//    }
     
     var fullAddress: String {
         let placemark = self.mapItem.placemark

@@ -46,9 +46,6 @@
 		618692B02BB9A99F00F73B7F /* VenueCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618692AF2BB9A99F00F73B7F /* VenueCard.swift */; };
 		618692B42BB9CBA200F73B7F /* LikedIdeas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618692B32BB9CBA200F73B7F /* LikedIdeas.swift */; };
 		618692B62BB9CBDA00F73B7F /* LikedIdeasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618692B52BB9CBDA00F73B7F /* LikedIdeasViewModel.swift */; };
-		618FBEBB2BA4A15B003C2275 /* Lora-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 618FBEBA2BA4A15A003C2275 /* Lora-Medium.ttf */; };
-		618FBEBD2BA4AC93003C2275 /* Manrope-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 618FBEBC2BA4AC93003C2275 /* Manrope-Medium.ttf */; };
-		618FBEBF2BA4ACA5003C2275 /* Manrope-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 618FBEBE2BA4ACA5003C2275 /* Manrope-Bold.ttf */; };
 		618FBEC12BA4CC1C003C2275 /* ExploreSuplierViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618FBEC02BA4CC1C003C2275 /* ExploreSuplierViewModel.swift */; };
 		618FBEC32BA4EB49003C2275 /* LikedAdvertisementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618FBEC22BA4EB49003C2275 /* LikedAdvertisementsView.swift */; };
 		618FBEC52BA4EBB5003C2275 /* LikedAdvertisementsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618FBEC42BA4EBB5003C2275 /* LikedAdvertisementsViewModel.swift */; };
@@ -137,6 +134,10 @@
 		61FA4A3B2B5A68EC00551852 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FA4A3A2B5A68EB00551852 /* ForgotPasswordView.swift */; };
 		61FAA9652B5FD05A00F8BEE6 /* UserEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FAA9642B5FD05A00F8BEE6 /* UserEnums.swift */; };
 		61FAA9672B5FD6E900F8BEE6 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FAA9662B5FD6E900F8BEE6 /* DatabaseService.swift */; };
+		A97E57B62BC2B0D800351948 /* Lora-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A97E57B32BC2B0D800351948 /* Lora-Medium.ttf */; };
+		A97E57B72BC2B0D800351948 /* Manrope-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A97E57B42BC2B0D800351948 /* Manrope-Bold.ttf */; };
+		A97E57B82BC2B0D800351948 /* Manrope-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A97E57B52BC2B0D800351948 /* Manrope-Medium.ttf */; };
+		A97E57BB2BC2F49900351948 /* CustomerProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A97E57BA2BC2F49900351948 /* CustomerProfileViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -181,9 +182,6 @@
 		618692AF2BB9A99F00F73B7F /* VenueCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueCard.swift; sourceTree = "<group>"; };
 		618692B32BB9CBA200F73B7F /* LikedIdeas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedIdeas.swift; sourceTree = "<group>"; };
 		618692B52BB9CBDA00F73B7F /* LikedIdeasViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedIdeasViewModel.swift; sourceTree = "<group>"; };
-		618FBEBA2BA4A15A003C2275 /* Lora-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lora-Medium.ttf"; path = "../../../../Fonts/Lora/static/Lora-Medium.ttf"; sourceTree = "<group>"; };
-		618FBEBC2BA4AC93003C2275 /* Manrope-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Manrope-Medium.ttf"; path = "../../../../Manrope/static/Manrope-Medium.ttf"; sourceTree = "<group>"; };
-		618FBEBE2BA4ACA5003C2275 /* Manrope-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Manrope-Bold.ttf"; path = "../../../../Manrope/static/Manrope-Bold.ttf"; sourceTree = "<group>"; };
 		618FBEC02BA4CC1C003C2275 /* ExploreSuplierViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreSuplierViewModel.swift; sourceTree = "<group>"; };
 		618FBEC22BA4EB49003C2275 /* LikedAdvertisementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedAdvertisementsView.swift; sourceTree = "<group>"; };
 		618FBEC42BA4EBB5003C2275 /* LikedAdvertisementsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedAdvertisementsViewModel.swift; sourceTree = "<group>"; };
@@ -245,6 +243,10 @@
 		61FA4A3A2B5A68EB00551852 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		61FAA9642B5FD05A00F8BEE6 /* UserEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEnums.swift; sourceTree = "<group>"; };
 		61FAA9662B5FD6E900F8BEE6 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		A97E57B32BC2B0D800351948 /* Lora-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lora-Medium.ttf"; path = "../../../../Lora-Medium.ttf"; sourceTree = "<group>"; };
+		A97E57B42BC2B0D800351948 /* Manrope-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Manrope-Bold.ttf"; path = "../../../../Manrope-Bold.ttf"; sourceTree = "<group>"; };
+		A97E57B52BC2B0D800351948 /* Manrope-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Manrope-Medium.ttf"; path = "../../../../Manrope-Medium.ttf"; sourceTree = "<group>"; };
+		A97E57BA2BC2F49900351948 /* CustomerProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerProfileViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +291,7 @@
 		612C757F2B99AD3F0081E003 /* Customers'View */ = {
 			isa = PBXGroup;
 			children = (
+				A97E57B92BC2F44600351948 /* CustomerProfile */,
 				61E4C8AB2BC1BABC00A02741 /* VenueBookingView */,
 				61E4C8AA2BC1BA5F00A02741 /* SupplierBookingView */,
 				61E4C8A22BC1808500A02741 /* CustomerBookingView.swift */,
@@ -299,8 +302,6 @@
 				61A2C8282BA3783F0022ED7A /* IdeasInfoView */,
 				61A2C8272BA378250022ED7A /* SuppliersInfoViews */,
 				6194700D2BA587CD009D5F6B /* VenuesInfoView */,
-				616B71662BA22B04006B92CB /* CustomerProfileView.swift */,
-				61E4C8B42BC1E24B00A02741 /* CustomerProfileEditing.swift */,
 				618FBEC22BA4EB49003C2275 /* LikedAdvertisementsView.swift */,
 				618692B32BB9CBA200F73B7F /* LikedIdeas.swift */,
 			);
@@ -614,9 +615,9 @@
 		61D7D1402B51C08000BA0A26 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				618FBEBE2BA4ACA5003C2275 /* Manrope-Bold.ttf */,
-				618FBEBC2BA4AC93003C2275 /* Manrope-Medium.ttf */,
-				618FBEBA2BA4A15A003C2275 /* Lora-Medium.ttf */,
+				A97E57B32BC2B0D800351948 /* Lora-Medium.ttf */,
+				A97E57B42BC2B0D800351948 /* Manrope-Bold.ttf */,
+				A97E57B52BC2B0D800351948 /* Manrope-Medium.ttf */,
 				616B4A032B6938E1006EB65E /* Marcellus-Regular.ttf */,
 				616B4A012B6930CF006EB65E /* Lora-Regular.ttf */,
 				61D7D1472B51CC5E00BA0A26 /* OpenSans-Light.ttf */,
@@ -699,6 +700,16 @@
 				61C626242B931E4300BBC6F0 /* MyImage.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		A97E57B92BC2F44600351948 /* CustomerProfile */ = {
+			isa = PBXGroup;
+			children = (
+				61E4C8B42BC1E24B00A02741 /* CustomerProfileEditing.swift */,
+				616B71662BA22B04006B92CB /* CustomerProfileView.swift */,
+				A97E57BA2BC2F49900351948 /* CustomerProfileViewModel.swift */,
+			);
+			path = CustomerProfile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -797,14 +808,14 @@
 				616B4A042B6938E1006EB65E /* Marcellus-Regular.ttf in Resources */,
 				616B4A022B6930CF006EB65E /* Lora-Regular.ttf in Resources */,
 				61D7D1482B51CC5E00BA0A26 /* OpenSans-Regular.ttf in Resources */,
-				618FBEBF2BA4ACA5003C2275 /* Manrope-Bold.ttf in Resources */,
 				61D7D1452B51CAA900BA0A26 /* Futura-pt-light.ttf in Resources */,
-				618FBEBB2BA4A15B003C2275 /* Lora-Medium.ttf in Resources */,
+				A97E57B62BC2B0D800351948 /* Lora-Medium.ttf in Resources */,
+				A97E57B82BC2B0D800351948 /* Manrope-Medium.ttf in Resources */,
 				61730B6C2B5155430063C9CE /* Preview Assets.xcassets in Resources */,
-				618FBEBD2BA4AC93003C2275 /* Manrope-Medium.ttf in Resources */,
 				61D7D1422B51C0C500BA0A26 /* PlayfairDisplay-Medium.ttf in Resources */,
 				61730B682B5155430063C9CE /* Assets.xcassets in Resources */,
 				61A815AD2B57EC1F0072971A /* GoogleService-Info.plist in Resources */,
+				A97E57B72BC2B0D800351948 /* Manrope-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -884,6 +895,7 @@
 				6194700F2BA58853009D5F6B /* ExploreVenuesView.swift in Sources */,
 				61E4C8AF2BC1BC3800A02741 /* VenueBookCard.swift in Sources */,
 				61E4C8B52BC1E24B00A02741 /* CustomerProfileEditing.swift in Sources */,
+				A97E57BB2BC2F49900351948 /* CustomerProfileViewModel.swift in Sources */,
 				61640C042B90CDF20089E172 /* ProfessionalSkills.swift in Sources */,
 				611C5D7B2BA083880051BEF1 /* StorageService.swift in Sources */,
 				61C626212B931D9C00BBC6F0 /* Filemanager+Extension.swift in Sources */,

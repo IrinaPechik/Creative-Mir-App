@@ -42,7 +42,7 @@ class AuthService {
             }
         }
     }
-    
+     
     
     // MARK: Sign in method
     func signIn(email: String, password: String, completion: @escaping(Result<User, Error>) -> Void) {
@@ -379,6 +379,51 @@ class AuthService {
         }
         return "placeDescription"
     }
+    func updateEmail(newEmail: String, completion: @escaping (Error?) -> Void) {
+        guard let user = currentUser else {
+            completion(NSError(domain: "AuthService", code: 401, userInfo: [NSLocalizedDescriptionKey: "User is not authenticated"]))
+            return
+        }
+        // Повторная аутентификация пользователя
+        let credential = EmailAuthProvider.credential(withEmail: (currentUser?.email)!, password: AuthService.shared.getPasswordFromKeyChain())
+
+        user.reauthenticate(with: credential) { authResult, error in
+            if let error = error {
+                completion(error)
+                return
+            }
+            
+            // После успешной повторной аутентификации, обновляем email
+            user.updateEmail(to: newEmail) { error in
+                if let error = error {
+                    completion(error)
+                } else {
+                    completion(nil)
+                }
+            }
+        }
+    }
+
+//    func updateEmail(newEmail: String, completion: @escaping (Error?) -> Void) {
+//            guard let user = currentUser else {
+//                completion(NSError(domain: "AuthService", code: 401, userInfo: [NSLocalizedDescriptionKey: "User is not authenticated"]))
+//                return
+//            }
+//            user.sendEmailVerification(beforeUpdatingEmail: newEmail) { error in
+//                if let error = error {
+//                    completion(error)
+//                } else {
+//                    // После успешной отправки подтверждения по электронной почте, обновляем email
+//                    user.updateEmail(to: newEmail) { error in
+//                        if let error = error {
+//                            completion(error)
+//                        } else {
+//                            completion(nil)
+//                        }
+//                    }
+//                }
+//            }
+//        }
     
 //    // MARK: Save and get to/from userDefaults venue's photos from work.
 //    func saveVenuePhotosOfThePlace(photosOfThePlaceJpeg: [Data?]) {
