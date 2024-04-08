@@ -40,6 +40,8 @@ struct VenueCard: View {
                                 }
                                 Text(user.email)
                                     .font(customFont: .LoraRegular, size: 18)
+                                Text(venue.advertisements[advIndex].locationAddress)
+                                    .font(customFont: .LoraRegular, size: 18)
                             }
                             Spacer()
                         }

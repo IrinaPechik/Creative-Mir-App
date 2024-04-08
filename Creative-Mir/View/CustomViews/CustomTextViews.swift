@@ -44,3 +44,25 @@ struct customTextView2: View {
         .padding()
     }
 }
+
+struct customTextView3: View {
+    @Binding var name: String?
+    var placeholderName: String
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text(placeholderName).font(.custom("Marcellus-Regular", size: 15))
+            TextField("", text: Binding(
+                get: { self.name ?? "" },
+                set: { self.name = $0 }
+            ))
+                .font(.custom("Lora-Regular", size: 18))
+                .frame(height: 25) // Высота текстового поля
+                .overlay(
+                    Rectangle().frame(height: 1),
+                    alignment: .bottomLeading) // Нижняя линия
+                .foregroundColor(.black) // Цвет текста
+        }
+        .frame(width: 320) // Ширина текстового поля
+        .padding()
+    }
+}

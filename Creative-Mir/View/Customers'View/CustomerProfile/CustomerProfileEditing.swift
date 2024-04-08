@@ -16,7 +16,7 @@ protocol CustomerProfileViewModelling: ObservableObject {
     var currentUserAddress: String {get set}
     var avatarImage: UIImage {get set}
     var returnedPlace: Place {get set}
-    func changeCustomerInfo()
+    func changeCustomerInfo(completion: @escaping (Result<MWUser, Error>) -> ())
 }
 
 struct CustomerProfileEditing<ViewModel: CustomerProfileViewModelling>: View {
@@ -24,7 +24,7 @@ struct CustomerProfileEditing<ViewModel: CustomerProfileViewModelling>: View {
 
     @State private var isEmailValid = true
     @Binding var isEditing: Bool
-//    @State var returnedPlace = Place(mapItem: MKMapItem())
+    @Binding var user: MWUser?
     
     let startDate = Calendar.current.date(from: DateComponents(year: 1900, month: 1, day: 1)) ?? Date()
     let endDate = Calendar.current.date(from: DateComponents(year: Calendar.current.component(.year, from: Date()) - 14, month: 12, day: 31)) ?? Date()
@@ -59,7 +59,6 @@ struct CustomerProfileEditing<ViewModel: CustomerProfileViewModelling>: View {
                             Form {
                                 Section {
                                     customEmailTextView(email: $viewModel.email, isEmailValid: $isEmailValid, placeholderName: "Email")
-//                                    customTextView(name: $viewModel.email, placeholderName: "Email")
                                 }
                             }
                         }
@@ -68,7 +67,6 @@ struct CustomerProfileEditing<ViewModel: CustomerProfileViewModelling>: View {
                         }
                     } header: {
                         Text("email")
-//                            .foregroundStyle(!isEmailValid ? .red :.white)
                     }
                     .listRowBackground(!isEmailValid ? Color.red.opacity(0.2) : Color.white)
                     
@@ -89,7 +87,14 @@ struct CustomerProfileEditing<ViewModel: CustomerProfileViewModelling>: View {
                     }
                 }
                 NextButtonViewSecond(buttonText: "Save", isDisabled: !isEmailValid) {
-                    viewModel.changeCustomerInfo()
+                    viewModel.changeCustomerInfo { res in
+                        switch res {
+                        case .success(let success):
+                            user = success
+                        case .failure(let failure):
+                            print(failure.localizedDescription)
+                        }
+                    }
                     isEditing = false
                 }
             }

@@ -81,6 +81,16 @@ class DatabaseService {
         }
     }
     
+    func setSupplierWithoutImages(supplier: MWSupplier, completion: @escaping (Result<MWSupplier, Error>) -> ()) {
+        suppliersRef.document(supplier.id).setData(supplier.representation) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(supplier))
+            }
+        }
+    }
+    
     func setVenue(venue: MWVenue, images: [Data],  completion: @escaping (Result<MWVenue, Error>) -> ()) {
         venuesRef.document(venue.id).setData(venue.representation) { error in
             if let error = error {
@@ -95,6 +105,16 @@ class DatabaseService {
                         print("error \(error)")
                     }
                 }
+            }
+        }
+    }
+    
+    func setVenueWithoutImages(venue: MWVenue, completion: @escaping (Result<MWVenue, Error>) -> ()) {
+        venuesRef.document(venue.id).setData(venue.representation) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(venue))
             }
         }
     }

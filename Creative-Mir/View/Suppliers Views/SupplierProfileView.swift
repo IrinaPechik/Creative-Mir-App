@@ -17,6 +17,7 @@ struct SupplierProfileView: View {
     @State var user: MWUser = MWUser(id: "id", email: "email", name: "name", surname: "surname", birthday: "birthday", residentialAddress: "residentialAddress", role: "residentialAddress")
     @State var supplier: MWSupplier = MWSupplier(id: "id")
     @State private var isLoading = true
+    @State var isEditing: Bool = false
 
     var body: some View {
         VStack {
@@ -42,6 +43,18 @@ struct SupplierProfileView: View {
                     .padding(.trailing)
                 }
                 .background(Color.backgroundColor)
+                HStack {
+                    Spacer()
+                    Image(systemName: "pencil.circle")
+                        .font(.system(size: 24))
+                        .foregroundStyle(isEditing ? .black : .gray)
+                        .padding(.trailing)
+                        .onTapGesture {
+                            isEditing.toggle()
+                        }
+                }
+                .background(Color.backgroundColor)
+
                 SupplierCard(supplier: $supplier, user: $user, advIndex: .constant(0))
             }
         }
@@ -50,6 +63,9 @@ struct SupplierProfileView: View {
             case .signIn:
                 SignInView()
             }
+        }
+        .sheet(isPresented: $isEditing) {
+            SupplierProfileEditing(viewModel: SupplierProfileViewModel(), user: $user, supplier: $supplier, isEditing: $isEditing)
         }
         .onAppear {
             print(AuthService.shared.currentUser?.uid  ?? "id")

@@ -19,7 +19,7 @@ struct AddingBuildingLocationView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
-                Text("Add your first\n     location")
+                Text("Add your\n   location")
                     .font(.custom("Lora-Regular", size: 32))
                     .padding(.bottom, 40)
                 

@@ -17,6 +17,7 @@ struct VenueProfileView: View {
     @State var user: MWUser = MWUser(id: "id", email: "email", name: "name", surname: "surname", birthday: "birthday", residentialAddress: "residentialAddress", role: "residentialAddress")
     @State var venue: MWVenue = MWVenue(id: "id")
     @State private var isLoading = true
+    @State var isEditing: Bool = false
     
     var body: some View {
         VStack {
@@ -42,6 +43,17 @@ struct VenueProfileView: View {
                     .padding(.trailing)
                 }
                 .background(Color.backgroundColor)
+                HStack {
+                    Spacer()
+                    Image(systemName: "pencil.circle")
+                        .font(.system(size: 24))
+                        .foregroundStyle(isEditing ? .black : .gray)
+                        .padding(.trailing)
+                        .onTapGesture {
+                            isEditing.toggle()
+                        }
+                }
+                .background(Color.backgroundColor)
                 VenueCard(venue: $venue, user: $user, advIndex: .constant(0))
             }
         }
@@ -50,6 +62,9 @@ struct VenueProfileView: View {
             case .signIn:
                 SignInView()
             }
+        }
+        .sheet(isPresented: $isEditing) {
+            VenueProfileEditing(viewModel: VenueProfileViewModel(), user: $user, venue: $venue, isEditing: $isEditing)
         }
         .onAppear {
             print(AuthService.shared.currentUser?.uid  ?? "id")

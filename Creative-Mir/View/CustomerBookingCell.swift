@@ -16,16 +16,16 @@ struct CustomerBookingCell: View {
         VStack(alignment: .leading) {
             if let uiImage = uiImage {
                 VStack(alignment: .leading) {
-                    HStack {
+                    HStack(alignment: .center) {
                         Image(uiImage: uiImage)
                             .resizable()
                             .frame(width: 92, height: 92)
                             .aspectRatio(contentMode: .fit)
                             .clipShape(RoundedRectangle(cornerRadius: 20))
-                        VStack(alignment: .leading) {
-                            HStack {
-                                Text("\(user.name) \(user.surname)")
-                                    .font(customFont: .PlayfairDisplayMedium, size: 30)
+                        VStack(alignment: .leading, spacing: 0) {
+                            HStack(alignment: .firstTextBaseline) {
+                                Text("\(user.name)")
+                                    .font(customFont: .PlayfairDisplayMedium, size: 25)
                                 Spacer()
                                 if booking.bookingStatus.lowercased() == "sent" {
                                     ZStack {
@@ -62,12 +62,14 @@ struct CustomerBookingCell: View {
                                     }
                                 }
                             }
-                            
+                            Text("\(user.surname)")
+                                .font(customFont: .PlayfairDisplayMedium, size: 25)
+                            Spacer()
                             Text(user.email)
-                                .font(customFont: .LoraMedium, size: 18)
+                                .font(customFont: .LoraMedium, size: 15)
                                 .opacity(0.5)
                             Text(user.residentialAddress)
-                                .font(customFont: .LoraMedium, size: 18)
+                                .font(customFont: .LoraMedium, size: 15)
                                 .opacity(0.5)
                         }
                     }

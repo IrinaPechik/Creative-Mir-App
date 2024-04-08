@@ -11,6 +11,7 @@ import SwiftUI
 import MapKit
 
 class CustomerProfileViewModel: CustomerProfileViewModelling {
+    
     @Published var surname: String = ""
     
     @Published var email: String = ""
@@ -64,7 +65,7 @@ class CustomerProfileViewModel: CustomerProfileViewModelling {
     }
     
 
-    func changeCustomerInfo() {
+    func changeCustomerInfo(completion: @escaping (Result<MWUser, Error>) -> ()){
         if !returnedPlace.address.isEmpty {
             currentUserAddress = returnedPlace.address
         }
@@ -74,10 +75,13 @@ class CustomerProfileViewModel: CustomerProfileViewModelling {
             switch result {
             case .success(let user):
                 print(user.name)
+                completion(.success(user))
             case .failure(let failure):
                 print(failure.localizedDescription)
+                completion(.failure(failure))
             }
         }
+        
 //        AuthService.shared.updateEmail(newEmail: user.email) { error in
 //            if let error = error {
 //                print("Ошибка при обновлении email: \(error.localizedDescription)")

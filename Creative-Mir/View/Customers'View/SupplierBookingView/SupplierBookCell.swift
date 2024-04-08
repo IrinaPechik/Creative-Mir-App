@@ -125,7 +125,7 @@ struct SupplierBookCell: View {
         }
     }
 }
-//
+
 //#Preview {
 //    SupplierBookCell(bookingViewModel: CustomerBookViewModel(), supplier: MWSupplier(id: "6Ij6cvVzB2acMnWAiWMinxeWQHy2"))
 //}
