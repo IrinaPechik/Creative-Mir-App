@@ -9,10 +9,14 @@ import SwiftUI
 
 struct CustomerBookingView: View {
     @StateObject var bookingViewModel: CustomerBookViewModel
-
+    @State var isLoading: Bool = true
     var body: some View {
         VStack {
-            if bookingViewModel.suppliersBookings.isEmpty && bookingViewModel.venuesBookings.isEmpty  {
+            if isLoading {
+                Spacer()
+                ProgressView()
+                Spacer()
+            } else if bookingViewModel.suppliersBookings.isEmpty && bookingViewModel.venuesBookings.isEmpty  {
                 Spacer()
                 Text("You dont have bookings")
                     .font(.custom("Manrope-Bold", size: 25))
@@ -23,7 +27,6 @@ struct CustomerBookingView: View {
                     .padding()
                 List {
                     ForEach(bookingViewModel.suppliersBookings, id: \.id) { booking in
-//                        CustomerBookCell(booking: booking, role: "supplier", bookingViewModel: CustomerBookViewModel())
                         SupplierBookCell(booking: booking)
                             .padding()
                             .shadow(color: Color(uiColor: UIColor(red: 0/255, green: 12/255, blue: 75/255, alpha: 0.06)),radius: 8, x: 0, y: 6)
@@ -73,6 +76,9 @@ struct CustomerBookingView: View {
         }
         .onAppear {
             self.bookingViewModel.getCustomerBookings(customerId: AuthService.shared.currentUser!.uid)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                isLoading = false
+            }
         }
     }
 }

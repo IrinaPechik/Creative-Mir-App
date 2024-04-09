@@ -14,10 +14,15 @@ struct VenueBookCell: View {
     @State var advIndex: Int = 0
     @State var uiImage: UIImage? = nil
     @State var presentVenueInfo: Bool = false
-    
+    @State var isLoading: Bool = true
+
     var body: some View {
         VStack(alignment: .leading) {
-            if let uiImage = uiImage {
+            if isLoading {
+                Spacer()
+                ProgressView()
+                Spacer()
+            } else if let uiImage = uiImage {
                 HStack {
                     Image(uiImage: uiImage)
                         .resizable()
@@ -26,6 +31,7 @@ struct VenueBookCell: View {
                         .clipShape(RoundedRectangle(cornerRadius: 20))
                     VStack(alignment: .leading) {
                         Text(venue.advertisements[advIndex].locationName)
+                            .font(.custom("Manrope-Bold", size: 20))
                         if venue.advertisements[advIndex].legalStatus == "company" {
                             Text("\(venue.advertisements[advIndex].companyName!), \(venue.advertisements[advIndex].companyPosition!)")
                                 .font(.custom("Manrope-Bold", size: 16))
@@ -107,13 +113,16 @@ struct VenueBookCell: View {
                     print(error.localizedDescription)
                 }
             }
-            DatabaseService.shared.getUser(id: venue.id) { result in
+            DatabaseService.shared.getUser(id: booking.performerId) { result in
                 switch result {
                 case .success(let user):
                     self.user = user
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                isLoading = false
             }
         }
     }

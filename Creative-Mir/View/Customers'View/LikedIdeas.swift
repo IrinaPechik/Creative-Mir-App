@@ -13,10 +13,15 @@ struct LikedIdeas: View {
     @State private var showIdeasEmpty: Bool = true
     // Определяем структуру сетки для двух колонок
     var gridLayout: [GridItem] = Array(repeating: .init(.flexible(), spacing: 15), count: 2)
-    
+    @State var isLoading: Bool = true
+
     var body: some View {
         VStack(alignment: .leading) {
-            if showIdeasEmpty {
+            if isLoading {
+                Spacer()
+                ProgressView()
+                Spacer()
+            } else if showIdeasEmpty {
                 Spacer()
                 Text("You don't have any favorite ideas yet 😓")
                     .font(.custom("Manrope-Bold", size: 25))
@@ -42,6 +47,9 @@ struct LikedIdeas: View {
                 case .failure(_):
                     showIdeasEmpty = true
                 }
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                isLoading = false
             }
         }
     }

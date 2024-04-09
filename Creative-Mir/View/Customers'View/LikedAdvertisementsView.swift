@@ -12,10 +12,15 @@ struct LikedAdvertisementsView: View {
     
     @State private var showSuppliersEmpty: Bool = true
     @State private var showVenuesEmpty: Bool = true
+    @State var isLoading: Bool = true
 
     var body: some View {
         VStack(alignment: .leading) {
-            if showSuppliersEmpty && showVenuesEmpty {
+            if isLoading {
+                Spacer()
+                ProgressView()
+                Spacer()
+            } else if showSuppliersEmpty && showVenuesEmpty {
                 Spacer()
                 Text("You don't have any favorite advertisements yet 😓")
                     .font(.custom("Manrope-Bold", size: 25))
@@ -53,6 +58,9 @@ struct LikedAdvertisementsView: View {
                 case .failure(_):
                     showVenuesEmpty = true
                 }
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                isLoading = false
             }
         }
     }

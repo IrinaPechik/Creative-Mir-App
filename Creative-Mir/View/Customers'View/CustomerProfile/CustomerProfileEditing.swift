@@ -32,23 +32,32 @@ struct CustomerProfileEditing<ViewModel: CustomerProfileViewModelling>: View {
     var body: some View {
         NavigationStack {
             VStack {
+                Spacer()
                 Text("Edit your personal data")
                     .font(customFont: .PlayfairDisplayMedium, size: 24)
                 Form {
                     Section {
                         NavigationLink {
-                            Text("Enter your name and surname")
-                                .font(customFont: .PlayfairDisplayMedium, size: 24)
-                            Form {
-                                Section {
-                                    customTextView(name: $viewModel.name, placeholderName: "Name")
+                            VStack {
+                                Text("Change your name and surname")
+                                    .font(customFont: .PlayfairDisplayMedium, size: 24)
+                                Form {
+                                    Section {
+                                        customTextView(name: $viewModel.name, placeholderName: "Name")
+                                    }
+                                    Section {
+                                        customTextView(name: $viewModel.surname, placeholderName: "Surname")
+                                    }
                                 }
-                                Section {
-                                    customTextView(name: $viewModel.surname, placeholderName: "Surname")
+                            }
+                            .navigationBarBackButtonHidden(true)
+                            .toolbar {
+                                ToolbarItem(placement: .topBarLeading) {
+                                    customBackButton()
                                 }
                             }
                         } label: {
-                            Label("\(viewModel.name) \(viewModel.surname)", systemImage: "timer")
+                            Label("\(viewModel.name) \(viewModel.surname)", systemImage: "person")
                         }
                     } header: {
                         Text("Name and surname")
@@ -56,14 +65,24 @@ struct CustomerProfileEditing<ViewModel: CustomerProfileViewModelling>: View {
 
                     Section{
                         NavigationLink {
-                            Form {
-                                Section {
-                                    customEmailTextView(email: $viewModel.email, isEmailValid: $isEmailValid, placeholderName: "Email")
+                            VStack {
+                                Text("Change your email")
+                                    .font(customFont: .PlayfairDisplayMedium, size: 24)
+                                Form {
+                                    Section {
+                                        customEmailTextView(email: $viewModel.email, isEmailValid: $isEmailValid, placeholderName: "Email")
+                                    }
+                                }
+                            }        // Скрываем системную кнопку Back
+                            .navigationBarBackButtonHidden(true)
+                            .toolbar {
+                                ToolbarItem(placement: .topBarLeading) {
+                                    customBackButton()
                                 }
                             }
                         }
                         label: {
-                            Label("\(viewModel.email)", systemImage: "timer")
+                            Label("\(viewModel.email)", systemImage: "envelope")
                         }
                     } header: {
                         Text("email")
@@ -74,6 +93,12 @@ struct CustomerProfileEditing<ViewModel: CustomerProfileViewModelling>: View {
                     Section {
                         NavigationLink("\(viewModel.returnedPlace.address.isEmpty ? viewModel.currentUserAddress : viewModel.returnedPlace.address)") {
                             PlaceLookupView(returnedPlace: $viewModel.returnedPlace).environmentObject(LocationManager())
+                                .navigationBarBackButtonHidden(true)
+                                .toolbar {
+                                    ToolbarItem(placement: .topBarLeading) {
+                                        customBackButton()
+                                    }
+                                }
                         }
                     } header: {
                         Text("Location address")

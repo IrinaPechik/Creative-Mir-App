@@ -14,10 +14,15 @@ struct SupplierBookCell: View {
     @State var advIndex: Int = 0
     @State var uiImage: UIImage? = nil
     @State var presentSupplierInfo: Bool = false
+    @State var isLoading: Bool = true
 
     var body: some View {
         VStack(alignment: .leading) {
-            if let uiImage = uiImage {
+            if isLoading {
+                Spacer()
+                ProgressView()
+                Spacer()
+            } else if let uiImage = uiImage {
                 HStack {
                     Image(uiImage: uiImage)
                         .resizable()
@@ -121,6 +126,9 @@ struct SupplierBookCell: View {
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                isLoading = false
             }
         }
     }

@@ -100,8 +100,10 @@ struct CustomerProfileView: View {
                 }
                 
             } else {
+                Spacer()
                 ProgressView()
                     .scaleEffect(1.5)
+                Spacer()
             }
         }
         .frame(maxWidth: .infinity)

@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import MapKit
 
-// TODO: CHANGE
+
 class VenueProfileViewModel: VenueProfileViewModelling {
    @Published var name: String = ""
    @Published var surname: String = ""

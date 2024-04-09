@@ -31,7 +31,7 @@ struct VenueCell: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 20))
                             VStack(alignment: .leading) {
                                 Text(venue.advertisements[advIndex].locationName)
-                                    
+                                    .font(.custom("Manrope-Bold", size: 20))
                                 if venue.advertisements[advIndex].legalStatus == "company" {
                                     Text("\(venue.advertisements[advIndex].companyName!), \(venue.advertisements[advIndex].companyPosition!)")
                                         .font(.custom("Manrope-Bold", size: 16))

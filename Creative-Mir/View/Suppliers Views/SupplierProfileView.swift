@@ -20,41 +20,42 @@ struct SupplierProfileView: View {
     @State var isEditing: Bool = false
 
     var body: some View {
-        VStack {
+        HStack {
             if isLoading {
                 Spacer()
                 ProgressView()
                 Spacer()
             } else {
-                HStack {
-                    Spacer()
-                    Button("Log out") {
-                        Task {
-                            do {
-                                try AuthService.shared.signOut()
-                                presentNextView.toggle()
-                                nextView = .signIn
-                            } catch {
-                                
+                VStack {
+                    HStack {
+                        Spacer()
+                        Button("Log out") {
+                            Task {
+                                do {
+                                    try AuthService.shared.signOut()
+                                    presentNextView.toggle()
+                                    nextView = .signIn
+                                } catch {
+                                    
+                                }
                             }
                         }
-                    }
-                    .foregroundStyle(.black)
-                    .padding(.trailing)
-                }
-                .background(Color.backgroundColor)
-                HStack {
-                    Spacer()
-                    Image(systemName: "pencil.circle")
-                        .font(.system(size: 24))
-                        .foregroundStyle(isEditing ? .black : .gray)
+                        .foregroundStyle(.black)
                         .padding(.trailing)
-                        .onTapGesture {
-                            isEditing.toggle()
-                        }
+                    }
+                    .background(Color.backgroundColor)
+                    HStack {
+                        Spacer()
+                        Image(systemName: "pencil.circle")
+                            .font(.system(size: 24))
+                            .foregroundStyle(isEditing ? .black : .gray)
+                            .padding(.trailing)
+                            .onTapGesture {
+                                isEditing.toggle()
+                            }
+                    }
+                    .background(Color.backgroundColor)
                 }
-                .background(Color.backgroundColor)
-
                 SupplierCard(supplier: $supplier, user: $user, advIndex: .constant(0))
             }
         }

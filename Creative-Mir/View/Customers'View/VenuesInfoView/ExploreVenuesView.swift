@@ -10,10 +10,15 @@ import SwiftUI
 struct ExploreVenuesView: View {
     @StateObject var viewModel: ExploreVenuesViewModel
     @State private var showEmptyError: Bool = false
+    @State var isLoading: Bool = true
 
     var body: some View {
         VStack(alignment: .leading) {
-            if showEmptyError {
+            if isLoading {
+                Spacer()
+                ProgressView()
+                Spacer()
+            } else if showEmptyError {
                 Text("There are no registered venues yet 😓")
                     .font(.custom("Manrope-Bold", size: 27))
                     .frame(width: 320)
@@ -41,6 +46,9 @@ struct ExploreVenuesView: View {
                 case .failure(_):
                     showEmptyError = true
                 }
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                isLoading = false
             }
         }
     }
