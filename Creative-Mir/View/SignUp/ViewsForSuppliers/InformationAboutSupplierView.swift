@@ -44,7 +44,7 @@ struct InformationAboutSupplierView: View {
                 customBackButton()
             }
             ToolbarItem(placement: .topBarTrailing) {
-                PageCounter(currentCounter: 1, allPagesCount: 7)
+                PageCounter(currentCounter: 1, allPagesCount: 5)
             }
         }
         .onTapGesture {

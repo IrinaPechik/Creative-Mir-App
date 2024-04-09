@@ -58,11 +58,11 @@ struct RootView: View {
         }
         // Скрываем системную кнопку Back
         .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                customBackButton()
-            }
-        }
+//        .toolbar {
+//            ToolbarItem(placement: .topBarLeading) {
+//                customBackButton()
+//            }
+//        }
     }
 }
 

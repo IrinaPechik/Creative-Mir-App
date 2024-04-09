@@ -113,7 +113,7 @@ struct LegalUserInfoView: View {
                 customBackButton()
             }
             ToolbarItem(placement: .topBarTrailing) {
-                PageCounter(currentCounter: 3, allPagesCount: 7)
+                PageCounter(currentCounter: 3, allPagesCount: 5)
             }
         }
 

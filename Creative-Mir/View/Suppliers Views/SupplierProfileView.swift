@@ -20,7 +20,7 @@ struct SupplierProfileView: View {
     @State var isEditing: Bool = false
 
     var body: some View {
-        HStack {
+        VStack {
             if isLoading {
                 Spacer()
                 ProgressView()
@@ -33,6 +33,19 @@ struct SupplierProfileView: View {
                             Task {
                                 do {
                                     try AuthService.shared.signOut()
+                                    
+                                    if let bundleIdentifier = Bundle.main.bundleIdentifier {
+                                        UserDefaults.standard.removePersistentDomain(forName: bundleIdentifier)
+                                    }
+                        
+                        
+                                    let defaults = UserDefaults.standard
+                                    let dictionary = defaults.dictionaryRepresentation()
+                        
+                                    dictionary.keys.forEach { key in
+                                        defaults.removeObject(forKey: key)
+                                    }
+                                    
                                     presentNextView.toggle()
                                     nextView = .signIn
                                 } catch {
@@ -71,30 +84,15 @@ struct SupplierProfileView: View {
         .onAppear {
             print(AuthService.shared.currentUser?.uid  ?? "id")
             
-            DatabaseService.shared.getUser(id: AuthService.shared.currentUser?.uid ?? "id") { result in
+            DatabaseService.shared.getUser(id: AuthService.shared.currentUser!.uid) { result in
                 switch result {
                 case .success(let user):
                     self.user = user
-                    DatabaseService.shared.getSupplier(id: AuthService.shared.currentUser?.uid ?? "id") { result in
+                    DatabaseService.shared.getSupplier(id: AuthService.shared.currentUser!.uid) { result in
                         switch result {
                         case .success(let supplier):
                             self.supplier = supplier
                             isLoading = false
-
-//                            StorageService.shared.downloadSuppliersPhotoFromWorkImages(id: AuthService.shared.currentUser?.uid ?? "id", completion: {
-//                                result in
-//                                switch result {
-//                                case .success(let data):
-//                                    for d in data {
-//                                        if let img = UIImage(data: d) {
-//                                            uiImages.append(img)
-//                                        }
-//                                    }
-//                                    isLoading = false
-//                                case.failure(let error):
-//                                    print(error.localizedDescription)
-//                                }
-//                            })
                         case .failure(let error):
                             print(error.localizedDescription)
                         }

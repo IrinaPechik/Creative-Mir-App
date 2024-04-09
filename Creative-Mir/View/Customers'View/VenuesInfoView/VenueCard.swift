@@ -59,18 +59,21 @@ struct VenueCard: View {
                             }
                             .padding()
                             
-                            ScrollView {
-                                HStack {
-                                    Text("Place\nphotos:").font(customFont: .LoraRegular, size: 24)
-                                        .padding(.trailing)
-                                    ForEach(placePhotos, id: \.self) { photo in
-                                        Image(uiImage: photo)
-                                            .resizable()
-                                            .frame(width: 110, height: 110)
-                                            .aspectRatio(contentMode: .fit)
-                                            .clipShape(RoundedRectangle(cornerRadius: 20))
+                            HStack {
+                                Text("Place\nphotos:").font(customFont: .LoraRegular, size: 24)
+                                    .padding(.trailing)
+                                ScrollView(.horizontal) {
+                                    HStack {
+                                        ForEach(placePhotos, id: \.self) { photo in
+                                            Image(uiImage: photo)
+                                                .resizable()
+                                                .frame(width: 110, height: 110)
+                                                .aspectRatio(contentMode: .fit)
+                                                .clipShape(RoundedRectangle(cornerRadius: 20))
+                                        }
                                     }
                                 }
+                                .scrollIndicators(.hidden)
                             }
                             .padding()
                         }

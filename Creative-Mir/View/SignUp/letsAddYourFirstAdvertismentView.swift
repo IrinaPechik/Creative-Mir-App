@@ -34,7 +34,7 @@ struct letsAddYourFirstAdvertismentView: View {
                 customBackButton()
             }
             ToolbarItem(placement: .topBarTrailing) {
-                PageCounter(currentCounter: 2, allPagesCount: 7)
+                PageCounter(currentCounter: 2, allPagesCount: 5)
             }
         }
     }

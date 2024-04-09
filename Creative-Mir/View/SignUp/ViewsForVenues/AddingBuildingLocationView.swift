@@ -19,7 +19,7 @@ struct AddingBuildingLocationView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .center) {
-                Text("Add your\n   location")
+                Text("Add your\nlocation")
                     .font(.custom("Lora-Regular", size: 32))
                     .padding(.bottom, 40)
                 
@@ -75,6 +75,7 @@ struct AddingBuildingLocationView: View {
                 NextButtonViewSecond(buttonText: "N E X T", isDisabled: returnedPlace.fullAddress.isEmpty || placeName.isEmpty || placeDescription.isEmpty) {
                     AuthService.shared.saveVenueBuildingAddress(address: returnedPlace.fullAddress)
                     AuthService.shared.saveVenueBuildingName(buildingName: placeName)
+                    AuthService.shared.saveVenuePlaceDescription(placeDescription: placeDescription)
                     print(AuthService.shared.getVenueBuildingAddress())
                     print(AuthService.shared.getVenueBuildingName())
                     // Переход к следующей view

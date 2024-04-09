@@ -34,6 +34,7 @@ struct LikedIdeas: View {
                     LazyVGrid(columns: gridLayout, spacing: 32) {
                         ForEach(viewModel.likedIdeas, id: \.id) {idea in
                             IdeaCell(viewModel: IdeasViewModel(), idea: idea)
+                                .shadow(radius: 8)
                         }
                     }
                 }

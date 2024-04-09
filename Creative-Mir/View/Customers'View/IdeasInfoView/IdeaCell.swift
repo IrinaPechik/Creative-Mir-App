@@ -23,12 +23,12 @@ struct IdeaCell: View {
                 if uiImage == nil {
                     ProgressView()
                         .scaleEffect(1.5)
-                        .frame(width: 172, height: 150)
+                        .frame(width: 182, height: 150)
                 } else {
                     Image(uiImage: uiImage!)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                        .frame(width: 172, height: 150)
+                        .frame(width: 182, height: 170)
                         .padding(.bottom, 10)
                 }
 
@@ -50,10 +50,14 @@ struct IdeaCell: View {
             VStack(alignment: .leading, spacing: 5) {
                 Text(idea.name)
                     .font(.custom("Lora-Regular", size: 20))
+                    .fixedSize(horizontal: true, vertical: true)
+//                    .multilineTextAlignment(.center)
 
                 Text(idea.shortDescription)
                     .font(.custom("Lora-Regular", size: 15))
                     .foregroundStyle(.gray)
+                    .fixedSize(horizontal: true, vertical: false)
+//                    .multilineTextAlignment(.center)
             }
             .padding()
         }

@@ -45,7 +45,7 @@ struct SupplierProfileEditing<ViewModel: SupplierProfileViewModelling>: View {
                 Form {
                     Section {
                         NavigationLink {
-                            Text("Enter your name and surname")
+                            Text("Edit your name and surname")
                                 .font(customFont: .PlayfairDisplayMedium, size: 24)
                             Form {
                                 Section {
@@ -56,7 +56,7 @@ struct SupplierProfileEditing<ViewModel: SupplierProfileViewModelling>: View {
                                 }
                             }
                         } label: {
-                            Label("\(viewModel.name) \(viewModel.surname)", systemImage: "timer")
+                            Label("\(viewModel.name) \(viewModel.surname)", systemImage: "person")
                         }
                     } header: {
                         Text("Name and surname")
@@ -64,6 +64,8 @@ struct SupplierProfileEditing<ViewModel: SupplierProfileViewModelling>: View {
 
                     Section{
                         NavigationLink {
+                            Text("Edit your email")
+                                .font(customFont: .PlayfairDisplayMedium, size: 24)
                             Form {
                                 Section {
                                     customEmailTextView(email: $viewModel.email, isEmailValid: $isEmailValid, placeholderName: "Email")
@@ -71,7 +73,7 @@ struct SupplierProfileEditing<ViewModel: SupplierProfileViewModelling>: View {
                             }
                         }
                         label: {
-                            Label("\(viewModel.email)", systemImage: "timer")
+                            Label("\(viewModel.email)", systemImage: "envelope")
                         }
                     } header: {
                         Text("email")
@@ -90,6 +92,8 @@ struct SupplierProfileEditing<ViewModel: SupplierProfileViewModelling>: View {
                     if !(supplier.advertisements[0].stageName == nil) {
                         Section {
                             NavigationLink {
+                                Text("Edit your stage name")
+                                    .font(customFont: .PlayfairDisplayMedium, size: 24)
                                 Form {
                                     Section {
                                         customTextView3(name: $viewModel.stageName, placeholderName: "Stage name")
@@ -97,7 +101,7 @@ struct SupplierProfileEditing<ViewModel: SupplierProfileViewModelling>: View {
                                 }
                             }
                             label: {
-                                Label("\(viewModel.stageName!)", systemImage: "timer")
+                                Label("\(viewModel.stageName == nil ? supplier.advertisements[0].stageName! : viewModel.stageName!)", systemImage: "person")
                             }
                         } header: {
                             Text("Stage name")
@@ -105,6 +109,8 @@ struct SupplierProfileEditing<ViewModel: SupplierProfileViewModelling>: View {
                     } else if !(supplier.advertisements[0].companyName == nil) {
                         Section {
                             NavigationLink {
+                                Text("Edit company name and your position")
+                                    .font(customFont: .PlayfairDisplayMedium, size: 24)
                                 Form {
                                     Section {
                                         customTextView3(name: $viewModel.companyName, placeholderName: "Company name")
@@ -115,7 +121,7 @@ struct SupplierProfileEditing<ViewModel: SupplierProfileViewModelling>: View {
                                 }
                             }
                             label: {
-                                Label("\(viewModel.companyName!) \(viewModel.companyPosition!)", systemImage: "timer")
+                                Label("\(viewModel.companyName == nil ? supplier.advertisements[0].companyName! : viewModel.companyName!) \(viewModel.companyPosition == nil ? supplier.advertisements[0].companyPosition! : viewModel.companyPosition!)", systemImage: "building.2.fill")
                             }
                         } header: {
                             Text("Company info")
@@ -124,6 +130,8 @@ struct SupplierProfileEditing<ViewModel: SupplierProfileViewModelling>: View {
                     
                     Section {
                         NavigationLink {
+                            Text("Edit your work experience info")
+                                .font(customFont: .PlayfairDisplayMedium, size: 24)
                             Form {
                                 Section {
                                     TextField("Write about your work experience", text: $viewModel.storyAboutWork, axis: .vertical)
@@ -141,7 +149,7 @@ struct SupplierProfileEditing<ViewModel: SupplierProfileViewModelling>: View {
                             }
                         }
                         label: {
-                            Label("Story about work", systemImage: "timer")
+                            Label("Story about work", systemImage: "pencil.and.outline")
                         }
                     } header: {
                         Text("Story about work")
@@ -149,6 +157,8 @@ struct SupplierProfileEditing<ViewModel: SupplierProfileViewModelling>: View {
                     
                     Section {
                         NavigationLink {
+                            Text("Edit your story about yourself")
+                                .font(customFont: .PlayfairDisplayMedium, size: 24)
                             Form {
                                 Section {
                                     TextField("Reveal your personality", text: $viewModel.storyAboutYourself, axis: .vertical)
@@ -166,7 +176,7 @@ struct SupplierProfileEditing<ViewModel: SupplierProfileViewModelling>: View {
                             }
                         }
                         label: {
-                            Label("Story about yourself", systemImage: "timer")
+                            Label("Story about yourself", systemImage: "pencil.and.outline")
                         }
                     } header: {
                         Text("Story about yourself")

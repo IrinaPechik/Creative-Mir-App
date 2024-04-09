@@ -87,9 +87,9 @@ struct StageNameInfoView: View {
             ToolbarItem(placement: .topBarLeading) {
                 customBackButton()
             }
-//            ToolbarItem(placement: .topBarTrailing) {
-//                PageCounter(currentCounter: 4, allPagesCount: 7)
-//            }
+            ToolbarItem(placement: .topBarTrailing) {
+                PageCounter(currentCounter: 3, allPagesCount: 5)
+            }
         }
     }
     

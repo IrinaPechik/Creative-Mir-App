@@ -65,30 +65,18 @@ struct Creative_MirApp: App {
 //            FirebaseApp.configure()
             
             
-            
-//            let image = UIImage(named: "puppyPawty")
-//            let imageData = image?.jpegData(compressionQuality: 0.5)
-//            
-//            StorageService.shared.uploadIdeaImage(ideaId: "7", image: imageData!) { result in
-//                switch result {
-//                case .success(let sizeInfo):
-//                    print(sizeInfo)
-//                case .failure(let error):
-//                    print("error \(error)")
-//                }
-//            }
 
             
-//            let idea = MWIdea(id: "7",
-//                              categoryId: "4",
-//                              name: "Puppy Pawty",
-//                              description: "Get ready to wag your tails and bark with delight at the \"Puppy Pawty\" – the ultimate celebration for our furry friends! Picture a whimsically decorated venue adorned paw-print banners, and doggy-themed decorations. Pups of all shapes and sizes prance around, sporting adorable party hats and wagging their tails with excitement. From a doggy fashion show showcasing the latest canine couture to a playful game of fetch and a \"best trick\" competition, there's no shortage of tail-wagging fun. As their humans mingle and share stories, four-legged guests indulge in delicious treats like pup-friendly birthday cake and refreshing bowls of water. With every woof and wiggle, it's evident that this Puppy Pawty is a barking success, leaving paw prints of joy on the hearts of all who attend.",
-//                              shortDescription: "Unless the fun",
-//                              ageRestriction: 0,
-//                              venuesRecommendations: "Verve dog boutique",
-//                              suppliersRecommendations: "merimeri",
-//                              peopleLimit: 20,
-//                              colorScheme: "Green")
+//            let idea = MWIdea(id: "4",
+//                              categoryId: "6",
+//                              name: "Upcycle Groove",
+//                              description: "Welcome to \"Upcycle Groove\", where sustainability meets style in an eco-friendly celebration like no other. Immerse yourself in a world of creativity and conscious living as we redefine the art of partying with a focus on upcycling and sustainability.\nExperience a visual feast of upcycled decor, where discarded materials are transformed into stunning works of art. From reclaimed pallet furniture to vintage-inspired decorations, every element of the event reflects our commitment to sustainability.",
+//                              shortDescription: "Sustainable Soiree",
+//                              ageRestriction: 21,
+//                              venuesRecommendations: "The Crystal",
+//                              suppliersRecommendations: "Eco Props",
+//                              peopleLimit: 60,
+//                              colorScheme: "Black and beige")
 //            DatabaseService.shared.setIdea(idea: idea) { res in
 //                switch res {
 //                case .success(_):
@@ -98,6 +86,18 @@ struct Creative_MirApp: App {
 //                }
 //            }
 //            
+//            let image = UIImage(named: "image3")
+//            let imageData = image?.jpegData(compressionQuality: 0.5)
+//
+//            StorageService.shared.uploadIdeaImage(ideaId: "4", image: imageData!) { result in
+//                switch result {
+//                case .success(let sizeInfo):
+//                    print(sizeInfo)
+//                case .failure(let error):
+//                    print("error \(error)")
+//                }
+//            }
+//
 //            let idea2 = MWIdea(id: "2",
 //                              categoryId: "1",
 //                              name: "Birthday Idea 2",
@@ -204,7 +204,7 @@ struct Creative_MirApp: App {
 //                }
 //            }
             
-//            let category = [MWIdeaCategory(id: "4", categoryName: "Pet Birthday"), MWIdeaCategory(id: "2", categoryName: "Wedding", image: ""), MWIdeaCategory(id: "3", categoryName: "Women's Day", image: "")]
+//            let category = [MWIdeaCategory(id: "6", categoryName: "Corporate party")]
 //            for c in category {
 //                DatabaseService.shared.setIdeaCategories(category: c) { result in
 //                    switch result {
@@ -215,7 +215,18 @@ struct Creative_MirApp: App {
 //                    }
 //                }
 //            }
-
+//
+//            let image = UIImage(named: "image4")
+//            let imageData = image?.jpegData(compressionQuality: 0.5)
+//            
+//            StorageService.shared.uploadIdeaCategoryImage(categoryId: "6", image: imageData!) { result in
+//                switch result {
+//                case .success(let sizeInfo):
+//                    print(sizeInfo)
+//                case .failure(let error):
+//                    print("error \(error)")
+//                }
+//            }
             return true
         }
     }

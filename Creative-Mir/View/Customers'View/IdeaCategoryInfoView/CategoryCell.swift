@@ -29,6 +29,8 @@ struct CategoryCell: View {
             VStack(alignment: .center, spacing: 5) {
                 Text("\(category.categoryName) party")
                     .font(.custom("PlayfairDisplay-Medium", size: 38))
+                    .fixedSize(horizontal: false, vertical: true)
+                    .multilineTextAlignment(.center)
                 // TODO: Можно добавить количество идей
                 Text("Ideas for your best \(category.categoryName.lowercased())")
                     .font(.custom("FuturaPT-Light", size: 23))

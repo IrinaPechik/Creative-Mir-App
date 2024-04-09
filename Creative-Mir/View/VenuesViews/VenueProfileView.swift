@@ -32,6 +32,19 @@ struct VenueProfileView: View {
                         Task {
                             do {
                                 try AuthService.shared.signOut()
+
+                                if let bundleIdentifier = Bundle.main.bundleIdentifier {
+                                    UserDefaults.standard.removePersistentDomain(forName: bundleIdentifier)
+                                }
+                    
+                    
+                                let defaults = UserDefaults.standard
+                                let dictionary = defaults.dictionaryRepresentation()
+                    
+                                dictionary.keys.forEach { key in
+                                    defaults.removeObject(forKey: key)
+                                }
+                                
                                 presentNextView.toggle()
                                 nextView = .signIn
                             } catch {

@@ -64,7 +64,7 @@ struct CustomerBookingCell: View {
                             }
                             Text("\(user.surname)")
                                 .font(customFont: .PlayfairDisplayMedium, size: 25)
-                            Spacer()
+//                            Spacer()
                             Text(user.email)
                                 .font(customFont: .LoraMedium, size: 15)
                                 .opacity(0.5)

@@ -184,9 +184,9 @@ struct UpploadPhotoFromWork: View {
             .navigationDestination(isPresented: $presentNextView) {
                 // TODO: в зависимости от того, какой пользователь, показывать страницу
                 if userRole == String(describing: UserRoles.supplier) {
-                    SupplierProfileView()
+                    SupplierRootView()
                 } else if userRole == String(describing: UserRoles.venue) {
-                    VenueProfileView()
+                    VenueRootView()
                 }
             }
             .alert(isPresented: $showErrorAlert, content: {
@@ -200,7 +200,7 @@ struct UpploadPhotoFromWork: View {
                 customBackButton()
             }
             ToolbarItem(placement: .topBarTrailing) {
-                PageCounter(currentCounter: 5, allPagesCount: 7)
+                PageCounter(currentCounter: 5, allPagesCount: 5)
             }
         }
     }

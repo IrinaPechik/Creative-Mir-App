@@ -77,19 +77,24 @@ struct SupplierCard: View {
                                 }
                                 .padding()
                                 
-                                ScrollView {
+//                                ScrollView {
                                     HStack {
                                         Text("My work\n photos:").font(customFont: .LoraRegular, size: 24)
                                             .padding(.trailing)
-                                        ForEach(photosFromWork, id: \.self) { photo in
-                                            Image(uiImage: photo)
-                                                .resizable()
-                                                .frame(width: 110, height: 110)
-                                                .aspectRatio(contentMode: .fit)
-                                                .clipShape(RoundedRectangle(cornerRadius: 20))
+                                        ScrollView(.horizontal) {
+                                            HStack {
+                                                ForEach(photosFromWork, id: \.self) { photo in
+                                                    Image(uiImage: photo)
+                                                        .resizable()
+                                                        .frame(width: 110, height: 110)
+                                                        .aspectRatio(contentMode: .fit)
+                                                        .clipShape(RoundedRectangle(cornerRadius: 20))
+                                                }
+                                            }
                                         }
+                                        .scrollIndicators(.hidden)
                                     }
-                                }
+//                                }
                                 .padding()
                             }
                         }

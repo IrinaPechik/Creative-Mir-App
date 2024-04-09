@@ -55,7 +55,7 @@ struct VenueProfileEditing<ViewModel: VenueProfileViewModelling>: View {
                                 }
                             }
                         } label: {
-                            Label("\(viewModel.name) \(viewModel.surname)", systemImage: "timer")
+                            Label("\(viewModel.name) \(viewModel.surname)", systemImage: "person")
                         }
                     } header: {
                         Text("Name and surname")
@@ -70,7 +70,7 @@ struct VenueProfileEditing<ViewModel: VenueProfileViewModelling>: View {
                             }
                         }
                     label: {
-                        Label("\(viewModel.email)", systemImage: "timer")
+                        Label("\(viewModel.email)", systemImage: "envelope")
                     }
                     } header: {
                         Text("email")
@@ -99,7 +99,7 @@ struct VenueProfileEditing<ViewModel: VenueProfileViewModelling>: View {
                                 }
                             }
                         label: {
-                            Label("\(viewModel.companyName!) \(viewModel.companyPosition!)", systemImage: "timer")
+                            Label("\(viewModel.companyName == nil ? venue.advertisements[0].companyName! : viewModel.companyName!) \(viewModel.companyPosition == nil ? venue.advertisements[0].companyPosition! : viewModel.companyPosition!)", systemImage: "building.2.fill")
                         }
                         } header: {
                             Text("Company info")
@@ -128,7 +128,7 @@ struct VenueProfileEditing<ViewModel: VenueProfileViewModelling>: View {
                                 
                             }
                         } label: {
-                            Label("Location deatails", systemImage: "timer")
+                            Label("Location deatails", systemImage: "mappin.circle.fill")
                         }
                     } header: {
                         Text("Location info")

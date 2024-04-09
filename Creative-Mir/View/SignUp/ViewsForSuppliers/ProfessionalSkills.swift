@@ -65,7 +65,7 @@ struct ProfessionalSkills: View {
                 customBackButton()
             }
             ToolbarItem(placement: .topBarTrailing) {
-                PageCounter(currentCounter: 4, allPagesCount: 7)
+                PageCounter(currentCounter: 4, allPagesCount: 5)
             }
         }
     }
